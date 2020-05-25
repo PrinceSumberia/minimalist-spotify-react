@@ -2,11 +2,13 @@ import React from "react";
 import axios from "axios";
 import "./App.scss";
 
-const CLIENT_ID = "5c6e98392a5146cf9bfbbf673e6eef70";
-const CLIENT_SECRET = "74716614b5794ccfb5a8bcc895c5f7e5";
+let id = process.env.REACT_APP_CLIENT_ID;
+let sec = process.env.REACT_APP_CLIENT_SECRET;
+
 let userAccessToken;
 
 function App() {
+  console.log(id, sec);
   const getData = async () => {
     const response = await axios.get("https://api.spotify.com/v1", {
       headers: {
