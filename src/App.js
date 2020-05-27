@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./App.scss";
+import Login from "./Login";
 
 let id = process.env.REACT_APP_CLIENT_ID;
 let sec = process.env.REACT_APP_CLIENT_SECRET;
@@ -8,7 +9,6 @@ let sec = process.env.REACT_APP_CLIENT_SECRET;
 let userAccessToken;
 
 function App() {
-  console.log(id, sec);
   const getData = async () => {
     const response = await axios.get("https://api.spotify.com/v1", {
       headers: {
@@ -23,6 +23,7 @@ function App() {
       <h1 className="heading">Hello World</h1>
       <p className="para">this is a sample para</p>
       <button onClick={getData}>Fetch</button>
+      <Login />
     </div>
   );
 }
