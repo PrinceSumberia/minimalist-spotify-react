@@ -9,20 +9,20 @@ let sec = process.env.REACT_APP_CLIENT_SECRET;
 let userAccessToken;
 
 function App() {
-  const getData = async () => {
-    const response = await axios.get("https://api.spotify.com/v1", {
-      headers: {
-        Authorization: `Bearer ${userAccessToken}`,
-      },
-    });
-    const data = response.data;
-    console.log(data);
-  };
+  // const getData = async () => {
+  //   const response = await axios.get("https://api.spotify.com/v1", {
+  //     headers: {
+  //       Authorization: `Bearer ${userAccessToken}`,
+  //     },
+  //   });
+  //   const data = response.data;
+  //   console.log(data);
+  // };
   return (
     <div className="">
       <h1 className="heading">Hello World</h1>
       <p className="para">this is a sample para</p>
-      <button onClick={getData}>Fetch</button>
+      {/* <button onClick={getData}>Fetch</button> */}
       <Login />
     </div>
   );
