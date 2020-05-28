@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 
+:root {
+  --color-primary: rgb(16, 29, 44);
+  --color-primary-light-1: rgb(250, 247, 245);
+  --color-primary-light-2: rgb(170, 170, 170);
+  --font-primary: 'Roboto', sans-serif;
+}
+
 *,
 *::before,
 *::after {
@@ -15,12 +22,11 @@ html {
 
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-primary);
   font-size: 1.6rem;
   font-weight: 400;
-}
+  background-color: var(--color-primary-light-1);
+  color: var(--color-primary);
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  min-height: 100vh;
 }
