@@ -1,7 +1,5 @@
 import React from "react";
-// import axios from "axios";
 import "./App.scss";
-import Login from "./Login";
 
 function App() {
   return (

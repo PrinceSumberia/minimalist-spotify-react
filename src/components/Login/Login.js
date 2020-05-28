@@ -4,7 +4,7 @@ import axios from "axios";
 let CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
 let scope = "user-read-private user-read-email user-read-playback-state";
-const localhost = "http://localhost:3000/callback";
+const localhost = "http://localhost:3000/";
 
 let URL = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${localhost}&scope=${scope}&response_type=token`;
 
