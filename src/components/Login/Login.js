@@ -1,12 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-let CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-
-let scope = "user-read-private user-read-email user-read-playback-state";
-const localhost = "http://localhost:3000/";
-
-let URL = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${localhost}&scope=${scope}&response_type=token`;
+import { AUTH_URL } from "../../constants/constants";
+import { useHistory, Redirect } from "react-router-dom";
 
 // Get the hash of the url
 let hash = window.location.hash
@@ -22,25 +17,42 @@ let hash = window.location.hash
 
 window.location.hash = "";
 
-let token = "";
-
 function Login() {
+  const [accessToken, setAccessToken] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  let history = useHistory();
+
   useEffect(() => {
-    token = hash.access_token;
+    setAccessToken(hash.access_token);
     const getData = async () => {
       const response = await axios.get("https://api.spotify.com/v1/me", {
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: "Bearer " + accessToken,
         },
       });
-      return response.data;
+      return response;
     };
-    console.log(getData().then((data) => console.log(data)));
-  }, []);
+    getData().then((result) => {
+      if (result.status === 200) {
+        console.log(result.data);
+        setIsAuthenticated(true);
+        history.push("/dashboard");
+      } else {
+        console.log("error occured");
+      }
+    });
+    // if (accessToken) {
+    //   console.log(accessToken);
+    //   setIsAuthenticated(true);
+    //   history.push("/dashboard");
+    // }
+    // setAccessToken(getData().then((data) => console.log(data)));
+  }, [accessToken]);
+
   return (
-    <div>
+    <div className="Login">
       <h4 className="heading">Please Login With your Spotify Account.</h4>
-      <a href={URL}>Login with Spotify</a>
+      <a href={AUTH_URL}>Login with Spotify</a>
     </div>
   );
 }
