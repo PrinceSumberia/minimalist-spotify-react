@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { AUTH_URL } from "../../constants/constants";
 import { AuthContext, AccessTokenContext } from "../../context/AuthContext";
 
@@ -21,6 +21,7 @@ const getHash = () => {
 function Login() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const { accessToken, setAccessToken } = useContext(AccessTokenContext);
+  let history = useHistory();
 
   useEffect(() => {
     const { access_token } = getHash();
@@ -29,6 +30,12 @@ function Login() {
       setIsAuthenticated(true);
     }
   }, [setIsAuthenticated, setAccessToken]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/dashboard");
+    }
+  });
 
   return (
     <div className="Login">
