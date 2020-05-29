@@ -22,8 +22,13 @@ function Login() {
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
-    setIsAuthenticated(true);
-  }, []);
+    const { access_token } = hash;
+    if (access_token !== null && access_token !== undefined) {
+      console.log(access_token);
+      setAccessToken(access_token);
+      setIsAuthenticated(true);
+    }
+  });
 
   return (
     <div className="Login">
