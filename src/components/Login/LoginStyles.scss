@@ -1,0 +1,27 @@
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__heading {
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+  }
+
+  &__btn {
+    font-size: 2rem;
+    border-radius: 10rem;
+    text-decoration: none;
+    text-transform: capitalize;
+    color: var(--color-primary-light-1);
+    background-color: var(--color-green);
+    padding: 1.5rem 4rem;
+    transition: all .5s;
+
+    &:hover {
+      background-color: var(--color-green-light);
+    }
+  }
+}

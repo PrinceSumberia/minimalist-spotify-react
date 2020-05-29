@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 
 :root {
-  --color-primary: rgb(16, 29, 44);
-  --color-primary-light-1: rgb(250, 247, 245);
-  --color-primary-light-2: rgb(170, 170, 170);
+  --color-primary: #101d2c;
+  --color-primary-light-1: #faf7f5;
+  --color-primary-light-2: #aaaaaa;
+  --color-green: #1db954;
+  --color-green-light: #1ed760;
   --font-primary: 'Roboto', sans-serif;
 }
 
@@ -25,6 +27,7 @@ body {
   font-family: var(--font-primary);
   font-size: 1.6rem;
   font-weight: 400;
+  line-height: 1.7;
   background-color: var(--color-primary-light-1);
   color: var(--color-primary);
 

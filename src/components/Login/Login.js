@@ -2,6 +2,7 @@ import React, { useEffect, useContext, memo } from "react";
 import { useHistory } from "react-router-dom";
 import { AUTH_URL } from "../../constants/constants";
 import { AuthContext, AccessTokenContext } from "../../context/AuthContext";
+import "./LoginStyles.scss";
 
 const getHash = () => {
   let hash = window.location.hash
@@ -21,6 +22,7 @@ const getHash = () => {
 function Login() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const { accessToken, setAccessToken } = useContext(AccessTokenContext);
+
   let history = useHistory();
 
   useEffect(() => {
@@ -36,15 +38,17 @@ function Login() {
     } else if (access_token) {
       setAccessToken(access_token);
       setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
     }
   }, [accessToken, setAccessToken, setIsAuthenticated]);
 
   return (
-    <div className="Login">
-      <h4 className="heading">Please Login With your Spotify Account.</h4>
-      <a href={AUTH_URL}>Login with Spotify</a>
+    <div className="login">
+      <h4 className="login__heading">
+        Please login with your Spotify account.
+      </h4>
+      <a className="login__btn" href={AUTH_URL}>
+        Login with Spotify
+      </a>
     </div>
   );
 }
