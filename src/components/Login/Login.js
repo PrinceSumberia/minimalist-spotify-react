@@ -1,34 +1,34 @@
 import React, { useEffect, useState, useContext } from "react";
-import { AUTH_URL } from "../../constants/constants";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { AUTH_URL } from "../../constants/constants";
+import { AuthContext, AccessTokenContext } from "../../context/AuthContext";
 
-// Get the hash of the url
-let hash = window.location.hash
-  .substring(1)
-  .split("&")
-  .reduce(function (initial, item) {
-    if (item) {
-      var parts = item.split("=");
-      initial[parts[0]] = decodeURIComponent(parts[1]);
-    }
-    return initial;
-  }, {});
-
-window.location.hash = "";
+const getHash = () => {
+  let hash = window.location.hash
+    .substring(1)
+    .split("&")
+    .reduce(function (initial, item) {
+      if (item) {
+        var parts = item.split("=");
+        initial[parts[0]] = decodeURIComponent(parts[1]);
+      }
+      return initial;
+    }, {});
+  window.location.hash = "";
+  return hash;
+};
 
 function Login() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-  const [accessToken, setAccessToken] = useState(null);
+  const { accessToken, setAccessToken } = useContext(AccessTokenContext);
 
   useEffect(() => {
-    const { access_token } = hash;
-    if (access_token !== null && access_token !== undefined) {
-      console.log(access_token);
+    const { access_token } = getHash();
+    if (access_token) {
       setAccessToken(access_token);
       setIsAuthenticated(true);
     }
-  });
+  }, [setIsAuthenticated, setAccessToken]);
 
   return (
     <div className="Login">
