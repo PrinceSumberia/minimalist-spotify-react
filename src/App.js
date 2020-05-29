@@ -5,13 +5,16 @@ import Login from "./components/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "./App.scss";
+import { DataProvider } from "./context/DataContext";
 
 function App() {
   return (
     <AuthProvider>
       <Switch>
         <Route exact path="/" render={() => <Login />} />
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <DataProvider>
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        </DataProvider>
       </Switch>
     </AuthProvider>
   );
