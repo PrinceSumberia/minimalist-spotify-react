@@ -1,10 +1,10 @@
 import React from "react";
-import Login from "./components/Login/Login";
 import { Switch, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import Login from "./components/Login/Login";
+import PrivateRoute from "./PrivateRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "./App.scss";
-import { AuthProvider } from "./context/AuthContext";
-import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (

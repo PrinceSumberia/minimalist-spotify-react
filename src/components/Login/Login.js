@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useEffect, useContext, memo } from "react";
+import { useHistory } from "react-router-dom";
 import { AUTH_URL } from "../../constants/constants";
 import { AuthContext, AccessTokenContext } from "../../context/AuthContext";
 
@@ -24,28 +24,29 @@ function Login() {
   let history = useHistory();
 
   useEffect(() => {
-    const { access_token } = getHash();
-    if (access_token) {
-      setAccessToken(access_token);
-      setIsAuthenticated(true);
-    }
-  }, [setIsAuthenticated, setAccessToken]);
-
-  useEffect(() => {
     if (isAuthenticated) {
       history.push("/dashboard");
     }
   });
 
+  useEffect(() => {
+    const { access_token } = getHash();
+    if (accessToken) {
+      setIsAuthenticated(true);
+    } else if (access_token) {
+      setAccessToken(access_token);
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [accessToken, setAccessToken, setIsAuthenticated]);
+
   return (
     <div className="Login">
       <h4 className="heading">Please Login With your Spotify Account.</h4>
       <a href={AUTH_URL}>Login with Spotify</a>
-      <div className="">
-        <Link to="/dashboard">dashboard</Link>
-      </div>
     </div>
   );
 }
 
-export default Login;
+export default memo(Login);
