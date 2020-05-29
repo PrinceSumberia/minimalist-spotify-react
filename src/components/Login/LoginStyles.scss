@@ -11,14 +11,19 @@
   }
 
   &__btn {
-    font-size: 2rem;
-    border-radius: 10rem;
-    text-decoration: none;
-    text-transform: capitalize;
-    color: var(--color-primary-light-1);
-    background-color: var(--color-green);
-    padding: 1.5rem 4rem;
-    transition: all .5s;
+
+    &,
+    &:active {
+      border: none;
+      font-size: 2rem;
+      border-radius: 10rem;
+      text-decoration: none;
+      text-transform: capitalize;
+      color: var(--color-primary-light-1);
+      background-color: var(--color-green);
+      padding: 1.5rem 4rem;
+      transition: all .5s;
+    }
 
     &:hover {
       background-color: var(--color-green-light);
