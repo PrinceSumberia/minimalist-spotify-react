@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { AUTH_URL } from "../../constants/constants";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 // Get the hash of the url
 let hash = window.location.hash
@@ -18,8 +19,8 @@ let hash = window.location.hash
 window.location.hash = "";
 
 function Login() {
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [accessToken, setAccessToken] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   let history = useHistory();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ function Login() {
       if (result.status === 200) {
         console.log(result.data);
         setIsAuthenticated(true);
-        history.push("/dashboard");
+        // history.push("/dashboard");
       } else {
         console.log("error occured");
       }
@@ -52,7 +53,7 @@ function Login() {
   return (
     <div className="Login">
       <h4 className="heading">Please Login With your Spotify Account.</h4>
-      <a href={AUTH_URL}>Login with Spotify</a>
+      <a href={AUTH_URL}>Login with Spotify</a>>
     </div>
   );
 }
