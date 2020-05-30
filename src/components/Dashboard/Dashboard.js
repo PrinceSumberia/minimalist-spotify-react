@@ -1,35 +1,24 @@
 import React, { useEffect, useContext } from "react";
-import axios from "axios";
 import { DataContext } from "../../context/DataContext";
 import Profile from "../Profile/Profile";
 import "./DashBoardStyles.scss";
-import { AccessTokenContext } from "../../context/AuthContext";
+import useFetchData from "../../hooks/useFetchData";
 
 export default function Dashboard() {
-  const { accessToken, setAccessToken } = useContext(AccessTokenContext);
-  const { setProfileData } = useContext(DataContext);
+  const { setProfileData, accessToken } = useContext(DataContext);
+
+  const url = "https://api.spotify.com/v1/me";
+  const headers = {
+    Authorization: "Bearer " + accessToken,
+  };
+
+  const [data] = useFetchData("", url, headers);
 
   useEffect(() => {
-    const getData = async () => {
-      const response = await axios
-        .get("https://api.spotify.com/v1/me", {
-          headers: {
-            Authorization: "Bearer " + accessToken,
-          },
-        })
-        .catch((error) => {
-          if (error.response.status === 401) {
-            setAccessToken(null);
-          }
-        });
-      if (response.status === 200) {
-        setProfileData(response.data);
-      } else {
-        console.log("error occured");
-      }
-    };
-    getData();
-  }, [accessToken, setProfileData, setAccessToken]);
+    setProfileData(data);
+  }, [data, setProfileData]);
+
+  console.log(data);
 
   return (
     <div className="container">
