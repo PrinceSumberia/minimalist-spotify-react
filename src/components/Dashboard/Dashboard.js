@@ -1,7 +1,8 @@
 import React, { useEffect, useContext } from "react";
 import Profile from "../Profile/Profile";
 import useFetchData from "../../hooks/useFetchData";
-import { DataContext } from "../../context/DataContext";
+import { DataContext, TopPlayListProvider } from "../../context/DataContext";
+import TopChart from "../TopChart/TopChart";
 import "./DashBoardStyles.scss";
 
 export default function Dashboard() {
@@ -20,7 +21,6 @@ export default function Dashboard() {
   const [data] = useFetchData("", url, headers);
 
   useEffect(() => {
-    console.log(data);
     if (data.success) {
       setProfileData(data);
     } else if (data.status === 401) {
@@ -34,7 +34,11 @@ export default function Dashboard() {
       <div className="sidebar">
         <Profile />
       </div>
-      <div className="mainContent"></div>
+      <div className="mainContent">
+        <TopPlayListProvider>
+          <TopChart />
+        </TopPlayListProvider>
+      </div>
     </div>
   );
 }

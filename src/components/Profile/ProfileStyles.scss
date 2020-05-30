@@ -25,11 +25,12 @@
   font-size: 1.4rem;
 
   &__name {
-    text-transform: uppercase;
-    font-weight: 400;
-  }
+    font-weight: 700;
 
-  &__email {}
+    & span {
+      text-transform: uppercase;
+    }
+  }
 }
 
 .controls {
@@ -40,7 +41,15 @@
 
   &__notification {
     margin-right: 1rem;
+
+    &:hover {
+      color: var(--color-green);
+    }
   }
 
-  &__settings {}
+  &__settings {
+    &:hover {
+      color: var(--color-green);
+    }
+  }
 }
