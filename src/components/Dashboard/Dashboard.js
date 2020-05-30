@@ -5,9 +5,12 @@ import { DataContext } from "../../context/DataContext";
 import "./DashBoardStyles.scss";
 
 export default function Dashboard() {
-  const { setProfileData, accessToken, setAccessToken } = useContext(
-    DataContext
-  );
+  const {
+    setProfileData,
+    accessToken,
+    setAccessToken,
+    setIsAuthenticated,
+  } = useContext(DataContext);
 
   const url = "https://api.spotify.com/v1/me";
   const headers = {
@@ -21,9 +24,10 @@ export default function Dashboard() {
     if (data.success) {
       setProfileData(data);
     } else if (data.status === 401) {
+      setIsAuthenticated(false);
       setAccessToken(null);
     }
-  }, [data, setProfileData, setAccessToken]);
+  }, [data, setProfileData, setAccessToken, setIsAuthenticated]);
 
   return (
     <div className="container">
