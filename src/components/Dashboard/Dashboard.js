@@ -1,21 +1,27 @@
 import React, { useEffect, useContext } from "react";
-import useLocalStorageState from "../../hooks/useLocalStorageState";
 import axios from "axios";
-import "./DashBoardStyles.scss";
 import { DataContext } from "../../context/DataContext";
 import Profile from "../Profile/Profile";
+import "./DashBoardStyles.scss";
+import { AccessTokenContext } from "../../context/AuthContext";
 
 export default function Dashboard() {
-  const [accessToken] = useLocalStorageState("accessToken", null);
+  const { accessToken, setAccessToken } = useContext(AccessTokenContext);
   const { setProfileData } = useContext(DataContext);
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get("https://api.spotify.com/v1/me", {
-        headers: {
-          Authorization: "Bearer " + accessToken,
-        },
-      });
+      const response = await axios
+        .get("https://api.spotify.com/v1/me", {
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            setAccessToken(null);
+          }
+        });
       if (response.status === 200) {
         setProfileData(response.data);
       } else {
@@ -23,7 +29,7 @@ export default function Dashboard() {
       }
     };
     getData();
-  }, [accessToken, setProfileData]);
+  }, [accessToken, setProfileData, setAccessToken]);
 
   return (
     <div className="container">
