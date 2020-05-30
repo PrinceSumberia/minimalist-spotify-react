@@ -25,14 +25,12 @@ export default function Dashboard() {
     }
   }, [data, setProfileData, setAccessToken]);
 
-  console.log(data);
-
   return (
     <div className="container">
-      <div className="sidebar"></div>
-      <div className="mainContent">
+      <div className="sidebar">
         <Profile />
       </div>
+      <div className="mainContent"></div>
     </div>
   );
 }
