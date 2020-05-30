@@ -12,10 +12,20 @@ export default (initialVal, url, headers) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url, {
-          headers: { ...headers },
-        });
+        const response = await axios
+          .get(url, {
+            headers: { ...headers },
+          })
+          .catch((err) => {
+            if (err.response.status === 401) {
+              console.log("Access Token Expired");
+              setData({ ...data, success: false, status: err.response.status });
+              return;
+            }
+          });
         setData({
+          success: true,
+          status: response.status,
           data: response.data,
         });
       } catch (err) {

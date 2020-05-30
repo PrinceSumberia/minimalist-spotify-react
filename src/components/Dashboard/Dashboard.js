@@ -1,11 +1,13 @@
 import React, { useEffect, useContext } from "react";
-import { DataContext } from "../../context/DataContext";
 import Profile from "../Profile/Profile";
-import "./DashBoardStyles.scss";
 import useFetchData from "../../hooks/useFetchData";
+import { DataContext } from "../../context/DataContext";
+import "./DashBoardStyles.scss";
 
 export default function Dashboard() {
-  const { setProfileData, accessToken } = useContext(DataContext);
+  const { setProfileData, accessToken, setAccessToken } = useContext(
+    DataContext
+  );
 
   const url = "https://api.spotify.com/v1/me";
   const headers = {
@@ -15,8 +17,13 @@ export default function Dashboard() {
   const [data] = useFetchData("", url, headers);
 
   useEffect(() => {
-    setProfileData(data);
-  }, [data, setProfileData]);
+    console.log(data);
+    if (data.success) {
+      setProfileData(data);
+    } else if (data.status === 401) {
+      setAccessToken(null);
+    }
+  }, [data, setProfileData, setAccessToken]);
 
   console.log(data);
 
