@@ -25,9 +25,16 @@ function TopChart() {
   }, [data, setTopPlayList]);
 
   const handleScroll = (e) => {
-    e.stopPropagation();
-    console.log(e.target.id);
-    console.log(scroller.current.scrollLeft);
+    e.preventDefault();
+    if (e.target.id === "scrollLeft") {
+      let pos = scroller.current.scrollLeft;
+      pos -= 1000;
+      scroller.current.scroll({ left: pos, behavior: "smooth" });
+    } else if (e.target.id === "scrollRight") {
+      let pos = scroller.current.scrollLeft;
+      pos += 1000;
+      scroller.current.scroll({ left: pos, behavior: "smooth" });
+    }
   };
 
   console.log(topPlayList);
