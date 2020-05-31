@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { DataContext, TopPlayListContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
@@ -8,6 +8,7 @@ import { ChevronRight, ChevronLeft } from "react-feather";
 function TopChart() {
   const { accessToken } = useContext(DataContext);
   const { topPlayList, setTopPlayList } = useContext(TopPlayListContext);
+  const scroller = useRef(null);
 
   let url = `https://api.spotify.com/v1/browse/featured-playlists/`;
 
@@ -23,7 +24,11 @@ function TopChart() {
     }
   }, [data, setTopPlayList]);
 
-  const handleScroll = () => {};
+  const handleScroll = (e) => {
+    e.stopPropagation();
+    console.log(e.target.id);
+    console.log(scroller.current.scrollLeft);
+  };
 
   console.log(topPlayList);
   const lists = topPlayList.map((list) => (
@@ -31,10 +36,14 @@ function TopChart() {
   ));
 
   return (
-    <div className="">
-      <ChevronLeft onClick={handleScroll} />
-      <ChevronRight />
-      <div className="charts-container">{lists}</div>
+    <div className="topChart-container">
+      <div className="scrollers" onClick={handleScroll}>
+        <ChevronLeft className="icons" id="scrollLeft" />
+        <ChevronRight className="icons" id="scrollRight" />
+      </div>
+      <div ref={scroller} className="charts-container">
+        {lists}
+      </div>
     </div>
   );
 }

@@ -1,3 +1,8 @@
+.topChart-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .charts-container {
   display: flex;
   justify-content: space-between;
@@ -8,5 +13,25 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+.scrollers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  margin-left: 1.7rem;
+}
+
+.icons {
+  width: 100%;
+  height: 100%;
+  color: var(--color-primary-light-2);
+
+  &:hover {
+    color: var(--color-green);
   }
 }
