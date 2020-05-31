@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "react-feather";
 import { DataContext, TopPlayListContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import "./TopChartStyles.scss";
-import { ChevronRight, ChevronLeft } from "react-feather";
 
 function TopChart() {
   const { accessToken } = useContext(DataContext);

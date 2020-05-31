@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
+import { Bell, Settings } from "react-feather";
 import { DataContext } from "../../context/DataContext";
-import { Settings, Bell } from "react-feather";
 import "./ProfileStyles.scss";
 
 export default function Profile() {

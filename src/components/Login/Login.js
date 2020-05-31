@@ -1,7 +1,7 @@
-import React, { useEffect, useContext, memo } from "react";
+import React, { memo, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AUTH_URL } from "../../constants/constants";
-import { AuthContext, AccessTokenContext } from "../../context/AuthContext";
+import { AccessTokenContext, AuthContext } from "../../context/AuthContext";
 import "./LoginStyles.scss";
 
 const getHash = () => {

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default (initialVal, url, headers) => {
   const [data, setData] = useState(initialVal);
