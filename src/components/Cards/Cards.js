@@ -9,7 +9,7 @@ function Cards({ img, name, title, subtitle }) {
       </div>
       <div className="card__content">
         <h4 className="card__content__title">{title}</h4>
-        {/* <p className="card__subtitle">{subtitle}</p> */}
+        <p className="card__content__subtitle">{subtitle}</p>
       </div>
     </div>
   );

@@ -39,14 +39,22 @@ function TopChart() {
 
   console.log(topPlayList);
   const lists = topPlayList.map((list) => (
-    <Cards key={list.id} title={list.name} img={list.images[0].url} />
+    <Cards
+      key={list.id}
+      title={list.name}
+      img={list.images[0].url}
+      subtitle={`Total Tracks: ${list.tracks.total}`}
+    />
   ));
 
   return (
-    <div className="topChart-container">
-      <div className="scrollers" onClick={handleScroll}>
-        <ChevronLeft className="icons" id="scrollLeft" />
-        <ChevronRight className="icons" id="scrollRight" />
+    <div className="topchart-container">
+      <div className="topchart-header">
+        <div className="scrollers" onClick={handleScroll}>
+          <ChevronLeft className="icons" id="scrollLeft" />
+          <ChevronRight className="icons" id="scrollRight" />
+        </div>
+        <h3 className="topchart-heading">Billboard Topchart</h3>
       </div>
       <div ref={scroller} className="charts-container">
         {lists}

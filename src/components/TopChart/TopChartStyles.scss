@@ -1,7 +1,20 @@
-.topChart-container {
+.topchart-container {
   display: flex;
   flex-direction: column;
 }
+
+.topchart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  margin: 1.5rem 1rem;
+}
+
+.topchart-heading {
+  margin-right: 2rem;
+}
+
 
 .charts-container {
   display: flex;
@@ -21,8 +34,6 @@
   justify-content: center;
   align-items: center;
   width: 5rem;
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
   margin-left: 1.7rem;
 }
 

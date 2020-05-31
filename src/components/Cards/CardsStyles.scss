@@ -3,7 +3,6 @@
   margin: 0 2rem;
 
   &__imgContainer {
-    // margin-top: 2rem;
     width: 22rem;
     height: 22rem;
 
@@ -22,7 +21,12 @@
     margin: 1rem 0;
 
     &__title {
-      font-weight: 700;
+      font-weight: 600;
+    }
+
+    &__subtitle {
+      font-size: 1.4rem;
+      font-weight: 300;
     }
   }
 }
