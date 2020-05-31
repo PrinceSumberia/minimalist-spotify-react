@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from "react";
+import { DataContext, TopPlayListContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
-import { TopPlayListContext, DataContext } from "../../context/DataContext";
+import Cards from "../Cards/Cards";
 
 function TopChart() {
   const { accessToken } = useContext(DataContext);
   const { topPlayList, setTopPlayList } = useContext(TopPlayListContext);
 
-  let url = `https://api.spotify.com/v1/browse/featured-playlists`;
+  let url = `https://api.spotify.com/v1/browse/featured-playlists/`;
 
   const headers = {
     Authorization: "Bearer " + accessToken,
@@ -21,7 +22,9 @@ function TopChart() {
   }, [data, setTopPlayList]);
 
   console.log(topPlayList);
-  const lists = topPlayList.map((list) => <h4 key={list.id}>{list.name}</h4>);
+  const lists = topPlayList.map((list) => (
+    <Cards key={list.id} title={list.name} img={list.images[0].url} />
+  ));
 
   return <div>{lists}</div>;
 }
