@@ -14,5 +14,6 @@
 .mainContent {
   flex: 1;
   border-radius: 2rem;
-  background-color: yellowgreen;
+  background-color: var(--color-white);
+  overflow: hidden;
 }

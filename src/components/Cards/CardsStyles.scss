@@ -1,6 +1,21 @@
 .card {
+  flex: 0 0 auto;
+  margin: 0 2rem;
 
-  &__imgContainer {}
+  &__imgContainer {
+    margin-top: 2rem;
+    width: 22rem;
+    height: 22rem;
+
+    &__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+    }
+  }
 
   &__content {}
 }

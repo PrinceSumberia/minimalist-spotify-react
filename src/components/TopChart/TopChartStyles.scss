@@ -1,1 +1,12 @@
-.container {}
+.charts-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: .5rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

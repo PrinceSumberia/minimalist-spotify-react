@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { DataContext, TopPlayListContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
+import "./TopChartStyles.scss";
+import { ChevronRight, ChevronLeft } from "react-feather";
 
 function TopChart() {
   const { accessToken } = useContext(DataContext);
@@ -21,12 +23,20 @@ function TopChart() {
     }
   }, [data, setTopPlayList]);
 
+  const handleScroll = () => {};
+
   console.log(topPlayList);
   const lists = topPlayList.map((list) => (
     <Cards key={list.id} title={list.name} img={list.images[0].url} />
   ));
 
-  return <div>{lists}</div>;
+  return (
+    <div className="">
+      <ChevronLeft onClick={handleScroll} />
+      <ChevronRight />
+      <div className="charts-container">{lists}</div>
+    </div>
+  );
 }
 
 export default TopChart;
