@@ -5,17 +5,22 @@
   &__imgContainer {
     margin-top: 2rem;
     width: 22rem;
-    height: 22rem;
 
     &__img {
       display: block;
       width: 100%;
-      height: 100%;
+      object-fit: cover;
       background-size: cover;
       overflow: hidden;
       border-radius: var(--border-radius);
     }
   }
 
-  &__content {}
+  &__content {
+    margin: 1rem 0;
+
+    &__title {
+      font-weight: 700;
+    }
+  }
 }
