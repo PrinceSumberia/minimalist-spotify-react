@@ -37,7 +37,7 @@ function TopChart() {
     }
   };
 
-  console.log(topPlayList);
+  // console.log(topPlayList);
   const lists = topPlayList.map((list) => (
     <Cards
       key={list.id}

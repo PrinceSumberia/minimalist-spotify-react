@@ -1,8 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import { DataContext, TopPlayListProvider } from "../../context/DataContext";
+import {
+  CurrentPlayListProvider,
+  DataContext,
+  TopPlayListProvider,
+} from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Profile from "../Profile/Profile";
 import TopChart from "../TopChart/TopChart";
+import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";
 
 export default function Dashboard() {
@@ -38,6 +43,9 @@ export default function Dashboard() {
         <TopPlayListProvider>
           <TopChart />
         </TopPlayListProvider>
+        <CurrentPlayListProvider>
+          <TopTracks />
+        </CurrentPlayListProvider>
       </div>
     </div>
   );
