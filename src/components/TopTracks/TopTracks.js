@@ -1,14 +1,21 @@
 import React, { useContext, useEffect } from "react";
-import { GLOBAL_TRACK_ID } from "../../constants/constants";
-import { DataContext, CurrentPlayListContext } from "../../context/DataContext";
+import { CurrentPlayListContext, DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
+import Song from "../Song/Song";
+import "./TopTracksStyles.scss";
+
+const millisToMinutesAndSeconds = (millis) => {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+};
 
 function TopTracks() {
   const { accessToken } = useContext(DataContext);
-  const { currentPlayList, setCurrentPlayList } = useContext(
+  const { currentPlayListId, currentPlayList, setCurrentPlayList } = useContext(
     CurrentPlayListContext
   );
-  const url = `https://api.spotify.com/v1/playlists/${GLOBAL_TRACK_ID}/tracks`;
+  const url = `https://api.spotify.com/v1/playlists/${currentPlayListId}/tracks`;
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
@@ -16,18 +23,29 @@ function TopTracks() {
 
   useEffect(() => {
     try {
-      const trackList = data.items.map((track) => {
-        return track.track.id;
+      const trackList = data.items.map((item) => {
+        const { album, id, name, artists, duration_ms, explicit } = item.track;
+        const { images } = album;
+        return {
+          id,
+          name: name,
+          image: images[images.length - 1].url,
+          artist: artists.map((artist) => artist.name).join(", "),
+          duration: millisToMinutesAndSeconds(duration_ms),
+          explicit,
+        };
       });
       setCurrentPlayList(trackList);
     } catch (err) {}
   }, [data, setCurrentPlayList]);
 
-  console.log(currentPlayList);
-
+  let songList;
+  if (currentPlayList) {
+    songList = currentPlayList.map((song) => <Song key={song.id} {...song} />);
+  }
   return (
     <div>
-      <div className="">Hello</div>
+      <div className="">{songList}</div>
     </div>
   );
 }

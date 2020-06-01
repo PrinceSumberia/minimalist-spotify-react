@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { GLOBAL_TRACK_ID } from "../constants/constants";
 import { AccessTokenContext, AuthContext } from "./AuthContext";
 
 export const DataContext = createContext();
@@ -35,10 +36,16 @@ export const TopPlayListProvider = (props) => {
 };
 
 export const CurrentPlayListProvider = (props) => {
+  const [currentPlayListId, setCurrentPlayListId] = useState(GLOBAL_TRACK_ID);
   const [currentPlayList, setCurrentPlayList] = useState([]);
   return (
     <CurrentPlayListContext.Provider
-      value={{ currentPlayList, setCurrentPlayList }}
+      value={{
+        currentPlayList,
+        setCurrentPlayList,
+        currentPlayListId,
+        setCurrentPlayListId,
+      }}
     >
       {props.children}
     </CurrentPlayListContext.Provider>
