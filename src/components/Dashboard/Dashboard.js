@@ -49,9 +49,7 @@ export default function Dashboard() {
               <TopTracks />
             </CurrentPlayListProvider>
           </div>
-          <div className="main__comingsoon">
-            <h1>Hello</h1>
-          </div>
+          <div className="main__comingsoon"></div>
         </div>
       </div>
     </div>
