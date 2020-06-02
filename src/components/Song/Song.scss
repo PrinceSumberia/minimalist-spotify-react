@@ -1,0 +1,34 @@
+.song {
+  display: flex;
+  align-items: center;
+
+
+  &__details {
+    flex: 0 0 50%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__meta-content {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__artist {}
+
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+
+  &__duration {
+    margin-right: 5rem;
+  }
+
+  &__fav {
+    display: flex;
+    align-items: center;
+  }
+}

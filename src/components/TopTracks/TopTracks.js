@@ -44,8 +44,14 @@ function TopTracks() {
     songList = currentPlayList.map((song) => <Song key={song.id} {...song} />);
   }
   return (
-    <div>
-      <div className="">{songList}</div>
+    <div className="toptracks__container">
+      <div className="toptracks__header">
+        <h2 className="toptracks__header__title">Most Popular</h2>
+        <h4 className="toptracks__header__subtitle">
+          {currentPlayList.length} songs on the list
+        </h4>
+      </div>
+      <div className="toptracks__tracks">{songList}</div>
     </div>
   );
 }
