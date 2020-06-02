@@ -26,11 +26,17 @@ function TopTracks() {
       const trackList = data.items.map((item) => {
         const { album, id, name, artists, duration_ms, explicit } = item.track;
         const { images } = album;
+        const index = name.search(/\(/);
         return {
           id,
-          name: name,
+          name: (index !== -1 ? name.slice(0, index) : name)
+            .trim()
+            .toLowerCase(),
           image: images[images.length - 1].url,
-          artist: artists.map((artist) => artist.name).join(", "),
+          artist: artists
+            .map((artist) => artist.name)
+            .join(", ")
+            .toLowerCase(),
           duration: millisToMinutesAndSeconds(duration_ms),
           explicit,
         };

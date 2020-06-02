@@ -17,3 +17,20 @@
   background-color: var(--color-white);
   overflow: hidden;
 }
+
+.main {
+
+  &__content {
+    display: flex;
+    padding: 1rem;
+  }
+
+  &__toptracks {
+    flex: 0 0 75%;
+  }
+
+  &__comingsoon {
+    flex: 1;
+    background-color: yellowgreen;
+  }
+}

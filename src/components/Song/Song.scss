@@ -1,10 +1,22 @@
 .song {
   display: flex;
   align-items: center;
+  text-transform: capitalize;
+  padding: 1rem 1.5rem;
+  margin: 1.7rem 1rem;
+  border-radius: 2rem;
+  background-color: var(--color-primary-light-1);
 
+  &:hover {
+    background-color: var(--color-green);
+  }
+
+  &:hover &__meta-content {
+    color: var(--color-primary)
+  }
 
   &__details {
-    flex: 0 0 50%;
+    flex: 0 0 40%;
     display: flex;
     align-items: center;
   }
@@ -14,9 +26,29 @@
     flex: 1;
     justify-content: space-between;
     align-items: center;
+    color: var(--color-primary-light-2);
   }
 
-  &__artist {}
+  &__imgCont {
+    margin-right: 2rem;
+    width: 5rem;
+
+    &__img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 1.5rem;
+    }
+  }
+
+
+
+  &__name {}
+
+  &__artist {
+    font-weight: 400;
+    margin-right: .5rem;
+  }
 
   &__info {
     display: flex;
@@ -24,11 +56,19 @@
   }
 
   &__duration {
-    margin-right: 5rem;
+    margin-right: 3rem;
   }
 
   &__fav {
     display: flex;
     align-items: center;
+
+    &:hover {
+      color: red;
+    }
+
+    &--filled {
+      color: red;
+    }
   }
 }
