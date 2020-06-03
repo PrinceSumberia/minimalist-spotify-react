@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, memo } from "react";
 import { CurrentPlayListContext, DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Song from "../Song/Song";
@@ -20,6 +20,7 @@ function TopTracks() {
     Authorization: "Bearer " + accessToken,
   };
   const [{ data }] = useFetchData("", url, headers);
+  let songList;
 
   useEffect(() => {
     try {
@@ -39,16 +40,30 @@ function TopTracks() {
             .toLowerCase(),
           duration: millisToMinutesAndSeconds(duration_ms),
           explicit,
+          isLiked: false,
         };
       });
       setCurrentPlayList(trackList);
     } catch (err) {}
   }, [data, setCurrentPlayList]);
 
-  let songList;
+  const handleLike = (id) => {
+    let updatedSongList = currentPlayList.map((song) => {
+      if (song.id === id) {
+        const updatedSong = { ...song, isLiked: !song.isLiked };
+        return updatedSong;
+      }
+      return song;
+    });
+    setCurrentPlayList(updatedSongList);
+  };
+
   if (currentPlayList) {
-    songList = currentPlayList.map((song) => <Song key={song.id} {...song} />);
+    songList = currentPlayList.map((song) => (
+      <Song key={song.id} {...song} handleLike={handleLike} />
+    ));
   }
+
   return (
     <div className="toptracks__container">
       <div className="toptracks__header">
@@ -62,4 +77,4 @@ function TopTracks() {
   );
 }
 
-export default TopTracks;
+export default memo(TopTracks);

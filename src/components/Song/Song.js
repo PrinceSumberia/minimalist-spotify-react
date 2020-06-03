@@ -1,14 +1,12 @@
+import React, { memo } from "react";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
 import "./Song.scss";
 
-function Song({ id, name, image, artist, duration }) {
-  const [toogleLike, setToogleLike] = useState(false);
+function Song({ id, name, image, artist, duration, isLiked, handleLike }) {
   const handleClick = (e) => {
     e.stopPropagation();
-    setToogleLike(!toogleLike);
-    console.log("Fav Clicked");
+    handleLike(id);
   };
   const handlePlay = () => {
     console.log("Clicked");
@@ -25,7 +23,7 @@ function Song({ id, name, image, artist, duration }) {
         <h4 className="song__artist">{artist}</h4>
         <div className="song__info">
           <div className="song__duration">{duration}</div>
-          <div className={`song__fav ${toogleLike && `song__fav--filled`}`}>
+          <div className={`song__fav ${isLiked && `song__fav--filled`}`}>
             <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
           </div>
         </div>
@@ -34,4 +32,4 @@ function Song({ id, name, image, artist, duration }) {
   );
 }
 
-export default Song;
+export default memo(Song);
