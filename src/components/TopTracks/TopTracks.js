@@ -25,7 +25,15 @@ function TopTracks() {
   useEffect(() => {
     try {
       const trackList = data.items.map((item) => {
-        const { album, id, name, artists, duration_ms, explicit } = item.track;
+        const {
+          album,
+          id,
+          name,
+          artists,
+          duration_ms,
+          explicit,
+          uri,
+        } = item.track;
         const { images } = album;
         const index = name.search(/\(/);
         return {
@@ -41,6 +49,7 @@ function TopTracks() {
           duration: millisToMinutesAndSeconds(duration_ms),
           explicit,
           isLiked: false,
+          uri,
         };
       });
       setCurrentPlayList(trackList);
