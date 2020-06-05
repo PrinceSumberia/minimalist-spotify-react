@@ -12,13 +12,14 @@ function Song({
   isLiked,
   handleLike,
   playSong,
+  uri,
 }) {
   const handleClick = (e) => {
     e.stopPropagation();
     handleLike(id);
   };
   const handlePlay = () => {
-    playSong();
+    playSong(uri);
     console.log("Clicked");
   };
   return (

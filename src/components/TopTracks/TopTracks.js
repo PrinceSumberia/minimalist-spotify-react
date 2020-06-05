@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, memo } from "react";
+import React, { memo, useContext, useEffect } from "react";
 import { CurrentPlayListContext, DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Song from "../Song/Song";
@@ -11,10 +11,14 @@ const millisToMinutesAndSeconds = (millis) => {
 };
 
 function TopTracks() {
-  const { accessToken } = useContext(DataContext);
-  const { currentPlayListId, currentPlayList, setCurrentPlayList } = useContext(
-    CurrentPlayListContext
-  );
+  const { accessToken, deviceID } = useContext(DataContext);
+  const {
+    currentPlayListId,
+    currentPlayList,
+    setCurrentPlayList,
+    currentSongURI,
+    setCurrentSongURI,
+  } = useContext(CurrentPlayListContext);
   const url = `https://api.spotify.com/v1/playlists/${currentPlayListId}/tracks`;
   const headers = {
     Authorization: "Bearer " + accessToken,
@@ -67,9 +71,46 @@ function TopTracks() {
     setCurrentPlayList(updatedSongList);
   };
 
+  const playSong = (uri) => {
+    const play = ({
+      spotify_uri,
+      playerInstance: {
+        _options: { getOAuthToken, id },
+      },
+    }) => {
+      getOAuthToken((access_token) => {
+        console.log("this is ghetting executed");
+        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+          method: "PUT",
+          body: JSON.stringify({ uris: [spotify_uri] }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+          },
+        });
+      });
+    };
+
+    play({
+      playerInstance: new window.Spotify.Player({
+        name: "Web Playback SDK Quick Start Player",
+        getOAuthToken: () => {
+          return accessToken;
+        },
+        deviceID,
+      }),
+      spotify_uri: uri,
+    });
+  };
+
   if (currentPlayList) {
     songList = currentPlayList.map((song) => (
-      <Song key={song.id} {...song} handleLike={handleLike} />
+      <Song
+        key={song.id}
+        {...song}
+        handleLike={handleLike}
+        playSong={playSong}
+      />
     ));
   }
 

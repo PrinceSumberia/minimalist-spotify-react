@@ -1,7 +1,7 @@
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
 const PERMISSION_SCOPE =
-  "streaming user-read-private user-read-email user-read-playback-state user-top-read";
+  "streaming user-modify-playback-state user-read-private user-read-email user-read-playback-state user-top-read";
 
 const REDIRECT_URL = "http://localhost:3000/";
 
