@@ -3,12 +3,22 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Song.scss";
 
-function Song({ id, name, image, artist, duration, isLiked, handleLike }) {
+function Song({
+  id,
+  name,
+  image,
+  artist,
+  duration,
+  isLiked,
+  handleLike,
+  playSong,
+}) {
   const handleClick = (e) => {
     e.stopPropagation();
     handleLike(id);
   };
   const handlePlay = () => {
+    playSong();
     console.log("Clicked");
   };
   return (
