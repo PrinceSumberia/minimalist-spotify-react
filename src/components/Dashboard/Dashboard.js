@@ -59,6 +59,7 @@ export default function Dashboard() {
         name: "Web Playback SDK",
         volume: 1.0,
         getOAuthToken: (callback) => {
+          console.log(callback);
           callback("access token");
         },
       });
