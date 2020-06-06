@@ -72,6 +72,7 @@ function TopTracks() {
   };
 
   const playSong = (uri) => {
+    console.log("Playing");
     const play = ({
       spotify_uri,
       playerInstance: {

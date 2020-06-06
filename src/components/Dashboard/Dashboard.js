@@ -30,47 +30,7 @@ export default function Dashboard() {
       console.log("Spotify SDK is ready");
       console.log(window.Spotify.Player);
     };
-    async function waitForSpotifyWebPlaybackSDKToLoad() {
-      return new Promise((resolve) => {
-        if (window.Spotify) {
-          resolve(window.Spotify);
-        } else {
-          window.onSpotifyWebPlaybackSDKReady = () => {
-            resolve(window.Spotify);
-          };
-        }
-      });
-    }
-    async function waitUntilUserHasSelectedPlayer(sdk) {
-      return new Promise((resolve) => {
-        let interval = setInterval(async () => {
-          let state = await sdk.getCurrentState();
-          if (state !== null) {
-            resolve(state);
-            clearInterval(interval);
-          }
-        });
-      });
-    }
-    (async () => {
-      const { Player } = await waitForSpotifyWebPlaybackSDKToLoad();
-      console.log("The Web Playback SDK has loaded.");
-      const sdk = new Player({
-        name: "Web Playback SDK",
-        volume: 1.0,
-        getOAuthToken: (callback) => {
-          console.log(callback);
-          callback("access token");
-        },
-      });
-      let connected = await sdk.connect();
-      if (connected) {
-        console.log("connected");
-      }
-    })();
   });
-
-  useEffect(() => {});
 
   useEffect(() => {
     if (data.success) {
