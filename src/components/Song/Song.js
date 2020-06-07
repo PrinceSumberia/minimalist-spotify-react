@@ -36,6 +36,7 @@ function Song({
           <div className="song__duration">{duration}</div>
           <div className={`song__fav ${isLiked && `song__fav--filled`}`}>
             <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
+            <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
           </div>
         </div>
       </div>
