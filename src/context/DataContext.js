@@ -5,6 +5,7 @@ import { AccessTokenContext, AuthContext } from "./AuthContext";
 export const DataContext = createContext();
 export const TopPlayListContext = createContext();
 export const CurrentPlayListContext = createContext();
+export const NewAlbumContext = createContext();
 
 export const DataProvider = (props) => {
   const [profileData, setProfileData] = useState("");
@@ -56,5 +57,14 @@ export const CurrentPlayListProvider = (props) => {
     >
       {props.children}
     </CurrentPlayListContext.Provider>
+  );
+};
+
+export const NewAlbumProvider = (props) => {
+  const [newAlbum, setNewAlbum] = useState("");
+  return (
+    <NewAlbumContext.Provider value={{ newAlbum, setNewAlbum }}>
+      {props.children}
+    </NewAlbumContext.Provider>
   );
 };

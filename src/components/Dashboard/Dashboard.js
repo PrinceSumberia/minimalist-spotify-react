@@ -3,12 +3,14 @@ import {
   CurrentPlayListProvider,
   DataContext,
   TopPlayListProvider,
+  NewAlbumProvider,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Profile from "../Profile/Profile";
 import TopChart from "../TopChart/TopChart";
 import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";
+import NewAlbums from "../NewAlbums/NewAlbums";
 
 export default function Dashboard() {
   const {
@@ -56,7 +58,11 @@ export default function Dashboard() {
               <TopTracks />
             </CurrentPlayListProvider>
           </div>
-          <div className="main__comingsoon"></div>
+          <div className="main__comingsoon">
+            <NewAlbumProvider>
+              <NewAlbums />
+            </NewAlbumProvider>
+          </div>
         </div>
       </div>
     </div>

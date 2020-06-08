@@ -1,6 +1,6 @@
-import React, { memo } from "react";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { memo } from "react";
 import "./Song.scss";
 
 function Song({
@@ -35,7 +35,6 @@ function Song({
         <div className="song__info">
           <div className="song__duration">{duration}</div>
           <div className={`song__fav ${isLiked && `song__fav--filled`}`}>
-            <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
             <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
           </div>
         </div>
