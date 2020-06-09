@@ -1,0 +1,19 @@
+.newalbum {
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__title {
+    margin: 4rem 0 0 0;
+    font-size: 2rem;
+  }
+
+  &__cards {
+    &--space {
+      margin: 4rem 0;
+    }
+  }
+}
