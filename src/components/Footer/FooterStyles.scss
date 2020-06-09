@@ -3,11 +3,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   margin-bottom: 4rem;
 
   &__title {
     font-size: 1.8rem;
+    margin-bottom: 1.5rem;
   }
 
   &__link {
@@ -35,6 +36,24 @@
       box-shadow: 0 1rem 2rem rgba(0, 0, 0, .05);
     }
   }
+
+  &__container {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+
+.btn-github {
+  padding: 1rem 2rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  margin-right: 2rem;
+}
+
+.logo {
+  display: block;
 }
 
 
