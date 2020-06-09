@@ -8,12 +8,18 @@
 
   &__title {
     margin: 4rem 0 0 0;
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   &__cards {
     &--space {
       margin: 4rem 0;
+      transition: all .2s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
+
   }
 }
