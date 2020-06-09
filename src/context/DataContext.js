@@ -61,7 +61,7 @@ export const CurrentPlayListProvider = (props) => {
 };
 
 export const NewAlbumProvider = (props) => {
-  const [newAlbum, setNewAlbum] = useState("");
+  const [newAlbum, setNewAlbum] = useState([]);
   return (
     <NewAlbumContext.Provider value={{ newAlbum, setNewAlbum }}>
       {props.children}
