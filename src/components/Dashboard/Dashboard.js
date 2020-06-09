@@ -11,6 +11,7 @@ import TopChart from "../TopChart/TopChart";
 import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";
 import NewAlbums from "../NewAlbums/NewAlbums";
+import Footer from "../Footer/Footer";
 
 export default function Dashboard() {
   const {
@@ -64,6 +65,7 @@ export default function Dashboard() {
             </NewAlbumProvider>
           </div>
         </div>
+        <Footer />
       </div>
     </div>
   );
