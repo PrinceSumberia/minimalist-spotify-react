@@ -1,5 +1,10 @@
 import React, { memo, useContext, useEffect } from "react";
-import { CurrentPlayListContext, DataContext } from "../../context/DataContext";
+import {
+  CurrentPlayListContext,
+  DataContext,
+  CurrentSongContext,
+  CurrentSongProvider,
+} from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Song from "../Song/Song";
 import "./TopTracksStyles.scss";
@@ -19,6 +24,7 @@ function TopTracks() {
     currentSongURI,
     setCurrentSongURI,
   } = useContext(CurrentPlayListContext);
+  const { setCurrentSong } = useContext(CurrentSongContext);
   const url = `https://api.spotify.com/v1/playlists/${currentPlayListId}/tracks`;
   const headers = {
     Authorization: "Bearer " + accessToken,
@@ -45,7 +51,8 @@ function TopTracks() {
           name: (index !== -1 ? name.slice(0, index) : name)
             .trim()
             .toLowerCase(),
-          image: images[images.length - 1].url,
+          thumbnail: images[images.length - 1].url,
+          image: images[1].url,
           artist: artists
             .map((artist) => artist.name)
             .join(", ")
@@ -57,6 +64,7 @@ function TopTracks() {
         };
       });
       setCurrentPlayList(trackList);
+      setCurrentSong(trackList[0]);
     } catch (err) {}
   }, [data, setCurrentPlayList]);
 
@@ -71,37 +79,37 @@ function TopTracks() {
     setCurrentPlayList(updatedSongList);
   };
 
-  const playSong = (uri) => {
-    console.log("Playing");
-    const play = ({
-      spotify_uri,
-      playerInstance: {
-        _options: { getOAuthToken, id },
-      },
-    }) => {
-      getOAuthToken((access_token) => {
-        console.log("this is ghetting executed");
-        fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
-          method: "PUT",
-          body: JSON.stringify({ uris: [spotify_uri] }),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`,
-          },
-        });
-      });
-    };
-
-    play({
-      playerInstance: new window.Spotify.Player({
-        name: "Web Playback SDK Quick Start Player",
-        getOAuthToken: () => {
-          return accessToken;
-        },
-        deviceID,
-      }),
-      spotify_uri: uri,
-    });
+  const playSong = (song) => {
+    setCurrentSong(song);
+    // console.log("Playing");
+    // const play = ({
+    //   spotify_uri,
+    //   playerInstance: {
+    //     _options: { getOAuthToken, id },
+    //   },
+    // }) => {
+    //   getOAuthToken((access_token) => {
+    //     console.log("this is ghetting executed");
+    //     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+    //       method: "PUT",
+    //       body: JSON.stringify({ uris: [spotify_uri] }),
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         Authorization: `Bearer ${access_token}`,
+    //       },
+    //     });
+    //   });
+    // };
+    // play({
+    //   playerInstance: new window.Spotify.Player({
+    //     name: "Web Playback SDK Quick Start Player",
+    //     getOAuthToken: () => {
+    //       return accessToken;
+    //     },
+    //     deviceID,
+    //   }),
+    //   spotify_uri: uri,
+    // });
   };
 
   if (currentPlayList) {

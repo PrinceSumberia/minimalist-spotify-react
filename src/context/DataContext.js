@@ -6,6 +6,7 @@ export const DataContext = createContext();
 export const TopPlayListContext = createContext();
 export const CurrentPlayListContext = createContext();
 export const NewAlbumContext = createContext();
+export const CurrentSongContext = createContext();
 
 export const DataProvider = (props) => {
   const [profileData, setProfileData] = useState("");
@@ -66,5 +67,14 @@ export const NewAlbumProvider = (props) => {
     <NewAlbumContext.Provider value={{ newAlbum, setNewAlbum }}>
       {props.children}
     </NewAlbumContext.Provider>
+  );
+};
+
+export const CurrentSongProvider = (props) => {
+  const [currentSong, setCurrentSong] = useState({});
+  return (
+    <CurrentSongContext.Provider value={{ currentSong, setCurrentSong }}>
+      {props.children}
+    </CurrentSongContext.Provider>
   );
 };

@@ -13,20 +13,20 @@ function Song({
   handleLike,
   playSong,
   uri,
+  thumbnail,
 }) {
   const handleClick = (e) => {
     e.stopPropagation();
     handleLike(id);
   };
   const handlePlay = () => {
-    playSong(uri);
-    console.log("Clicked");
+    playSong({ uri, name, artist, duration, image });
   };
   return (
     <div className="song" onClick={handlePlay}>
       <div className="song__details">
         <div className="song__imgCont">
-          <img src={image} alt="" className="song__imgCont__img" />
+          <img src={thumbnail} alt="" className="song__imgCont__img" />
         </div>
         <h4 className="song__name">{name}</h4>
       </div>

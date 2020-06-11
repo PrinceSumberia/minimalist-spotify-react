@@ -4,6 +4,7 @@ import {
   DataContext,
   NewAlbumProvider,
   TopPlayListProvider,
+  CurrentSongProvider,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Footer from "../Footer/Footer";
@@ -47,30 +48,32 @@ export default function Dashboard() {
   }, [data, setProfileData, setAccessToken, setIsAuthenticated]);
 
   return (
-    <div className="container">
-      <div className="sidebar">
-        <Profile />
-        <Navbar />
-        <Player />
-      </div>
-      <div className="mainContent">
-        <TopPlayListProvider>
-          <TopChart />
-        </TopPlayListProvider>
-        <div className="main__content">
-          <div className="main__toptracks">
-            <CurrentPlayListProvider>
-              <TopTracks />
-            </CurrentPlayListProvider>
-          </div>
-          <div className="main__comingsoon">
-            <NewAlbumProvider>
-              <NewAlbums />
-            </NewAlbumProvider>
-          </div>
+    <CurrentSongProvider>
+      <div className="container">
+        <div className="sidebar">
+          <Profile />
+          <Navbar />
+          <Player />
         </div>
-        <Footer />
+        <div className="mainContent">
+          <TopPlayListProvider>
+            <TopChart />
+          </TopPlayListProvider>
+          <div className="main__content">
+            <div className="main__toptracks">
+              <CurrentPlayListProvider>
+                <TopTracks />
+              </CurrentPlayListProvider>
+            </div>
+            <div className="main__comingsoon">
+              <NewAlbumProvider>
+                <NewAlbums />
+              </NewAlbumProvider>
+            </div>
+          </div>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </CurrentSongProvider>
   );
 }

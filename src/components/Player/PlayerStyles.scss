@@ -23,6 +23,10 @@
     }
   }
 
+  &__details {
+    text-transform: capitalize;
+  }
+
   &__subtitle {
     color: var(--color-primary-light-2)
   }

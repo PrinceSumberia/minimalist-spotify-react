@@ -1,27 +1,29 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { PauseCircle, PlayCircle, SkipBack, SkipForward } from "react-feather";
+import { CurrentSongContext } from "../../context/DataContext";
 import "./PlayerStyles.scss";
 
 function Player() {
-  const src = `https://i.scdn.co/image/ab67616d00001e0220e08c8cc23f404d723b5647`;
-  const title = "The National Anthem";
+  const { currentSong } = useContext(CurrentSongContext);
+  const { uri, name, artist, duration, image } = currentSong;
   const startTime = "0:00";
-  const endTime = "5:00";
   const [isPlaying, toogleIsPlaying] = useState(false);
+
+  console.log(image);
 
   return (
     <div className="player">
       <div className="player__image__container">
-        <img className="player__image__container__img" src={src} alt={title} />
+        <img className="player__image__container__img" src={image} alt={name} />
       </div>
       <div className="player__details">
-        <h3 className="player__title">{title}</h3>
-        <p className="player__subtitle">{title}</p>
+        <h3 className="player__title">{name}</h3>
+        <p className="player__subtitle">{artist}</p>
       </div>
       <div className="player__time">
         <p>{startTime}</p>
-        <p>{endTime}</p>
+        <p>{duration}</p>
       </div>
       <input type="range" className="player__progress" defaultValue="100" />
       <div className="player__control">
