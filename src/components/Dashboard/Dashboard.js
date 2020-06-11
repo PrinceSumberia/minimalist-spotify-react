@@ -2,17 +2,18 @@ import React, { useContext, useEffect } from "react";
 import {
   CurrentPlayListProvider,
   DataContext,
-  TopPlayListProvider,
   NewAlbumProvider,
+  TopPlayListProvider,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
+import Footer from "../Footer/Footer";
+import Navbar from "../Navbar/Navbar";
+import NewAlbums from "../NewAlbums/NewAlbums";
+import Player from "../Player/Player";
 import Profile from "../Profile/Profile";
 import TopChart from "../TopChart/TopChart";
 import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";
-import NewAlbums from "../NewAlbums/NewAlbums";
-import Footer from "../Footer/Footer";
-import Navbar from "../Navbar/Navbar";
 
 export default function Dashboard() {
   const {
@@ -50,6 +51,7 @@ export default function Dashboard() {
       <div className="sidebar">
         <Profile />
         <Navbar />
+        <Player />
       </div>
       <div className="mainContent">
         <TopPlayListProvider>

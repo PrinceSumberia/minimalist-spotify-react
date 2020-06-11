@@ -1,0 +1,112 @@
+.player {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: 4rem;
+  text-align: center;
+
+
+  &__image__container {
+    width: 30rem;
+    height: 22rem;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-bottom: 2rem;
+
+    &__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__subtitle {
+    color: var(--color-primary-light-2)
+  }
+
+
+  &__time {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-primary-light-2)
+  }
+
+  &__control {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+    &__play {
+      background-color: red;
+      width: 17rem;
+      height: 17rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__animate {
+    animation: rotate 2s linear infinite;
+  }
+
+  &__progress {
+    -webkit-appearance: none;
+    border-radius: 2rem;
+    background-color: red;
+    width: 50%;
+    height: .7rem;
+    margin-bottom: 1rem;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: red;
+      cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      background: red;
+      cursor: pointer;
+    }
+  }
+
+  &__icon {
+    transition: all .5s;
+
+    &__pause,
+    &__play {
+      width: 3.5rem;
+      height: 3.5rem;
+      color: rgba($color: #ffffff, $alpha: .9);
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
