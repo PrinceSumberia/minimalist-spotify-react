@@ -1,4 +1,5 @@
 import React from "react";
+import "./NavbarStyles.scss";
 
 function Navbar() {
   return (

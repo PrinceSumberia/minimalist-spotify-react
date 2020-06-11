@@ -12,6 +12,7 @@ import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";
 import NewAlbums from "../NewAlbums/NewAlbums";
 import Footer from "../Footer/Footer";
+import Navbar from "../Navbar/Navbar";
 
 export default function Dashboard() {
   const {
@@ -48,6 +49,7 @@ export default function Dashboard() {
     <div className="container">
       <div className="sidebar">
         <Profile />
+        <Navbar />
       </div>
       <div className="mainContent">
         <TopPlayListProvider>
