@@ -17,13 +17,9 @@ const millisToMinutesAndSeconds = (millis) => {
 
 function TopTracks() {
   const { accessToken, deviceID } = useContext(DataContext);
-  const {
-    currentPlayListId,
-    currentPlayList,
-    setCurrentPlayList,
-    currentSongURI,
-    setCurrentSongURI,
-  } = useContext(CurrentPlayListContext);
+  const { currentPlayListId, currentPlayList, setCurrentPlayList } = useContext(
+    CurrentPlayListContext
+  );
   const { setCurrentSong } = useContext(CurrentSongContext);
   const url = `https://api.spotify.com/v1/playlists/${currentPlayListId}/tracks`;
   const headers = {
@@ -66,7 +62,7 @@ function TopTracks() {
       setCurrentPlayList(trackList);
       setCurrentSong(trackList[0]);
     } catch (err) {}
-  }, [data, setCurrentPlayList]);
+  }, [data, setCurrentPlayList, setCurrentSong]);
 
   const handleLike = (id) => {
     let updatedSongList = currentPlayList.map((song) => {

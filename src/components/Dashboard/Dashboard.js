@@ -48,32 +48,32 @@ export default function Dashboard() {
   }, [data, setProfileData, setAccessToken, setIsAuthenticated]);
 
   return (
-    <CurrentSongProvider>
-      <div className="container">
-        <div className="sidebar">
-          <Profile />
-          <Navbar />
-          <Player />
-        </div>
-        <div className="mainContent">
-          <TopPlayListProvider>
-            <TopChart />
-          </TopPlayListProvider>
-          <div className="main__content">
-            <div className="main__toptracks">
-              <CurrentPlayListProvider>
-                <TopTracks />
-              </CurrentPlayListProvider>
-            </div>
-            <div className="main__comingsoon">
-              <NewAlbumProvider>
-                <NewAlbums />
-              </NewAlbumProvider>
-            </div>
+    <CurrentPlayListProvider>
+      <CurrentSongProvider>
+        <div className="container">
+          <div className="sidebar">
+            <Profile />
+            <Navbar />
+            <Player />
           </div>
-          <Footer />
+          <div className="mainContent">
+            <TopPlayListProvider>
+              <TopChart />
+            </TopPlayListProvider>
+            <div className="main__content">
+              <div className="main__toptracks">
+                <TopTracks />
+              </div>
+              <div className="main__comingsoon">
+                <NewAlbumProvider>
+                  <NewAlbums />
+                </NewAlbumProvider>
+              </div>
+            </div>
+            <Footer />
+          </div>
         </div>
-      </div>
-    </CurrentSongProvider>
+      </CurrentSongProvider>
+    </CurrentPlayListProvider>
   );
 }

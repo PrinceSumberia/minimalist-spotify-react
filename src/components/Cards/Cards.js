@@ -1,9 +1,12 @@
 import React from "react";
 import "./CardsStyles.scss";
 
-function Cards({ img, name, title, subtitle }) {
+function Cards({ id, img, name, title, subtitle, getID }) {
+  const handleClick = () => {
+    getID(id);
+  };
   return (
-    <div className="card">
+    <div className="card" onClick={handleClick}>
       <div className="card__imgContainer">
         <img src={img} alt={name} className="card__imgContainer__img" />
       </div>
