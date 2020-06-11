@@ -43,6 +43,7 @@ export const TopPlayListProvider = (props) => {
 export const CurrentPlayListProvider = (props) => {
   const [currentPlayListId, setCurrentPlayListId] = useState(GLOBAL_TRACK_ID);
   const [currentPlayList, setCurrentPlayList] = useState([]);
+  const [currentPlayListType, setCurrentPlayListType] = useState("playlists");
 
   return (
     <CurrentPlayListContext.Provider
@@ -51,6 +52,8 @@ export const CurrentPlayListProvider = (props) => {
         setCurrentPlayList,
         currentPlayListId,
         setCurrentPlayListId,
+        currentPlayListType,
+        setCurrentPlayListType,
       }}
     >
       {props.children}

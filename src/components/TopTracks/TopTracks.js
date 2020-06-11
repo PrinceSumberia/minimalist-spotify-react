@@ -17,11 +17,14 @@ const millisToMinutesAndSeconds = (millis) => {
 
 function TopTracks() {
   const { accessToken, deviceID } = useContext(DataContext);
-  const { currentPlayListId, currentPlayList, setCurrentPlayList } = useContext(
-    CurrentPlayListContext
-  );
+  const {
+    currentPlayListId,
+    currentPlayList,
+    setCurrentPlayList,
+    currentPlayListType,
+  } = useContext(CurrentPlayListContext);
   const { setCurrentSong } = useContext(CurrentSongContext);
-  const url = `https://api.spotify.com/v1/playlists/${currentPlayListId}/tracks`;
+  const url = `https://api.spotify.com/v1/${currentPlayListType}/${currentPlayListId}/tracks`;
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
@@ -29,40 +32,58 @@ function TopTracks() {
   let songList;
 
   useEffect(() => {
-    try {
-      const trackList = data.items.map((item) => {
-        const {
-          album,
-          id,
-          name,
-          artists,
-          duration_ms,
-          explicit,
-          uri,
-        } = item.track;
-        const { images } = album;
-        const index = name.search(/\(/);
-        return {
-          id,
-          name: (index !== -1 ? name.slice(0, index) : name)
-            .trim()
-            .toLowerCase(),
-          thumbnail: images[images.length - 1].url,
-          image: images[1].url,
-          artist: artists
-            .map((artist) => artist.name)
-            .join(", ")
-            .toLowerCase(),
-          duration: millisToMinutesAndSeconds(duration_ms),
-          explicit,
-          isLiked: false,
-          uri,
-        };
-      });
-      setCurrentPlayList(trackList);
-      setCurrentSong(trackList[0]);
-    } catch (err) {}
-  }, [data, setCurrentPlayList, setCurrentSong]);
+    if (currentPlayListType === "albums") {
+      // console.log(data.items);
+      try {
+        const testing = data.items.map((item) => {
+          console.log(item);
+          const { id, name, artists, duration_ms, explicit, uri } = item.track;
+          console.log(name);
+        });
+      } catch (err) {}
+    } else {
+      try {
+        const trackList = data.items.map((item) => {
+          const { id, name, artists, duration_ms, explicit, uri } = item.track;
+          let images;
+          if (currentPlayListType !== "albums") {
+            images = item.track.album.images;
+          }
+          const index = name.search(/\(/);
+          return {
+            id,
+            name: (index !== -1 ? name.slice(0, index) : name)
+              .trim()
+              .toLowerCase(),
+            thumbnail:
+              currentPlayListType === "albums"
+                ? "url"
+                : images[images.length - 1].url,
+            image: currentPlayListType === "albums" ? "url" : images[1].url,
+            artist: artists
+              .map((artist) => artist.name)
+              .join(", ")
+              .toLowerCase(),
+            duration: millisToMinutesAndSeconds(duration_ms),
+            explicit,
+            isLiked: false,
+            uri,
+          };
+        });
+        setCurrentPlayList(trackList);
+        setCurrentSong(trackList[0]);
+        console.log(trackList);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, [
+    data,
+    setCurrentPlayList,
+    setCurrentSong,
+    currentPlayListType,
+    currentPlayListId,
+  ]);
 
   const handleLike = (id) => {
     let updatedSongList = currentPlayList.map((song) => {

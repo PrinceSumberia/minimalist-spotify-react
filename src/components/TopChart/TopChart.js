@@ -13,7 +13,9 @@ function TopChart() {
   const { accessToken } = useContext(DataContext);
   const { topPlayList, setTopPlayList } = useContext(TopPlayListContext);
   const scroller = useRef(null);
-  const { setCurrentPlayListId } = useContext(CurrentPlayListContext);
+  const { setCurrentPlayListId, setCurrentPlayListType } = useContext(
+    CurrentPlayListContext
+  );
 
   let url = `https://api.spotify.com/v1/browse/featured-playlists/`;
 
@@ -44,6 +46,7 @@ function TopChart() {
 
   const getID = (id) => {
     setCurrentPlayListId(id);
+    setCurrentPlayListType("playlists");
   };
 
   // console.log(topPlayList);
@@ -54,7 +57,7 @@ function TopChart() {
       title={list.name}
       img={list.images[0].url}
       subtitle={`Total Tracks: ${list.tracks.total}`}
-      getID={getID}
+      handleClick={getID}
     />
   ));
 
