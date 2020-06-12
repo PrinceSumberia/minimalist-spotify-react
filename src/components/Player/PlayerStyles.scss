@@ -47,13 +47,25 @@
 
 
     &__play {
-      background-color: red;
+      background-color: black;
+      position: relative;
       width: 17rem;
       height: 17rem;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 5;
+
+      &::before {
+        position: absolute;
+        content: '';
+        background-color: red;
+        width: 60%;
+        height: 60%;
+        border-radius: 50%;
+        z-index: -2;
+      }
     }
   }
 
