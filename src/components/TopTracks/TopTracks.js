@@ -24,7 +24,12 @@ function TopTracks() {
     currentPlayListType,
   } = useContext(CurrentPlayListContext);
   const { setCurrentSong } = useContext(CurrentSongContext);
-  const url = `https://api.spotify.com/v1/${currentPlayListType}/${currentPlayListId}/tracks`;
+  let url;
+  if (currentPlayListType === "albums") {
+    url = `https://api.spotify.com/v1/${currentPlayListType}/${currentPlayListId}`;
+  } else {
+    url = `https://api.spotify.com/v1/${currentPlayListType}/${currentPlayListId}/tracks`;
+  }
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
@@ -61,6 +66,7 @@ function TopTracks() {
         return [];
       });
       setCurrentPlayList(trackList);
+      console.log("tracklist", trackList);
       setCurrentSong(trackList[0]);
     } catch (err) {
       console.log(err);

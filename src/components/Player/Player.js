@@ -10,8 +10,6 @@ function Player() {
   const startTime = "0:00";
   const [isPlaying, toogleIsPlaying] = useState(false);
 
-  console.log(image);
-
   return (
     <div className="player">
       <div className="player__image__container">

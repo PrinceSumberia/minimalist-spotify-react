@@ -33,8 +33,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     window.onSpotifyWebPlaybackSDKReady = () => {
-      console.log("Spotify SDK is ready");
-      console.log(window.Spotify.Player);
+      // console.log("Spotify SDK is ready");
+      // console.log(window.Spotify.Player);
     };
   });
 
