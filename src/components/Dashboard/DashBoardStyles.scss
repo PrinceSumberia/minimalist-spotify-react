@@ -9,6 +9,13 @@
   flex: 0 0 25%;
   border-radius: 2rem;
   margin-right: 3rem;
+  position: relative;
+
+  &__player {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1rem;
+  }
 }
 
 .mainContent {

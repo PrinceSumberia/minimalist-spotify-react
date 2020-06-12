@@ -54,7 +54,9 @@ export default function Dashboard() {
           <div className="sidebar">
             <Profile />
             <Navbar />
-            <Player />
+            <div className="sidebar__player">
+              <Player />
+            </div>
           </div>
           <div className="mainContent">
             <TopPlayListProvider>
