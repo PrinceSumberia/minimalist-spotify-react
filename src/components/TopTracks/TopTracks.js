@@ -1,9 +1,8 @@
 import React, { memo, useContext, useEffect } from "react";
 import {
   CurrentPlayListContext,
-  DataContext,
   CurrentSongContext,
-  CurrentSongProvider,
+  DataContext,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Song from "../Song/Song";
@@ -25,10 +24,10 @@ function TopTracks() {
   } = useContext(CurrentPlayListContext);
   const { setCurrentSong } = useContext(CurrentSongContext);
   let url;
-  if (currentPlayListType === "albums") {
-    url = `https://api.spotify.com/v1/${currentPlayListType}/${currentPlayListId}`;
+  if (currentPlayListType.type === "albums") {
+    url = `https://api.spotify.com/v1/${currentPlayListType.type}/${currentPlayListId}`;
   } else {
-    url = `https://api.spotify.com/v1/${currentPlayListType}/${currentPlayListId}/tracks`;
+    url = `https://api.spotify.com/v1/${currentPlayListType.type}/${currentPlayListId}/tracks`;
   }
   const headers = {
     Authorization: "Bearer " + accessToken,
@@ -37,8 +36,7 @@ function TopTracks() {
   let songList;
 
   useEffect(() => {
-    if (currentPlayListType === "albums") {
-      console.log(data);
+    if (currentPlayListType.type === "albums") {
       try {
         const images = data.images;
         const albumData = data.tracks.items.flatMap((item) => {
@@ -174,7 +172,7 @@ function TopTracks() {
   return (
     <div className="toptracks__container">
       <div className="toptracks__header">
-        <h2 className="toptracks__header__title">Most Popular</h2>
+        <h2 className="toptracks__header__title">{currentPlayListType.name}</h2>
         <h4 className="toptracks__header__subtitle">
           {currentPlayList.length} songs on the list
         </h4>

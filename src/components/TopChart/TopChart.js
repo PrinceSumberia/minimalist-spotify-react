@@ -44,17 +44,17 @@ function TopChart() {
     }
   };
 
-  const getID = (id) => {
+  const getID = (id, name) => {
     setCurrentPlayListId(id);
-    setCurrentPlayListType("playlists");
+    setCurrentPlayListType({ name: name, type: "playlists" });
   };
 
-  // console.log(topPlayList);
   const lists = topPlayList.map((list) => (
     <Cards
       key={list.id}
       id={list.id}
       title={list.name}
+      name={list.name}
       img={list.images[0].url}
       subtitle={`Total Tracks: ${list.tracks.total}`}
       handleClick={getID}

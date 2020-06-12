@@ -3,7 +3,7 @@ import "./CardsStyles.scss";
 
 function Cards({ id, img, name, title, subtitle, handleClick }) {
   const handleCardClick = () => {
-    handleClick(id);
+    handleClick(id, name);
   };
   return (
     <div className="card" onClick={handleCardClick}>

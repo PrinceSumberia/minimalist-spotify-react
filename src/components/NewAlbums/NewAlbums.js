@@ -43,8 +43,8 @@ function NewAlbums() {
     setNewAlbum(albumData);
   }, [setNewAlbum, data]);
 
-  const getID = (id) => {
-    setCurrentPlayListType("albums");
+  const getID = (id, name) => {
+    setCurrentPlayListType({ name: name, type: "albums" });
     setCurrentPlayListId(id);
   };
 
