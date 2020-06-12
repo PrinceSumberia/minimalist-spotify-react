@@ -32,23 +32,11 @@ function TopTracks() {
   let songList;
 
   useEffect(() => {
-    if (currentPlayListType === "albums") {
-      // console.log(data.items);
-      try {
-        const testing = data.items.map((item) => {
-          console.log(item);
+    try {
+      const trackList = data.items.flatMap((item) => {
+        if (item.track) {
           const { id, name, artists, duration_ms, explicit, uri } = item.track;
-          console.log(name);
-        });
-      } catch (err) {}
-    } else {
-      try {
-        const trackList = data.items.map((item) => {
-          const { id, name, artists, duration_ms, explicit, uri } = item.track;
-          let images;
-          if (currentPlayListType !== "albums") {
-            images = item.track.album.images;
-          }
+          const images = item.track.album.images;
           const index = name.search(/\(/);
           return {
             id,
@@ -59,7 +47,7 @@ function TopTracks() {
               currentPlayListType === "albums"
                 ? "url"
                 : images[images.length - 1].url,
-            image: currentPlayListType === "albums" ? "url" : images[1].url,
+            image: images[1].url,
             artist: artists
               .map((artist) => artist.name)
               .join(", ")
@@ -69,13 +57,13 @@ function TopTracks() {
             isLiked: false,
             uri,
           };
-        });
-        setCurrentPlayList(trackList);
-        setCurrentSong(trackList[0]);
-        console.log(trackList);
-      } catch (err) {
-        console.log(err);
-      }
+        }
+        return [];
+      });
+      setCurrentPlayList(trackList);
+      setCurrentSong(trackList[0]);
+    } catch (err) {
+      console.log(err);
     }
   }, [
     data,
