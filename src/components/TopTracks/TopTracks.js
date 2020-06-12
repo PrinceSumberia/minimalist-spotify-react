@@ -5,14 +5,9 @@ import {
   DataContext,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
+import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import Song from "../Song/Song";
 import "./TopTracksStyles.scss";
-
-const millisToMinutesAndSeconds = (millis) => {
-  var minutes = Math.floor(millis / 60000);
-  var seconds = ((millis % 60000) / 1000).toFixed(0);
-  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-};
 
 function TopTracks() {
   const { accessToken, deviceID } = useContext(DataContext);

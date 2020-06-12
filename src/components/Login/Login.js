@@ -3,21 +3,7 @@ import { useHistory } from "react-router-dom";
 import { AUTH_URL } from "../../constants/constants";
 import { AccessTokenContext, AuthContext } from "../../context/AuthContext";
 import "./LoginStyles.scss";
-
-const getHash = () => {
-  let hash = window.location.hash
-    .substring(1)
-    .split("&")
-    .reduce(function (initial, item) {
-      if (item) {
-        var parts = item.split("=");
-        initial[parts[0]] = decodeURIComponent(parts[1]);
-      }
-      return initial;
-    }, {});
-  window.location.hash = "";
-  return hash;
-};
+import { getHash } from "../../utils/helpers";
 
 function Login() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
