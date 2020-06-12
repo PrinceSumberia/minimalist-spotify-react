@@ -1,0 +1,38 @@
+.search {
+  position: relative;
+  margin: .5rem 0;
+  width: 40rem;
+
+  &__input {
+    width: 100%;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 1.2rem 1.7rem;
+    margin: 2rem 0;
+    background-color: var(--color-primary-light-1);
+    font-family: inherit;
+    font-size: 1.4rem;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 2.7rem;
+    right: 1.5rem;
+  }
+
+  &__icon {
+    display: block;
+    color: var(--color-primary-light-2);
+    transition: all .2s;
+  }
+
+  &__button:hover &__icon {
+    color: var(--color-green);
+  }
+
+}

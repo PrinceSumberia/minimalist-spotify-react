@@ -8,6 +8,7 @@ import {
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import "./TopChartStyles.scss";
+import SearchForm from "../SearchForm/SearchForm";
 
 function TopChart() {
   const { accessToken } = useContext(DataContext);
@@ -68,6 +69,7 @@ function TopChart() {
           <ChevronLeft className="icons" id="scrollLeft" />
           <ChevronRight className="icons" id="scrollRight" />
         </div>
+        <SearchForm />
         <h3 className="topchart-heading">Billboard Topchart</h3>
       </div>
       <div ref={scroller} className="charts-container">
