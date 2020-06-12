@@ -37,39 +37,76 @@ function TopTracks() {
   let songList;
 
   useEffect(() => {
-    try {
-      const trackList = data.items.flatMap((item) => {
-        if (item.track) {
-          const { id, name, artists, duration_ms, explicit, uri } = item.track;
-          const images = item.track.album.images;
-          const index = name.search(/\(/);
-          return {
-            id,
-            name: (index !== -1 ? name.slice(0, index) : name)
-              .trim()
-              .toLowerCase(),
-            thumbnail:
-              currentPlayListType === "albums"
-                ? "url"
-                : images[images.length - 1].url,
-            image: images[1].url,
-            artist: artists
-              .map((artist) => artist.name)
-              .join(", ")
-              .toLowerCase(),
-            duration: millisToMinutesAndSeconds(duration_ms),
-            explicit,
-            isLiked: false,
-            uri,
-          };
-        }
-        return [];
-      });
-      setCurrentPlayList(trackList);
-      console.log("tracklist", trackList);
-      setCurrentSong(trackList[0]);
-    } catch (err) {
-      console.log(err);
+    if (currentPlayListType === "albums") {
+      console.log(data);
+      try {
+        const images = data.images;
+        const albumData = data.tracks.items.flatMap((item) => {
+          if (item) {
+            const { id, name, artists, duration_ms, explicit, uri } = item;
+            const index = name.search(/\(/);
+            return {
+              id,
+              name: (index !== -1 ? name.slice(0, index) : name)
+                .trim()
+                .toLowerCase(),
+              thumbnail: images[images.length - 1].url,
+              image: images[1].url,
+              artist: artists
+                .map((artist) => artist.name)
+                .join(", ")
+                .toLowerCase(),
+              duration: millisToMinutesAndSeconds(duration_ms),
+              explicit,
+              isLiked: false,
+              uri,
+            };
+          }
+          return [];
+        });
+        setCurrentPlayList(albumData);
+        setCurrentSong(albumData[0]);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      try {
+        const trackList = data.items.flatMap((item) => {
+          if (item.track) {
+            const {
+              id,
+              name,
+              artists,
+              duration_ms,
+              explicit,
+              uri,
+            } = item.track;
+            const images = item.track.album.images;
+            const index = name.search(/\(/);
+            return {
+              id,
+              name: (index !== -1 ? name.slice(0, index) : name)
+                .trim()
+                .toLowerCase(),
+              thumbnail: images[images.length - 1].url,
+              image: images[1].url,
+              artist: artists
+                .map((artist) => artist.name)
+                .join(", ")
+                .toLowerCase(),
+              duration: millisToMinutesAndSeconds(duration_ms),
+              explicit,
+              isLiked: false,
+              uri,
+            };
+          }
+          return [];
+        });
+        setCurrentPlayList(trackList);
+        setCurrentSong(trackList[0]);
+      } catch (err) {
+        console.log(err);
+      }
     }
   }, [
     data,
