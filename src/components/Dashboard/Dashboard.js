@@ -12,7 +12,6 @@ import Navbar from "../Navbar/Navbar";
 import NewAlbums from "../NewAlbums/NewAlbums";
 import Player from "../Player/Player";
 import Profile from "../Profile/Profile";
-import SearchForm from "../SearchForm/SearchForm";
 import TopChart from "../TopChart/TopChart";
 import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";

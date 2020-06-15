@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 import {
+  CurrentPlayListContext,
   DataContext,
   TopPlayListContext,
-  CurrentPlayListContext,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
-import "./TopChartStyles.scss";
 import SearchForm from "../SearchForm/SearchForm";
+import "./TopChartStyles.scss";
 
 function TopChart() {
   const { accessToken } = useContext(DataContext);

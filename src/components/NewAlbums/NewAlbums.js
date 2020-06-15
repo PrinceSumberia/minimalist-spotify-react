@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import {
+  CurrentPlayListContext,
   DataContext,
   NewAlbumContext,
-  CurrentPlayListContext,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
