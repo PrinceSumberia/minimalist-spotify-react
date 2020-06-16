@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Bell, Settings } from "react-feather";
+import { Bell, Settings, LogOut } from "react-feather";
 import { DataContext } from "../../context/DataContext";
 import "./ProfileStyles.scss";
 
@@ -24,6 +24,7 @@ export default function Profile() {
       </div>
       <div className="controls">
         <div className="controls__notification">
+          <LogOut />
           <Bell />
         </div>
         <div className="controls__settings">
