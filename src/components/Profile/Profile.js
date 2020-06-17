@@ -9,7 +9,9 @@ export default function Profile() {
   let src;
   try {
     src = images[0].url;
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+  }
 
   return (
     <div className="profile">
