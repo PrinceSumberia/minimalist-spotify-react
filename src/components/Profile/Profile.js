@@ -27,11 +27,11 @@ export default function Profile() {
       <div className="controls">
         <div className="controls__notification">
           <LogOut />
-          <Bell />
         </div>
+        {/* <Bell />
         <div className="controls__settings">
           <Settings />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -32,13 +32,6 @@ export default function Dashboard() {
   const [data] = useFetchData("", url, headers);
 
   useEffect(() => {
-    window.onSpotifyWebPlaybackSDKReady = () => {
-      console.log("Spotify SDK is ready");
-      // console.log(window.Spotify.Player);
-    };
-  });
-
-  useEffect(() => {
     if (data.success) {
       setProfileData(data);
     } else if (data.status === 401) {
