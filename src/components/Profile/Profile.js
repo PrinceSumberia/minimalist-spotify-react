@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { Bell, Settings, LogOut } from "react-feather";
 import { DataContext } from "../../context/DataContext";
 import "./ProfileStyles.scss";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Profile() {
-  const { profileData } = useContext(DataContext);
+  const { profileData, setIsAuthenticated, setAccessToken } = useContext(
+    DataContext
+  );
   const { display_name, images, email } = { ...profileData.data };
   let src;
   try {
@@ -12,6 +15,12 @@ export default function Profile() {
   } catch (err) {
     console.log(err);
   }
+
+  const logout = () => {
+    window.localStorage.clear();
+    setIsAuthenticated(false);
+    setAccessToken(null);
+  };
 
   return (
     <div className="profile">
@@ -25,7 +34,7 @@ export default function Profile() {
         <p className="user_email">{email}</p>
       </div>
       <div className="controls">
-        <div className="controls__notification">
+        <div className="controls__notification" onClick={logout}>
           <LogOut />
         </div>
         {/* <Bell />
