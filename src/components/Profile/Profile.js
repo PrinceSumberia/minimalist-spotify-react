@@ -17,7 +17,7 @@ export default function Profile() {
   }
 
   const logout = () => {
-    window.localStorage.clear();
+    window.localStorage.removeItem("accessToken");
     setIsAuthenticated(false);
     setAccessToken(null);
   };

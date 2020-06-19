@@ -32,7 +32,7 @@ function Footer() {
             className="footer__link"
             rel="noopener noreferrer"
           >
-            <img src={bmac} className="logo" alt="" />
+            <img src={bmac} className="logo" alt="bmac-logo" />
           </a>
         </div>
       </div>
