@@ -29,7 +29,7 @@ If you find any error or have any suggestion, feel free to create an [issue](htt
 ## Credits
 
 - Thanks, Spotify for the [API](https://developer.spotify.com/documentation/web-api/).
-- Thanks, [Dribble](https://dribbble.com/) for the Desi Inspiration.
+- Thanks, [Dribble](https://dribbble.com/) for the Design Inspiration.
 
 ## Support
 
