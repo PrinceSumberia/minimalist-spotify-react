@@ -1,4 +1,4 @@
-# Minimalist Spotify - Build With React
+# Minimalist Spotify - Built With React
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/df5a542b-c252-4add-9078-80bf12ff550d/deploy-status)](https://app.netlify.com/sites/minimalistspotify/deploys)
 
