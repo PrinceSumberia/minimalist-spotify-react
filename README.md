@@ -1,7 +1,7 @@
 # Minimalist Spotify - Build With React
 
 <p align='center'>
-<img src='./src/assets/dashboard-screenshot.png' width='90%'>
+<img src='./src/assets/dashboard-screenshot.png' width='100%'>
 </p>
 
 <p align="center">
