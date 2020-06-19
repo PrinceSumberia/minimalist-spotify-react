@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  View <a href="https://covidindiatracker.netlify.app/">Minimalist Spotify</a>
+  View <a href="https://minimalistspotify.netlify.app/">Minimalist Spotify</a>
 </p>
 
 ## Project Setup
