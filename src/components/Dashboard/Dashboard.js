@@ -45,7 +45,7 @@ export default function Dashboard() {
         getOAuthToken: (callback) => {
           callback(accessToken);
         },
-        volume: 0.1,
+        volume: 0.5,
       });
 
       setSdkPlayer(player);
