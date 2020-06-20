@@ -1,14 +1,19 @@
 import classNames from "classnames";
 import React, { useContext, useState } from "react";
 import { PauseCircle, PlayCircle, SkipBack, SkipForward } from "react-feather";
-import { CurrentSongContext } from "../../context/DataContext";
+import { CurrentSongContext, DataContext } from "../../context/DataContext";
 import "./PlayerStyles.scss";
 
 function Player() {
   const { currentSong } = useContext(CurrentSongContext);
+  const { accessToken, deviceID, isPlaying, setIsPlaying } = useContext(
+    DataContext
+  );
   const { name, artist, duration, image } = currentSong;
   const startTime = "0:00";
-  const [isPlaying, toogleIsPlaying] = useState(false);
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <div className="player">
@@ -30,7 +35,7 @@ function Player() {
           className={classNames("player__control__play", {
             player__animate: isPlaying,
           })}
-          onClick={() => toogleIsPlaying(!isPlaying)}
+          onClick={handlePlayPause}
         >
           {isPlaying ? (
             <PauseCircle className="player__icon player__icon__play" />

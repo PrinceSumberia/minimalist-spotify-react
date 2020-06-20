@@ -2,6 +2,8 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { memo } from "react";
 import "./Song.scss";
+import { useContext } from "react";
+import { CurrentSongContext, DataContext } from "../../context/DataContext";
 
 function Song({
   id,
@@ -15,12 +17,17 @@ function Song({
   uri,
   thumbnail,
 }) {
+  const { setCurrentSong } = useContext(CurrentSongContext);
+  const { setIsPlaying } = useContext(DataContext);
   const handleClick = (e) => {
     e.stopPropagation();
     handleLike(id);
   };
   const handlePlay = () => {
-    playSong({ uri, name, artist, duration, image, id });
+    setCurrentSong({ uri, name, artist, duration, image, id });
+    setIsPlaying(true);
+
+    // playSong({ uri, name, artist, duration, image, id });
   };
   return (
     <div className="song" onClick={handlePlay}>

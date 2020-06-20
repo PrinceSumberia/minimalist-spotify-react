@@ -9,16 +9,19 @@ import useFetchData from "../../hooks/useFetchData";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import Song from "../Song/Song";
 import "./TopTracksStyles.scss";
+import { Pause } from "react-feather";
 
 function TopTracks() {
-  const { accessToken, deviceID } = useContext(DataContext);
+  const { accessToken, deviceID, isPlaying, setIsPlaying } = useContext(
+    DataContext
+  );
   const {
     currentPlayListId,
     currentPlayList,
     setCurrentPlayList,
     currentPlayListType,
   } = useContext(CurrentPlayListContext);
-  const { setCurrentSong } = useContext(CurrentSongContext);
+  const { currentSong, setCurrentSong } = useContext(CurrentSongContext);
   let url;
   if (currentPlayListType.type === "albums") {
     url = `https://api.spotify.com/v1/${currentPlayListType.type}/${currentPlayListId}`;
@@ -141,19 +144,31 @@ function TopTracks() {
     }
   };
 
-  const playSong = (song) => {
-    setCurrentSong(song);
-    play(song.uri);
+  const pause = async () => {
+    let url = `https://api.spotify.com/v1/me/player/pause?device_id=${deviceID}`;
+    const response = await axios.put(url, null, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    if (response.status === 204) {
+      console.log("Paused");
+    } else {
+      console.log("Something went wrong");
+    }
   };
+
+  if (deviceID) {
+    if (isPlaying) {
+      play(currentSong.uri);
+    } else {
+      pause();
+    }
+  }
 
   if (currentPlayList) {
     songList = currentPlayList.map((song) => (
-      <Song
-        key={song.id}
-        {...song}
-        handleLike={handleLike}
-        playSong={playSong}
-      />
+      <Song key={song.id} {...song} handleLike={handleLike} />
     ));
   }
 

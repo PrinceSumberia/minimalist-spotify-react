@@ -34,10 +34,6 @@ export default function Profile() {
         <div className="controls__notification" onClick={logout}>
           <LogOut />
         </div>
-        {/* <Bell />
-        <div className="controls__settings">
-          <Settings />
-        </div> */}
       </div>
     </div>
   );

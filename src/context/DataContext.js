@@ -11,6 +11,7 @@ export const CurrentSongContext = createContext();
 export const DataProvider = (props) => {
   const [profileData, setProfileData] = useState("");
   const [deviceID, setDeviceID] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
   const { accessToken, setAccessToken } = useContext(AccessTokenContext);
   const { setIsAuthenticated } = useContext(AuthContext);
 
@@ -24,6 +25,8 @@ export const DataProvider = (props) => {
         setIsAuthenticated,
         deviceID,
         setDeviceID,
+        isPlaying,
+        setIsPlaying,
       }}
     >
       {props.children}
