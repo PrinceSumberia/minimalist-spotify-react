@@ -15,6 +15,8 @@ import Profile from "../Profile/Profile";
 import TopChart from "../TopChart/TopChart";
 import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";
+import { useRef } from "react";
+import { useState } from "react";
 
 export default function Dashboard() {
   const {
@@ -23,6 +25,8 @@ export default function Dashboard() {
     setAccessToken,
     setIsAuthenticated,
     setDeviceID,
+    sdkPlayer,
+    setSdkPlayer,
   } = useContext(DataContext);
 
   const url = "https://api.spotify.com/v1/me";
@@ -36,24 +40,30 @@ export default function Dashboard() {
     window.onSpotifyWebPlaybackSDKReady = () => {
       // Define the Spotify Connect device, getOAuthToken has an actual token
       // hardcoded for the sake of simplicity
-      var player = new window.Spotify.Player({
-        name: "A Spotify Web SDK Player",
+      let player = new window.Spotify.Player({
+        name: "SDK Player",
         getOAuthToken: (callback) => {
           callback(accessToken);
         },
         volume: 0.1,
       });
 
+      setSdkPlayer(player);
+
       // Called when connected to the player created beforehand successfully
       player.addListener("ready", ({ device_id }) => {
         setDeviceID(device_id);
+      });
+
+      player.addListener("player_state_changed", (state) => {
+        console.log(state);
       });
 
       // Connect to the player created beforehand, this is equivalent to
       // creating a new device which will be visible for Spotify Connect
       player.connect();
     };
-  }, [accessToken, setDeviceID]);
+  }, [accessToken, setDeviceID, setSdkPlayer]);
 
   useEffect(() => {
     if (data.success) {

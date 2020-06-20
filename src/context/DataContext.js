@@ -9,6 +9,7 @@ export const NewAlbumContext = createContext();
 export const CurrentSongContext = createContext();
 
 export const DataProvider = (props) => {
+  const [sdkPlayer, setSdkPlayer] = useState(null);
   const [profileData, setProfileData] = useState("");
   const [deviceID, setDeviceID] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
@@ -27,6 +28,8 @@ export const DataProvider = (props) => {
         setDeviceID,
         isPlaying,
         setIsPlaying,
+        sdkPlayer,
+        setSdkPlayer,
       }}
     >
       {props.children}

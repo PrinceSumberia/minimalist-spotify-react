@@ -12,9 +12,13 @@ import "./TopTracksStyles.scss";
 import { Pause } from "react-feather";
 
 function TopTracks() {
-  const { accessToken, deviceID, isPlaying, setIsPlaying } = useContext(
-    DataContext
-  );
+  const {
+    accessToken,
+    deviceID,
+    isPlaying,
+    setIsPlaying,
+    sdkPlayer,
+  } = useContext(DataContext);
   const {
     currentPlayListId,
     currentPlayList,
@@ -158,13 +162,35 @@ function TopTracks() {
     }
   };
 
+  const playViasdk = ({
+    spotify_uri,
+    playerInstance: {
+      _options: { getOAuthToken, id },
+    },
+  }) => {
+    getOAuthToken((accessToken) => {
+      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ uris: [spotify_uri] }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    });
+  };
+
   if (deviceID) {
     if (isPlaying) {
-      play(currentSong.uri);
+      playViasdk({
+        playerInstance: sdkPlayer,
+        spotify_uri: currentSong.uri,
+      });
     } else {
       pause();
     }
   }
+  const getPlaybackData = () => {};
 
   if (currentPlayList) {
     songList = currentPlayList.map((song) => (
