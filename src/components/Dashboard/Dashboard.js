@@ -55,10 +55,6 @@ export default function Dashboard() {
         setDeviceID(device_id);
       });
 
-      player.addListener("player_state_changed", (state) => {
-        console.log(state);
-      });
-
       // Connect to the player created beforehand, this is equivalent to
       // creating a new device which will be visible for Spotify Connect
       player.connect();

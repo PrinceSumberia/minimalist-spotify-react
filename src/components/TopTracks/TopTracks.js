@@ -9,7 +9,6 @@ import useFetchData from "../../hooks/useFetchData";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import Song from "../Song/Song";
 import "./TopTracksStyles.scss";
-import { Pause } from "react-feather";
 
 function TopTracks() {
   const {
@@ -126,42 +125,6 @@ function TopTracks() {
     setCurrentPlayList(updatedSongList);
   };
 
-  const play = async (id) => {
-    let url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`;
-    const response = await axios.put(
-      url,
-      {
-        uris: [id],
-      },
-      {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    if (response.status === 204) {
-      console.log("Playing");
-    } else {
-      console.log("Something went wrong");
-    }
-  };
-
-  const pause = async () => {
-    let url = `https://api.spotify.com/v1/me/player/pause?device_id=${deviceID}`;
-    const response = await axios.put(url, null, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    if (response.status === 204) {
-      console.log("Paused");
-    } else {
-      console.log("Something went wrong");
-    }
-  };
-
   const playViasdk = ({
     spotify_uri,
     playerInstance: {
@@ -187,10 +150,11 @@ function TopTracks() {
         spotify_uri: currentSong.uri,
       });
     } else {
-      pause();
+      sdkPlayer.pause().then(() => {
+        console.log("Paused!");
+      });
     }
   }
-  const getPlaybackData = () => {};
 
   if (currentPlayList) {
     songList = currentPlayList.map((song) => (
