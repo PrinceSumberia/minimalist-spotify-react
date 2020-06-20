@@ -20,7 +20,7 @@ function Song({
     handleLike(id);
   };
   const handlePlay = () => {
-    playSong({ uri, name, artist, duration, image });
+    playSong({ uri, name, artist, duration, image, id });
   };
   return (
     <div className="song" onClick={handlePlay}>

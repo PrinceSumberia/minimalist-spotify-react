@@ -6,7 +6,7 @@ import "./PlayerStyles.scss";
 
 function Player() {
   const { currentSong } = useContext(CurrentSongContext);
-  const { uri, name, artist, duration, image } = currentSong;
+  const { name, artist, duration, image } = currentSong;
   const startTime = "0:00";
   const [isPlaying, toogleIsPlaying] = useState(false);
 

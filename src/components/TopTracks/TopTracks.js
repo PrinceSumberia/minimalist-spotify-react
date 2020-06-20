@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { memo, useContext, useEffect } from "react";
 import {
   CurrentPlayListContext,
@@ -97,9 +98,7 @@ function TopTracks() {
         });
         setCurrentPlayList(trackList);
         setCurrentSong(trackList[0]);
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     }
   }, [
     data,
@@ -120,37 +119,31 @@ function TopTracks() {
     setCurrentPlayList(updatedSongList);
   };
 
+  const play = async (id) => {
+    let url = `https://api.spotify.com/v1/me/player/play?device_id=${deviceID}`;
+    const response = await axios.put(
+      url,
+      {
+        uris: [id],
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.status === 204) {
+      console.log("Playing");
+    } else {
+      console.log("Something went wrong");
+    }
+  };
+
   const playSong = (song) => {
     setCurrentSong(song);
-    // console.log("Playing");
-    // const play = ({
-    //   spotify_uri,
-    //   playerInstance: {
-    //     _options: { getOAuthToken, id },
-    //   },
-    // }) => {
-    //   getOAuthToken((access_token) => {
-    //     console.log("this is ghetting executed");
-    //     fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
-    //       method: "PUT",
-    //       body: JSON.stringify({ uris: [spotify_uri] }),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Authorization: `Bearer ${access_token}`,
-    //       },
-    //     });
-    //   });
-    // };
-    // play({
-    //   playerInstance: new window.Spotify.Player({
-    //     name: "Web Playback SDK Quick Start Player",
-    //     getOAuthToken: () => {
-    //       return accessToken;
-    //     },
-    //     deviceID,
-    //   }),
-    //   spotify_uri: uri,
-    // });
+    play(song.uri);
   };
 
   if (currentPlayList) {

@@ -46,31 +46,7 @@ export default function Dashboard() {
 
       // Called when connected to the player created beforehand successfully
       player.addListener("ready", ({ device_id }) => {
-        console.log("Ready with Device ID", device_id);
         setDeviceID(device_id);
-
-        const play = ({
-          spotify_uri,
-          playerInstance: {
-            _options: { getOAuthToken, id },
-          },
-        }) => {
-          getOAuthToken((accessToken) => {
-            fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
-              method: "PUT",
-              body: JSON.stringify({ uris: [spotify_uri] }),
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${accessToken}`,
-              },
-            });
-          });
-        };
-
-        play({
-          playerInstance: player,
-          spotify_uri: "spotify:track:7xGfFoTpQ2E7fRF5lN10tr",
-        });
       });
 
       // Connect to the player created beforehand, this is equivalent to

@@ -6,7 +6,6 @@ export default (url) => {
     script.src = url;
     script.async = true;
     document.body.appendChild(script);
-    console.log("SDK Script Inserted");
     return () => {
       document.body.removeChild(script);
     };

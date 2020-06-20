@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { Bell, Settings, LogOut } from "react-feather";
+import { LogOut } from "react-feather";
 import { DataContext } from "../../context/DataContext";
 import "./ProfileStyles.scss";
-import { AuthContext } from "../../context/AuthContext";
 
 export default function Profile() {
   const { profileData, setIsAuthenticated, setAccessToken } = useContext(
@@ -12,9 +11,7 @@ export default function Profile() {
   let src;
   try {
     src = images[0].url;
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 
   const logout = () => {
     window.localStorage.removeItem("accessToken");
