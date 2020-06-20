@@ -1,27 +1,27 @@
 import classNames from "classnames";
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { PauseCircle, PlayCircle, SkipBack, SkipForward } from "react-feather";
 import { CurrentSongContext, DataContext } from "../../context/DataContext";
 import "./PlayerStyles.scss";
-const { sdkPlayer } = useContext(DataContext);
+import useInterval from "../../hooks/useInterval";
+import { millisToMinutesAndSeconds } from "../../utils/helpers";
+import { useState } from "react";
 
 function Player() {
+  const { sdkPlayer } = useContext(DataContext);
   const { currentSong } = useContext(CurrentSongContext);
   const { isPlaying, setIsPlaying } = useContext(DataContext);
   const { name, artist, duration, image, duration_ms } = currentSong;
-  const startTime = "0:00";
+  const [currentPosition, setCurrentPosition] = useState("0.00");
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
 
   let rangeRef = useRef(null);
 
-  const handleChange = (e) => {
-    rangeRef.current.max = duration_ms;
-    console.log(e.target.max);
-    console.log(rangeRef.current.value);
-
-    setInterval(() => {
+  useInterval(
+    () => {
+      rangeRef.current.max = duration_ms;
       sdkPlayer.getCurrentState().then((state) => {
         if (!state) {
           console.error(
@@ -29,27 +29,34 @@ function Player() {
           );
           return;
         }
-
         let { position } = state;
-
-        console.log("Currently Playing", position);
+        rangeRef.current.value = position;
       });
-    }, 1000);
 
-    const percentage =
-      (100 * (rangeRef.current.value - rangeRef.current.min)) /
-      (rangeRef.current.max - rangeRef.current.min);
-    console.log(percentage);
-    const bg = `linear-gradient(90deg, ${settings.fill} ${percentage}%, ${
-      settings.background
-    } ${percentage + 0.1}%)`;
-    rangeRef.current.style.background = bg;
-  };
+      setCurrentPosition(millisToMinutesAndSeconds(rangeRef.current.value));
+
+      let percentage =
+        (100 * (rangeRef.current.value - rangeRef.current.min)) /
+        (rangeRef.current.max - rangeRef.current.min);
+      let bg = `linear-gradient(90deg, ${settings.fill} ${percentage}%, ${
+        settings.background
+      } ${percentage + 0.1}%)`;
+      rangeRef.current.style.background = bg;
+    },
+    isPlaying ? 1000 : null
+  );
 
   const settings = {
     fill: "red",
     background: " #faf7f5",
   };
+
+  const handleChange = (e) => {
+    console.log(rangeRef.current.value);
+  };
+
+  try {
+  } catch (err) {}
 
   return (
     <div className="player">
@@ -61,7 +68,7 @@ function Player() {
         <p className="player__subtitle">{artist}</p>
       </div>
       <div className="player__time">
-        <p>{startTime}</p>
+        <p>{currentPosition}</p>
         <p>{duration}</p>
       </div>
       <input
@@ -69,6 +76,8 @@ function Player() {
         ref={rangeRef}
         className="player__progress"
         defaultValue={0}
+        min={0}
+        max={duration_ms}
         onChange={handleChange}
       />
       <div className="player__control">

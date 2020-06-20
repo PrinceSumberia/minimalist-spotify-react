@@ -11,6 +11,7 @@ function Song({
   image,
   artist,
   duration,
+  duration_ms,
   isLiked,
   handleLike,
   playSong,
@@ -24,7 +25,7 @@ function Song({
     handleLike(id);
   };
   const handlePlay = () => {
-    setCurrentSong({ uri, name, artist, duration, image, id });
+    setCurrentSong({ uri, name, artist, duration, image, id, duration_ms });
     setIsPlaying(true);
 
     // playSong({ uri, name, artist, duration, image, id });

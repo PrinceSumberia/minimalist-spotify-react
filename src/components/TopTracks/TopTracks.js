@@ -145,40 +145,16 @@ function TopTracks() {
     });
   };
 
-  const updateProgressBar = () => {
-    // progressBar.max = song.duration;
-    // progressBar.value = song.currentTime;
-    // let width = (progressBar.value / progressBar.max) * 100;
-    // range.style.width = `${width}%`;
-  };
-
   if (deviceID) {
     if (isPlaying) {
       playViasdk({
         playerInstance: sdkPlayer,
         spotify_uri: currentSong.uri,
       });
-
-      console.log(currentSong);
-      setInterval(() => {
-        sdkPlayer.getCurrentState().then((state) => {
-          if (!state) {
-            console.error(
-              "User is not playing music through the Web Playback SDK"
-            );
-            return;
-          }
-
-          let { position } = state;
-
-          console.log("Currently Playing", position);
-        });
-      }, 1000);
     } else {
       sdkPlayer.pause().then(() => {
         console.log("Paused!");
       });
-      clearInterval();
     }
   }
 
