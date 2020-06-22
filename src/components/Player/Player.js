@@ -1,15 +1,19 @@
 import classNames from "classnames";
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { PauseCircle, PlayCircle, SkipBack, SkipForward } from "react-feather";
-import { CurrentSongContext, DataContext } from "../../context/DataContext";
-import "./PlayerStyles.scss";
+import {
+  CurrentSongContext,
+  DataContext,
+  CurrentPlayListContext,
+} from "../../context/DataContext";
 import useInterval from "../../hooks/useInterval";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
-import { useState } from "react";
+import "./PlayerStyles.scss";
 
 function Player() {
   const { sdkPlayer } = useContext(DataContext);
-  const { currentSong } = useContext(CurrentSongContext);
+  const { currentPlayList } = useContext(CurrentPlayListContext);
+  const { currentSong, setCurrentSong } = useContext(CurrentSongContext);
   const { isPlaying, setIsPlaying } = useContext(DataContext);
   const { name, artist, duration, image, duration_ms } = currentSong;
   const [currentPosition, setCurrentPosition] = useState("0.00");
@@ -55,8 +59,17 @@ function Player() {
     console.log(rangeRef.current.value);
   };
 
-  try {
-  } catch (err) {}
+  const handleNext = () => {
+    const currentSongIndex = currentPlayList.findIndex(
+      (item) => item.id === currentSong.id
+    );
+    let nextSongIndex =
+      currentSongIndex === currentPlayList.length - 1
+        ? 0
+        : currentSongIndex + 1;
+    setCurrentSong(currentPlayList[nextSongIndex]);
+  };
+  const handlePrev = () => {};
 
   return (
     <div className="player">
@@ -81,7 +94,7 @@ function Player() {
         onChange={handleChange}
       />
       <div className="player__control">
-        <SkipBack className="player__icon" />
+        <SkipBack className="player__icon" onClick={handlePrev} />
         <div
           className={classNames("player__control__play", {
             player__animate: isPlaying,
@@ -94,7 +107,7 @@ function Player() {
             <PlayCircle className="player__icon player__icon__pause" />
           )}
         </div>
-        <SkipForward className="player__icon" />
+        <SkipForward className="player__icon" onClick={handleNext} />
       </div>
     </div>
   );

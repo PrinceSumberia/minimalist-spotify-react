@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { memo, useContext, useEffect } from "react";
 import {
   CurrentPlayListContext,
@@ -11,13 +10,9 @@ import Song from "../Song/Song";
 import "./TopTracksStyles.scss";
 
 function TopTracks() {
-  const {
-    accessToken,
-    deviceID,
-    isPlaying,
-    setIsPlaying,
-    sdkPlayer,
-  } = useContext(DataContext);
+  const { accessToken, deviceID, isPlaying, sdkPlayer } = useContext(
+    DataContext
+  );
   const {
     currentPlayListId,
     currentPlayList,
