@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, memo } from "react";
 import { PauseCircle, PlayCircle, SkipBack, SkipForward } from "react-feather";
 import {
   CurrentSongContext,
@@ -10,7 +10,7 @@ import useInterval from "../../hooks/useInterval";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import "./PlayerStyles.scss";
 
-function Player() {
+const Player = () => {
   const { sdkPlayer } = useContext(DataContext);
   const { currentPlayList } = useContext(CurrentPlayListContext);
   const { currentSong, setCurrentSong } = useContext(CurrentSongContext);
@@ -22,6 +22,17 @@ function Player() {
   };
 
   let rangeRef = useRef(null);
+
+  const playNextSong = () => {
+    const currentSongIndex = currentPlayList.findIndex(
+      (item) => item.id === currentSong.id
+    );
+    let nextSongIndex =
+      currentSongIndex === currentPlayList.length - 1
+        ? 0
+        : currentSongIndex + 1;
+    setCurrentSong(currentPlayList[nextSongIndex]);
+  };
 
   useInterval(
     () => {
@@ -46,6 +57,10 @@ function Player() {
         settings.background
       } ${percentage + 0.1}%)`;
       rangeRef.current.style.background = bg;
+
+      if (Math.round(percentage) === 100) {
+        playNextSong();
+      }
     },
     isPlaying ? 1000 : null
   );
@@ -60,14 +75,7 @@ function Player() {
   };
 
   const handleNext = () => {
-    const currentSongIndex = currentPlayList.findIndex(
-      (item) => item.id === currentSong.id
-    );
-    let nextSongIndex =
-      currentSongIndex === currentPlayList.length - 1
-        ? 0
-        : currentSongIndex + 1;
-    setCurrentSong(currentPlayList[nextSongIndex]);
+    playNextSong();
   };
 
   const handlePrev = () => {
@@ -121,6 +129,6 @@ function Player() {
       </div>
     </div>
   );
-}
+};
 
-export default Player;
+export default memo(Player);
