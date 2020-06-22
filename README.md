@@ -22,6 +22,9 @@ npm install
 npm start
 ```
 
+##  Note
+Spotify Premium Account is required to use Play tracks using Spotify SDK.
+
 ## Contribute
 
 Minimalist Spotify is an open source project. So, feel free to contribute. And if you're new to contributing to Open Source on Github, then [this guide](https://guides.github.com/activities/contributing-to-open-source/) will help you.
