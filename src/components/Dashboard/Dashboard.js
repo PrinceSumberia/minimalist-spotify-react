@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   CurrentPlayListProvider,
   CurrentSongProvider,
@@ -15,17 +17,15 @@ import Profile from "../Profile/Profile";
 import TopChart from "../TopChart/TopChart";
 import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";
-import { useRef } from "react";
-import { useState } from "react";
+import { memo } from "react";
 
-export default function Dashboard() {
+function Dashboard() {
   const {
     setProfileData,
     accessToken,
     setAccessToken,
     setIsAuthenticated,
     setDeviceID,
-    sdkPlayer,
     setSdkPlayer,
   } = useContext(DataContext);
 
@@ -70,6 +70,13 @@ export default function Dashboard() {
     }
   }, [data, setProfileData, setAccessToken, setIsAuthenticated, accessToken]);
 
+  useEffect(() => {
+    notify();
+  }, []);
+
+  const notify = () =>
+    toast.dark("Spotify Premium is Required To Play Tracks!");
+
   return (
     <CurrentPlayListProvider>
       <CurrentSongProvider>
@@ -97,8 +104,11 @@ export default function Dashboard() {
             </div>
             <Footer />
           </div>
+          <ToastContainer />
         </div>
       </CurrentSongProvider>
     </CurrentPlayListProvider>
   );
 }
+
+export default memo(Dashboard);

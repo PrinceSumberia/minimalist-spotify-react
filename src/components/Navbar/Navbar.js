@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./NavbarStyles.scss";
 
 function Navbar() {
@@ -28,4 +28,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default memo(Navbar);

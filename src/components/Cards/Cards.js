@@ -1,5 +1,6 @@
 import React from "react";
 import "./CardsStyles.scss";
+import { memo } from "react";
 
 function Cards({ id, img, name, title, subtitle, handleClick }) {
   const handleCardClick = () => {
@@ -18,4 +19,4 @@ function Cards({ id, img, name, title, subtitle, handleClick }) {
   );
 }
 
-export default Cards;
+export default memo(Cards);

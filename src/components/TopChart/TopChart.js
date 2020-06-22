@@ -9,6 +9,7 @@ import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import SearchForm from "../SearchForm/SearchForm";
 import "./TopChartStyles.scss";
+import { memo } from "react";
 
 function TopChart() {
   const { accessToken } = useContext(DataContext);
@@ -79,4 +80,4 @@ function TopChart() {
   );
 }
 
-export default TopChart;
+export default memo(TopChart);

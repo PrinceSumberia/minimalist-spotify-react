@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, memo } from "react";
 import {
   CurrentPlayListContext,
   DataContext,
@@ -62,4 +62,4 @@ function NewAlbums() {
   );
 }
 
-export default NewAlbums;
+export default memo(NewAlbums);

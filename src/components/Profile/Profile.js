@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { LogOut } from "react-feather";
 import { DataContext } from "../../context/DataContext";
 import "./ProfileStyles.scss";
+import { memo } from "react";
 
-export default function Profile() {
+function Profile() {
   const { profileData, setIsAuthenticated, setAccessToken } = useContext(
     DataContext
   );
@@ -38,3 +39,5 @@ export default function Profile() {
     </div>
   );
 }
+
+export default memo(Profile);
