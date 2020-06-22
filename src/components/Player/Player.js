@@ -69,7 +69,17 @@ function Player() {
         : currentSongIndex + 1;
     setCurrentSong(currentPlayList[nextSongIndex]);
   };
-  const handlePrev = () => {};
+
+  const handlePrev = () => {
+    const currentSongIndex = currentPlayList.findIndex(
+      (item) => item.id === currentSong.id
+    );
+
+    if (!(currentSongIndex === 0)) {
+      let prevSongIndex = currentSongIndex - 1;
+      setCurrentSong(currentPlayList[prevSongIndex]);
+    }
+  };
 
   return (
     <div className="player">
