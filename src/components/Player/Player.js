@@ -11,10 +11,9 @@ import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import "./PlayerStyles.scss";
 
 const Player = () => {
-  const { sdkPlayer } = useContext(DataContext);
+  const { sdkPlayer, isPlaying, setIsPlaying } = useContext(DataContext);
   const { currentPlayList } = useContext(CurrentPlayListContext);
   const { currentSong, setCurrentSong } = useContext(CurrentSongContext);
-  const { isPlaying, setIsPlaying } = useContext(DataContext);
   const { name, artist, duration, image, duration_ms } = currentSong;
   const [currentPosition, setCurrentPosition] = useState("0.00");
   const handlePlayPause = () => {

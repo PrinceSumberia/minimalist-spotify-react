@@ -5,9 +5,12 @@ import "./ProfileStyles.scss";
 import { memo } from "react";
 
 function Profile() {
-  const { profileData, setIsAuthenticated, setAccessToken } = useContext(
-    DataContext
-  );
+  const {
+    profileData,
+    setIsAuthenticated,
+    setAccessToken,
+    sdkPlayer,
+  } = useContext(DataContext);
   const { display_name, images, email } = { ...profileData.data };
   let src;
   try {
@@ -16,6 +19,7 @@ function Profile() {
 
   const logout = () => {
     window.localStorage.removeItem("accessToken");
+    sdkPlayer.disconnect();
     setIsAuthenticated(false);
     setAccessToken(null);
   };
