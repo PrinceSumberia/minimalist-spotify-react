@@ -45,6 +45,7 @@ const Player = () => {
         }
         let { position } = state;
         rangeRef.current.value = position;
+        console.log(position);
       });
 
       setCurrentPosition(millisToMinutesAndSeconds(rangeRef.current.value));
@@ -70,7 +71,7 @@ const Player = () => {
   };
 
   const handleChange = (e) => {
-    console.log(rangeRef.current.value);
+    sdkPlayer.seek(rangeRef.current.value).then(() => {});
   };
 
   const handleNext = () => {
