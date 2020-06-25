@@ -23,11 +23,12 @@ function Song({
   isLiked,
   handleLike,
   playSong,
+  explicit,
   uri,
   thumbnail,
 }) {
   const { setCurrentSong } = useContext(CurrentSongContext);
-  const { setIsPlaying, accessToken } = useContext(DataContext);
+  const { setIsPlaying } = useContext(DataContext);
   let history = useHistory();
 
   const handleClick = (e) => {
@@ -42,7 +43,11 @@ function Song({
   };
 
   const handleAnalyse = () => {
-    history.push(`tracks/${id}`);
+    history.push({
+      pathname: `tracks/${id}`,
+      state: { name, image, duration, artist, explicit },
+    });
+    // history.push(`tracks/${id}`);
   };
 
   return (

@@ -1,0 +1,15 @@
+.trackAnalysis {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+
+  &__analysis {
+    align-self: stretch;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 7rem;
+  }
+}
