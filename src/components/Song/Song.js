@@ -4,6 +4,7 @@ import React, { memo, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { CurrentSongContext, DataContext } from "../../context/DataContext";
 import "./Song.scss";
+import classNames from "classnames";
 
 function Song({
   id,
@@ -34,7 +35,8 @@ function Song({
     setIsPlaying(true);
   };
 
-  const handleAnalyse = () => {
+  const handleAnalyse = (e) => {
+    e.stopPropagation();
     history.push({
       pathname: `dashboard/tracks/${id}`,
       state: { name, image, duration, artist, explicit },
@@ -43,22 +45,22 @@ function Song({
 
   return (
     <div className="song" onClick={handlePlay}>
-      <div className="song__details">
-        <div className="song__imgCont">
-          <img src={thumbnail} alt="" className="song__imgCont__img" />
-        </div>
-        <h4 className="song__name">{name}</h4>
+      <div className="song__imgCont">
+        <img src={thumbnail} alt="" className="song__imgCont__img" />
       </div>
-      <div className="song__meta-content">
-        <h4 className="song__artist">{artist}</h4>
-        <div className="song__info">
-          <div className="song__duration">{duration}</div>
-          <div className="song__analyse">
-            <FontAwesomeIcon icon={faFlask} onClick={handleAnalyse} />
-          </div>
-          <div className={`song__fav ${isLiked && `song__fav--filled`}`}>
-            <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
-          </div>
+      <div className="song__name">{name}</div>
+      <div className="song__artist">{artist}</div>
+      <div className="song__meta">
+        <div className="meta__duration">{duration}</div>
+        <div className="meta__analyse">
+          <FontAwesomeIcon icon={faFlask} onClick={handleAnalyse} />
+        </div>
+        <div
+          className={classNames("meta__like", {
+            "meta__like--filled": isLiked,
+          })}
+        >
+          <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
         </div>
       </div>
     </div>
