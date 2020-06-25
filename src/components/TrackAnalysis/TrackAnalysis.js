@@ -11,6 +11,7 @@ import {
 import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import "./TrackAnalysisStyles.scss";
+import { memo } from "react";
 
 function TrackAnalysis({ match, location }) {
   const { accessToken } = useContext(DataContext);
@@ -37,7 +38,6 @@ function TrackAnalysis({ match, location }) {
       setFeatures([data.data]);
     }
   }, [data, dataAnalysis]);
-  console.log(analysis);
 
   let beats, bars, tempo, sections, segments, tatums;
   try {
@@ -118,7 +118,7 @@ function TrackAnalysis({ match, location }) {
   );
 }
 
-export default TrackAnalysis;
+export default memo(TrackAnalysis);
 
 // acousticness: 0.247;
 // analysis_url: "https://api.spotify.com/v1/audio-analysis/7ytR5pFWmSjzHJIeQkgog4";

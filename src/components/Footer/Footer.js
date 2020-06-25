@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "./FooterStyles.scss";
@@ -40,4 +40,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default memo(Footer);
