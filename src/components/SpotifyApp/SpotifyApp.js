@@ -1,23 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { memo, useContext, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   CurrentPlayListProvider,
   CurrentSongProvider,
   DataContext,
-  NewAlbumProvider,
-  TopPlayListProvider,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
+import Dashboard from "../Dashboard/Dashboard";
 import Footer from "../Footer/Footer";
-import Navbar from "../Navbar/Navbar";
-import NewAlbums from "../NewAlbums/NewAlbums";
-import Player from "../Player/Player";
-import Profile from "../Profile/Profile";
-import TopChart from "../TopChart/TopChart";
-import TopTracks from "../TopTracks/TopTracks";
+import Sidebar from "../Sidebar/Sidebar";
 import "./SpotifyAppStyles.scss";
-import { memo } from "react";
 
 function SpotifyApp() {
   const {
@@ -82,26 +75,10 @@ function SpotifyApp() {
       <CurrentSongProvider>
         <div className="container">
           <div className="sidebar">
-            <Profile />
-            <Navbar />
-            <div className="sidebar__player">
-              <Player />
-            </div>
+            <Sidebar />
           </div>
           <div className="mainContent">
-            <TopPlayListProvider>
-              <TopChart />
-            </TopPlayListProvider>
-            <div className="main__content">
-              <div className="main__toptracks">
-                <TopTracks />
-              </div>
-              <div className="main__comingsoon">
-                <NewAlbumProvider>
-                  <NewAlbums />
-                </NewAlbumProvider>
-              </div>
-            </div>
+            <Dashboard />
             <Footer />
           </div>
           <ToastContainer />
