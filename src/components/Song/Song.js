@@ -1,17 +1,9 @@
-import {
-  faHeart,
-  faChartBar,
-  faChartArea,
-  faBars,
-  faFlask,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFlask, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { memo } from "react";
-import "./Song.scss";
-import { useContext } from "react";
-import { CurrentSongContext, DataContext } from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
+import React, { memo, useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { CurrentSongContext, DataContext } from "../../context/DataContext";
+import "./Song.scss";
 
 function Song({
   id,
@@ -44,10 +36,9 @@ function Song({
 
   const handleAnalyse = () => {
     history.push({
-      pathname: `tracks/${id}`,
+      pathname: `dashboard/tracks/${id}`,
       state: { name, image, duration, artist, explicit },
     });
-    // history.push(`tracks/${id}`);
   };
 
   return (

@@ -11,6 +11,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import "./SpotifyAppStyles.scss";
+import { Route, Switch } from "react-router-dom";
+import TrackAnalysis from "../TrackAnalysis/TrackAnalysis";
 
 function SpotifyApp() {
   const {
@@ -78,7 +80,14 @@ function SpotifyApp() {
             <Sidebar />
           </div>
           <div className="mainContent">
-            <Dashboard />
+            <Switch>
+              <Route exact path="/dashboard" render={() => <Dashboard />} />
+              <Route
+                exact
+                path="/dashboard/tracks/:id"
+                render={(props) => <TrackAnalysis {...props} />}
+              />
+            </Switch>
             <Footer />
           </div>
           <ToastContainer />

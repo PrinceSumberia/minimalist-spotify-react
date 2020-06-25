@@ -1,19 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import "./TrackAnalysisStyles.scss";
-import { useEffect } from "react";
-import { useState } from "react";
-import {
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Legend,
-  Tooltip,
-  Bar,
-} from "recharts";
-import { millisToMinutesAndSeconds } from "../../utils/helpers";
 
 function TrackAnalysis({ match, location }) {
   const { accessToken } = useContext(DataContext);
@@ -28,7 +25,6 @@ function TrackAnalysis({ match, location }) {
   };
 
   const { name, image, duration, artist, explicit } = location.state;
-  console.log(explicit);
 
   const [data] = useFetchData("", url, headers);
   const [dataAnalysis] = useFetchData("", url2, headers);
