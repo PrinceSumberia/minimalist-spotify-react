@@ -45,7 +45,6 @@ const Player = () => {
         }
         let { position } = state;
         rangeRef.current.value = position;
-        console.log(position);
       });
 
       setCurrentPosition(millisToMinutesAndSeconds(rangeRef.current.value));

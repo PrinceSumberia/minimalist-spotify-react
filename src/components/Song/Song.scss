@@ -56,6 +56,7 @@
   }
 
   &__fav {
+    margin-left: 3rem;
     display: flex;
     align-items: center;
 
@@ -64,6 +65,12 @@
     }
 
     &--filled {
+      color: red;
+    }
+  }
+
+  &__analyse {
+    &:hover {
       color: red;
     }
   }
