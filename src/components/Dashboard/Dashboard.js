@@ -5,8 +5,8 @@ import {
   TopPlayListProvider,
 } from "../../context/DataContext";
 import NewAlbums from "../NewAlbums/NewAlbums";
+import Playlist from "../Playlist/Playlist";
 import TopChart from "../TopChart/TopChart";
-import TopTracks from "../TopTracks/TopTracks";
 import "./DashBoardStyles.scss";
 
 function Dashboard() {
@@ -17,7 +17,7 @@ function Dashboard() {
       </TopPlayListProvider>
       <div className="main__content">
         <div className="main__toptracks">
-          <TopTracks />
+          <Playlist />
         </div>
         <div className="main__comingsoon">
           <NewAlbumProvider>

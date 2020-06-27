@@ -1,0 +1,17 @@
+.playlist__container {
+  background-color: var(--color-white);
+
+  &__header {
+    margin: 2rem;
+    margin-top: 4rem;
+    text-transform: capitalize;
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__subtitle {
+      color: var(--color-primary-light-2);
+    }
+  }
+}

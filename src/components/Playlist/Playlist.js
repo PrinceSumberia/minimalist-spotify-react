@@ -7,9 +7,9 @@ import {
 import useFetchData from "../../hooks/useFetchData";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import Song from "../Song/Song";
-import "./TopTracksStyles.scss";
+import "./PlaylistStyles.scss";
 
-function TopTracks() {
+function Playlist() {
   const { accessToken } = useContext(DataContext);
   const {
     currentPlayListId,
@@ -126,16 +126,16 @@ function TopTracks() {
   }
 
   return (
-    <div className="toptracks__container">
-      <div className="toptracks__header">
-        <h2 className="toptracks__header__title">{currentPlayListType.name}</h2>
-        <h4 className="toptracks__header__subtitle">
+    <div className="playlist__container">
+      <div className="playlist__header">
+        <h2 className="playlist__header__title">{currentPlayListType.name}</h2>
+        <h4 className="playlist__header__subtitle">
           {currentPlayList.length} songs on the list
         </h4>
       </div>
-      <div className="toptracks__tracks">{songList}</div>
+      <div className="playlist__tracks">{songList}</div>
     </div>
   );
 }
 
-export default memo(TopTracks);
+export default memo(Playlist);
