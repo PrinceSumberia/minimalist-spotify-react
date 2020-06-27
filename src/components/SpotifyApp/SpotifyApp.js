@@ -17,6 +17,7 @@ import { useState } from "react";
 import * as animationData from "../../assets/loading.json";
 import Lootie from "react-lottie";
 import FadeIn from "react-fade-in";
+import Browse from "../Browse/Browse";
 
 function SpotifyApp() {
   const {
@@ -98,6 +99,11 @@ function SpotifyApp() {
                   exact
                   path="/dashboard/tracks/:id"
                   render={(props) => <TrackAnalysis {...props} />}
+                />
+                <Route
+                  exact
+                  path="/dashboard/search"
+                  render={() => <Browse />}
                 />
               </Switch>
               <Footer />

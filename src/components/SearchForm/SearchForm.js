@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { Search } from "react-feather";
 import useInputState from "../../hooks/useInputState";
 import "./SearchFormStyles.scss";
+import { useEffect } from "react";
 
 function SearchForm() {
   const [searchInput, handleSearchInput, resetSearchInput] = useInputState("");
@@ -10,6 +11,9 @@ function SearchForm() {
     e.preventDefault();
     resetSearchInput();
   };
+
+  useEffect(() => {});
+
   return (
     <form className="search" onSubmit={handleSubmit}>
       <input

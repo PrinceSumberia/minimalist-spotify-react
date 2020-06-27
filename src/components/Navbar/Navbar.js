@@ -11,18 +11,18 @@ function Navbar() {
         </NavLink>
       </div>
       <div className="navbar__item">
+        <NavLink to="/dashboard/search" className="navbar__link">
+          Browse
+        </NavLink>
+      </div>
+      <div className="navbar__item">
         <a href="#home" className="navbar__link">
-          Albums
+          Search
         </a>
       </div>
       <div className="navbar__item">
         <a href="#home" className="navbar__link">
-          Song Analysis
-        </a>
-      </div>
-      <div className="navbar__item">
-        <a href="#home" className="navbar__link">
-          Settings
+          Library
         </a>
       </div>
     </div>
