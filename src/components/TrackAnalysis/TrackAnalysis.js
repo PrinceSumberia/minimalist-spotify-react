@@ -66,37 +66,39 @@ function TrackAnalysis({ match, location }) {
         </div>
       </div>
       <div className="trackAnalysis__analysis">
-        <div className="analysis__duration">
-          <div className="analysis__value">{duration}</div>
-          <div className="analysis__title">Duration</div>
+        <div className="trackAnalysis__analysis__feature">
+          <div className="trackAnalysis__analysis__value">{duration}</div>
+          <div className="trackAnalysis__analysis__title">Duration</div>
         </div>
-        <div className="analysis__explicit">
-          <div className="analysis__value">{String(explicit)}</div>
-          <div className="analysis__title">Explicit</div>
+        <div className="trackAnalysis__analysis__feature">
+          <div className="trackAnalysis__analysis__value">
+            {String(explicit)}
+          </div>
+          <div className="trackAnalysis__analysis__title">Explicit</div>
         </div>
-        <div className="analysis__bars">
-          <div className="analysis__value">{bars}</div>
-          <div className="analysis__title">Bars</div>
+        <div className="trackAnalysis__analysis__feature">
+          <div className="trackAnalysis__analysis__value">{bars}</div>
+          <div className="trackAnalysis__analysis__title">Bars</div>
         </div>
-        <div className="analysis__beats">
-          <div className="analysis__value">{beats}</div>
-          <div className="analysis__title">Beats</div>
+        <div className="trackAnalysis__analysis__feature">
+          <div className="trackAnalysis__analysis__value">{beats}</div>
+          <div className="trackAnalysis__analysis__title">Beats</div>
         </div>
-        <div className="analysis__tempo">
-          <div className="analysis__value">{tempo}</div>
-          <div className="analysis__title">Tempo</div>
+        <div className="trackAnalysis__analysis__feature">
+          <div className="trackAnalysis__analysis__value">{tempo}</div>
+          <div className="trackAnalysis__analysis__title">Tempo</div>
         </div>
-        <div className="analysis__sections">
-          <div className="analysis__value">{sections}</div>
-          <div className="analysis__title">Sections</div>
+        <div className="trackAnalysis__analysis__feature">
+          <div className="trackAnalysis__analysis__value">{sections}</div>
+          <div className="trackAnalysis__analysis__title">Sections</div>
         </div>
-        <div className="analysis__segments">
-          <div className="analysis__value">{segments}</div>
-          <div className="analysis__title">Segments</div>
+        <div className="trackAnalysis__analysis__feature">
+          <div className="trackAnalysis__analysis__value">{segments}</div>
+          <div className="trackAnalysis__analysis__title">Segments</div>
         </div>
-        <div className="analysis__tatums">
-          <div className="analysis__value">{tatums}</div>
-          <div className="analysis__title">Tatums</div>
+        <div className="trackAnalysis__analysis__feature">
+          <div className="trackAnalysis__analysis__value">{tatums}</div>
+          <div className="trackAnalysis__analysis__title">Tatums</div>
         </div>
       </div>
       <h2>Audio Features</h2>
