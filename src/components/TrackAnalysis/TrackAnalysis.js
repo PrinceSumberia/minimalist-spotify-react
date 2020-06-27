@@ -12,6 +12,7 @@ import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import "./TrackAnalysisStyles.scss";
 import { memo } from "react";
+import Placeholder from "../Placeholder/Placeholder";
 
 function TrackAnalysis({ match, location }) {
   const { accessToken } = useContext(DataContext);
@@ -26,9 +27,16 @@ function TrackAnalysis({ match, location }) {
   };
 
   const { name, image, duration, artist, explicit } = location.state;
+  const [loading, setLoading] = useState(true);
 
   const [data] = useFetchData("", url, headers);
   const [dataAnalysis] = useFetchData("", url2, headers);
+
+  useEffect(() => {
+    if (data.success && dataAnalysis.success) {
+      setLoading(false);
+    }
+  }, [data, dataAnalysis]);
 
   useEffect(() => {
     if (dataAnalysis.success) {
@@ -65,42 +73,46 @@ function TrackAnalysis({ match, location }) {
           <button className="trackAnalysis__btn">Play Song</button>
         </div>
       </div>
-      <div className="trackAnalysis__analysis">
-        <div className="trackAnalysis__analysis__feature">
-          <div className="trackAnalysis__analysis__value">{duration}</div>
-          <div className="trackAnalysis__analysis__title">Duration</div>
-        </div>
-        <div className="trackAnalysis__analysis__feature">
-          <div className="trackAnalysis__analysis__value">
-            {String(explicit)}
+      {loading ? (
+        <Placeholder />
+      ) : (
+        <div className="trackAnalysis__analysis">
+          <div className="trackAnalysis__analysis__feature">
+            <div className="trackAnalysis__analysis__value">{duration}</div>
+            <div className="trackAnalysis__analysis__title">Duration</div>
           </div>
-          <div className="trackAnalysis__analysis__title">Explicit</div>
+          <div className="trackAnalysis__analysis__feature">
+            <div className="trackAnalysis__analysis__value">
+              {explicit ? "Yes" : "No"}
+            </div>
+            <div className="trackAnalysis__analysis__title">Explicit</div>
+          </div>
+          <div className="trackAnalysis__analysis__feature">
+            <div className="trackAnalysis__analysis__value">{bars}</div>
+            <div className="trackAnalysis__analysis__title">Bars</div>
+          </div>
+          <div className="trackAnalysis__analysis__feature">
+            <div className="trackAnalysis__analysis__value">{beats}</div>
+            <div className="trackAnalysis__analysis__title">Beats</div>
+          </div>
+          <div className="trackAnalysis__analysis__feature">
+            <div className="trackAnalysis__analysis__value">{tempo}</div>
+            <div className="trackAnalysis__analysis__title">Tempo</div>
+          </div>
+          <div className="trackAnalysis__analysis__feature">
+            <div className="trackAnalysis__analysis__value">{sections}</div>
+            <div className="trackAnalysis__analysis__title">Sections</div>
+          </div>
+          <div className="trackAnalysis__analysis__feature">
+            <div className="trackAnalysis__analysis__value">{segments}</div>
+            <div className="trackAnalysis__analysis__title">Segments</div>
+          </div>
+          <div className="trackAnalysis__analysis__feature">
+            <div className="trackAnalysis__analysis__value">{tatums}</div>
+            <div className="trackAnalysis__analysis__title">Tatums</div>
+          </div>
         </div>
-        <div className="trackAnalysis__analysis__feature">
-          <div className="trackAnalysis__analysis__value">{bars}</div>
-          <div className="trackAnalysis__analysis__title">Bars</div>
-        </div>
-        <div className="trackAnalysis__analysis__feature">
-          <div className="trackAnalysis__analysis__value">{beats}</div>
-          <div className="trackAnalysis__analysis__title">Beats</div>
-        </div>
-        <div className="trackAnalysis__analysis__feature">
-          <div className="trackAnalysis__analysis__value">{tempo}</div>
-          <div className="trackAnalysis__analysis__title">Tempo</div>
-        </div>
-        <div className="trackAnalysis__analysis__feature">
-          <div className="trackAnalysis__analysis__value">{sections}</div>
-          <div className="trackAnalysis__analysis__title">Sections</div>
-        </div>
-        <div className="trackAnalysis__analysis__feature">
-          <div className="trackAnalysis__analysis__value">{segments}</div>
-          <div className="trackAnalysis__analysis__title">Segments</div>
-        </div>
-        <div className="trackAnalysis__analysis__feature">
-          <div className="trackAnalysis__analysis__value">{tatums}</div>
-          <div className="trackAnalysis__analysis__title">Tatums</div>
-        </div>
-      </div>
+      )}
       <h2>Audio Features</h2>
       <div className="trackAnalysis__chart">
         <BarChart
