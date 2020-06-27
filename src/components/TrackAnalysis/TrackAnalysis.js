@@ -104,9 +104,11 @@ function TrackAnalysis({ match, location }) {
       <h2>Audio Features</h2>
       <div className="trackAnalysis__chart">
         <BarChart
-          width={900}
+          width={800}
           height={600}
           data={features}
+          barSize={60}
+          barGap={25}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
