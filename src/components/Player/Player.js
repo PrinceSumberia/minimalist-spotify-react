@@ -9,6 +9,7 @@ import {
 import useInterval from "../../hooks/useInterval";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import "./PlayerStyles.scss";
+import { useEffect } from "react";
 
 const Player = () => {
   const { sdkPlayer, isPlaying, setIsPlaying } = useContext(DataContext);
@@ -16,11 +17,45 @@ const Player = () => {
   const { currentSong, setCurrentSong } = useContext(CurrentSongContext);
   const { name, artist, duration, image, duration_ms } = currentSong;
   const [currentPosition, setCurrentPosition] = useState("0.00");
+
+  let rangeRef = useRef(null);
+
+  const playViasdk = ({
+    spotify_uri,
+    playerInstance: {
+      _options: { getOAuthToken, id },
+    },
+  }) => {
+    getOAuthToken((accessToken) => {
+      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
+        method: "PUT",
+        body: JSON.stringify({ uris: [spotify_uri] }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    });
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      playViasdk({
+        playerInstance: sdkPlayer,
+        spotify_uri: currentSong.uri,
+      });
+    } else {
+      try {
+        sdkPlayer.pause().then(() => {
+          console.log("Paused!");
+        });
+      } catch (err) {}
+    }
+  }, [isPlaying, currentSong.uri, sdkPlayer]);
+
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
-
-  let rangeRef = useRef(null);
 
   const playNextSong = () => {
     const currentSongIndex = currentPlayList.findIndex(

@@ -10,9 +10,7 @@ import Song from "../Song/Song";
 import "./TopTracksStyles.scss";
 
 function TopTracks() {
-  const { accessToken, deviceID, isPlaying, sdkPlayer } = useContext(
-    DataContext
-  );
+  const { accessToken } = useContext(DataContext);
   const {
     currentPlayListId,
     currentPlayList,
@@ -61,10 +59,8 @@ function TopTracks() {
           return [];
         });
         setCurrentPlayList(albumData);
-        setCurrentSong(albumData[0]);
-      } catch (err) {
-        console.log(err);
-      }
+        !currentSong.uri && setCurrentSong(albumData[0]);
+      } catch (err) {}
     } else {
       try {
         const trackList = data.items.flatMap((item) => {
@@ -100,15 +96,16 @@ function TopTracks() {
           return [];
         });
         setCurrentPlayList(trackList);
-        setCurrentSong(trackList[0]);
+        !currentSong.uri && setCurrentSong(trackList[0]);
       } catch (err) {}
     }
   }, [
     data,
     setCurrentPlayList,
-    setCurrentSong,
     currentPlayListType,
     currentPlayListId,
+    currentSong.uri,
+    setCurrentSong,
   ]);
 
   const handleLike = (id) => {
@@ -121,37 +118,6 @@ function TopTracks() {
     });
     setCurrentPlayList(updatedSongList);
   };
-
-  const playViasdk = ({
-    spotify_uri,
-    playerInstance: {
-      _options: { getOAuthToken, id },
-    },
-  }) => {
-    getOAuthToken((accessToken) => {
-      fetch(`https://api.spotify.com/v1/me/player/play?device_id=${id}`, {
-        method: "PUT",
-        body: JSON.stringify({ uris: [spotify_uri] }),
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-    });
-  };
-
-  if (deviceID) {
-    if (isPlaying) {
-      playViasdk({
-        playerInstance: sdkPlayer,
-        spotify_uri: currentSong.uri,
-      });
-    } else {
-      sdkPlayer.pause().then(() => {
-        console.log("Paused!");
-      });
-    }
-  }
 
   if (currentPlayList) {
     songList = currentPlayList.map((song) => (
