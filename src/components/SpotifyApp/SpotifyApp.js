@@ -13,6 +13,9 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./SpotifyAppStyles.scss";
 import { Route, Switch } from "react-router-dom";
 import TrackAnalysis from "../TrackAnalysis/TrackAnalysis";
+import { useState } from "react";
+import * as animationData from "../../assets/loading.json";
+import Lootie from "react-lottie";
 
 function SpotifyApp() {
   const {
@@ -29,12 +32,20 @@ function SpotifyApp() {
     Authorization: "Bearer " + accessToken,
   };
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData.default,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   const [data] = useFetchData("", url, headers);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.onSpotifyWebPlaybackSDKReady = () => {
-      // Define the Spotify Connect device, getOAuthToken has an actual token
-      // hardcoded for the sake of simplicity
       let player = new window.Spotify.Player({
         name: "SDK Player",
         getOAuthToken: (callback) => {
@@ -42,16 +53,11 @@ function SpotifyApp() {
         },
         volume: 0.5,
       });
-
       setSdkPlayer(player);
-
-      // Called when connected to the player created beforehand successfully
       player.addListener("ready", ({ device_id }) => {
         setDeviceID(device_id);
+        setLoading(false);
       });
-
-      // Connect to the player created beforehand, this is equivalent to
-      // creating a new device which will be visible for Spotify Connect
       player.connect();
     };
   }, [accessToken, setDeviceID, setSdkPlayer]);
@@ -72,7 +78,11 @@ function SpotifyApp() {
   const notify = () =>
     toast.dark("Spotify Premium is Required To Play Tracks!");
 
-  return (
+  return loading ? (
+    <div className="loading">
+      <Lootie options={defaultOptions} height={300} width={300} />
+    </div>
+  ) : (
     <CurrentPlayListProvider>
       <CurrentSongProvider>
         <div className="container">
