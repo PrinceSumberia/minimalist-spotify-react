@@ -11,7 +11,7 @@ function Navbar() {
         </NavLink>
       </div>
       <div className="navbar__item">
-        <NavLink to="/dashboard/search" className="navbar__link">
+        <NavLink to="/dashboard/browse" className="navbar__link">
           Browse
         </NavLink>
       </div>

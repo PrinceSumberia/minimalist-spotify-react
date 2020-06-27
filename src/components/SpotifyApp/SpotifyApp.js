@@ -102,7 +102,7 @@ function SpotifyApp() {
                 />
                 <Route
                   exact
-                  path="/dashboard/search"
+                  path="/dashboard/browse"
                   render={() => <Browse />}
                 />
               </Switch>

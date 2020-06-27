@@ -25,6 +25,12 @@ function Browse() {
     "https://api.spotify.com/v1/browse/categories",
     headers
   );
+  const [data2] = useFetchData(
+    "",
+    "https://api.spotify.com/v1/browse/categories/toplists/playlists",
+    headers
+  );
+  console.log(data2);
   let result;
   try {
     result = data.data.categories.items.map((item) => (
