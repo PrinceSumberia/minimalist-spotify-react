@@ -1,8 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { Search } from "react-feather";
 import useInputState from "../../hooks/useInputState";
 import "./SearchFormStyles.scss";
-import { memo } from "react";
 
 function SearchForm() {
   const [searchInput, handleSearchInput, resetSearchInput] = useInputState("");

@@ -52,12 +52,18 @@ function TrackAnalysis({ match, location }) {
   return (
     <div className="trackAnalysis">
       <div className="trackAnalysis__header">
-        <div className="header__img">
-          <img src={image} alt="" />
+        <div className="trackAnalysis__header__media">
+          <img
+            src={image}
+            alt=""
+            className="trackAnalysis__header__media__img"
+          />
         </div>
-        <div className="header__title">{name}</div>
-        <div className="header__subTitle">{artist}</div>
-        <button className="btn">Play</button>
+        <div className="trackAnalysis__header__meta">
+          <p className="trackAnalysis__header__title">{name}</p>
+          <p className="trackAnalysis__header__subtitle">{artist}</p>
+          <button className="trackAnalysis__btn">Play Song</button>
+        </div>
       </div>
       <div className="trackAnalysis__analysis">
         <div className="analysis__duration">
@@ -93,10 +99,11 @@ function TrackAnalysis({ match, location }) {
           <div className="analysis__title">Tatums</div>
         </div>
       </div>
+      <h2>Audio Features</h2>
       <div className="trackAnalysis__chart">
         <BarChart
-          width={800}
-          height={400}
+          width={900}
+          height={600}
           data={features}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >

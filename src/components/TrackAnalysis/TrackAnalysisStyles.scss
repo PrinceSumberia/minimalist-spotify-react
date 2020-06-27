@@ -4,6 +4,37 @@
   justify-content: center;
   align-items: center;
   padding: 5rem;
+  text-transform: capitalize;
+
+  &__header {
+    align-self: stretch;
+    display: flex;
+    margin-bottom: 4rem;
+
+    &__media {
+      flex: 0 0 30%;
+      margin-right: 2rem;
+
+      &__img {
+        display: block;
+        width: 100%;
+        background-size: cover;
+        overflow: hidden;
+        border-radius: 2rem;
+      }
+    }
+
+    &__meta {}
+
+    &__title {
+      font-size: 4rem;
+      font-weight: 900;
+    }
+
+    &__subtitle {
+      font-size: 2.5rem;
+    }
+  }
 
   &__analysis {
     align-self: stretch;
@@ -11,5 +42,30 @@
     justify-content: space-around;
     align-items: center;
     margin-bottom: 7rem;
+  }
+
+  &__btn {
+
+    &,
+    &:active {
+      border: none;
+      outline: none;
+      margin-top: 2rem;
+      font-size: inherit;
+      font-family: inherit;
+      padding: 1rem 3rem;
+      background-color: var(--color-green);
+      color: var(--color-primary-light-1);
+      border-radius: 1rem;
+      transition: all .2s;
+    }
+
+    &:hover {
+      background-color: var(--color-primary);
+    }
+  }
+
+  &__chart {
+    margin-top: 2rem;
   }
 }
