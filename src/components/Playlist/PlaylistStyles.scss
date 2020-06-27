@@ -1,5 +1,7 @@
-.playlist__container {
-  background-color: var(--color-white);
+.playlist {
+  &__container {
+    background-color: var(--color-white);
+  }
 
   &__header {
     margin: 2rem;
