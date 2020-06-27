@@ -16,6 +16,7 @@ import TrackAnalysis from "../TrackAnalysis/TrackAnalysis";
 import { useState } from "react";
 import * as animationData from "../../assets/loading.json";
 import Lootie from "react-lottie";
+import FadeIn from "react-fade-in";
 
 function SpotifyApp() {
   const {
@@ -85,23 +86,25 @@ function SpotifyApp() {
   ) : (
     <CurrentPlayListProvider>
       <CurrentSongProvider>
-        <div className="container">
-          <div className="sidebar">
-            <Sidebar />
+        <FadeIn>
+          <div className="container">
+            <div className="sidebar">
+              <Sidebar />
+            </div>
+            <div className="mainContent">
+              <Switch>
+                <Route exact path="/dashboard" render={() => <Dashboard />} />
+                <Route
+                  exact
+                  path="/dashboard/tracks/:id"
+                  render={(props) => <TrackAnalysis {...props} />}
+                />
+              </Switch>
+              <Footer />
+            </div>
+            <ToastContainer />
           </div>
-          <div className="mainContent">
-            <Switch>
-              <Route exact path="/dashboard" render={() => <Dashboard />} />
-              <Route
-                exact
-                path="/dashboard/tracks/:id"
-                render={(props) => <TrackAnalysis {...props} />}
-              />
-            </Switch>
-            <Footer />
-          </div>
-          <ToastContainer />
-        </div>
+        </FadeIn>
       </CurrentSongProvider>
     </CurrentPlayListProvider>
   );

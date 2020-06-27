@@ -7,6 +7,7 @@ import {
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import "./NewAlbumsStyles.scss";
+import { NEWALBUMS_URL } from "../../constants/constants";
 
 function NewAlbums() {
   const { accessToken } = useContext(DataContext);
@@ -18,8 +19,8 @@ function NewAlbums() {
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
-  const url = "https://api.spotify.com/v1/browse/new-releases";
-  const [data] = useFetchData("", url, headers);
+
+  const [data] = useFetchData("", NEWALBUMS_URL, headers);
 
   useEffect(() => {
     let albumData = [];

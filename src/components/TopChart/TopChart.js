@@ -10,6 +10,7 @@ import Cards from "../Cards/Cards";
 import SearchForm from "../SearchForm/SearchForm";
 import "./TopChartStyles.scss";
 import { memo } from "react";
+import { FEATURED_PLAYLIST_URL } from "../../constants/constants";
 
 function TopChart() {
   const { accessToken } = useContext(DataContext);
@@ -19,12 +20,10 @@ function TopChart() {
     CurrentPlayListContext
   );
 
-  let url = `https://api.spotify.com/v1/browse/featured-playlists/`;
-
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
-  const [data] = useFetchData("", url, headers);
+  const [data] = useFetchData("", FEATURED_PLAYLIST_URL, headers);
 
   useEffect(() => {
     if (data.success) {

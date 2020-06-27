@@ -39,7 +39,7 @@ function Song({
     e.stopPropagation();
     history.push({
       pathname: `dashboard/tracks/${id}`,
-      state: { name, image, duration, artist, explicit },
+      state: { uri, name, artist, duration, image, id, duration_ms, explicit },
     });
   };
 

@@ -8,10 +8,11 @@ import NewAlbums from "../NewAlbums/NewAlbums";
 import Playlist from "../Playlist/Playlist";
 import TopChart from "../TopChart/TopChart";
 import "./DashBoardStyles.scss";
+import FadeIn from "react-fade-in";
 
 function Dashboard() {
   return (
-    <>
+    <FadeIn>
       <TopPlayListProvider>
         <TopChart />
       </TopPlayListProvider>
@@ -25,7 +26,7 @@ function Dashboard() {
           </NewAlbumProvider>
         </div>
       </div>
-    </>
+    </FadeIn>
   );
 }
 

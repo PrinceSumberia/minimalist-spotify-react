@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
+import Lootie from "react-lottie";
 import {
   Bar,
   BarChart,
@@ -8,29 +9,41 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { DataContext } from "../../context/DataContext";
+import * as animationData from "../../assets/loading2.json";
+import { ANALYSIS_URL, FEATURES_URL } from "../../constants/constants";
+import { CurrentSongContext, DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import "./TrackAnalysisStyles.scss";
-import { memo } from "react";
-import Placeholder from "../Placeholder/Placeholder";
+import FadeIn from "react-fade-in";
 
 function TrackAnalysis({ match, location }) {
-  const { accessToken } = useContext(DataContext);
+  const { accessToken, setIsPlaying } = useContext(DataContext);
+  const { setCurrentSong } = useContext(CurrentSongContext);
   const [analysis, setAnalysis] = useState({});
   const [features, setFeatures] = useState([]);
 
-  const url = `https://api.spotify.com/v1/audio-features/${match.params.id}`;
-  const url2 = `https://api.spotify.com/v1/audio-analysis/${match.params.id}`;
+  const audioFeatureURL = `${FEATURES_URL}${match.params.id}`;
+  const audioAnalysisURL = `${ANALYSIS_URL}${match.params.id}`;
 
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
 
-  const { name, image, duration, artist, explicit } = location.state;
+  const {
+    uri,
+    name,
+    artist,
+    duration,
+    image,
+    id,
+    duration_ms,
+    explicit,
+  } = location.state;
+
   const [loading, setLoading] = useState(true);
 
-  const [data] = useFetchData("", url, headers);
-  const [dataAnalysis] = useFetchData("", url2, headers);
+  const [data] = useFetchData("", audioFeatureURL, headers);
+  const [dataAnalysis] = useFetchData("", audioAnalysisURL, headers);
 
   useEffect(() => {
     if (data.success && dataAnalysis.success) {
@@ -47,6 +60,15 @@ function TrackAnalysis({ match, location }) {
     }
   }, [data, dataAnalysis]);
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData.default,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   let beats, bars, tempo, sections, segments, tatums;
   try {
     beats = analysis.beats.length;
@@ -57,25 +79,35 @@ function TrackAnalysis({ match, location }) {
     tempo = Math.round(features[0].tempo);
   } catch {}
 
-  return (
-    <div className="trackAnalysis">
-      <div className="trackAnalysis__header">
-        <div className="trackAnalysis__header__media">
-          <img
-            src={image}
-            alt=""
-            className="trackAnalysis__header__media__img"
-          />
+  const handlePlay = (e) => {
+    e.preventDefault();
+    setCurrentSong({ uri, name, artist, duration, image, id, duration_ms });
+    setIsPlaying(true);
+  };
+
+  return loading ? (
+    <div className="loading">
+      <Lootie options={defaultOptions} height={300} width={300} />
+    </div>
+  ) : (
+    <FadeIn>
+      <div className="trackAnalysis">
+        <div className="trackAnalysis__header">
+          <div className="trackAnalysis__header__media">
+            <img
+              src={image}
+              alt=""
+              className="trackAnalysis__header__media__img"
+            />
+          </div>
+          <div className="trackAnalysis__header__meta">
+            <p className="trackAnalysis__header__title">{name}</p>
+            <p className="trackAnalysis__header__subtitle">{artist}</p>
+            <button className="trackAnalysis__btn" onClick={handlePlay}>
+              Play Song
+            </button>
+          </div>
         </div>
-        <div className="trackAnalysis__header__meta">
-          <p className="trackAnalysis__header__title">{name}</p>
-          <p className="trackAnalysis__header__subtitle">{artist}</p>
-          <button className="trackAnalysis__btn">Play Song</button>
-        </div>
-      </div>
-      {loading ? (
-        <Placeholder />
-      ) : (
         <div className="trackAnalysis__analysis">
           <div className="trackAnalysis__analysis__feature">
             <div className="trackAnalysis__analysis__value">{duration}</div>
@@ -112,52 +144,33 @@ function TrackAnalysis({ match, location }) {
             <div className="trackAnalysis__analysis__title">Tatums</div>
           </div>
         </div>
-      )}
-      <h2>Audio Features</h2>
-      <div className="trackAnalysis__chart">
-        <BarChart
-          width={800}
-          height={600}
-          data={features}
-          barSize={60}
-          barGap={25}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="acousticness" fill="#003f5c" />
-          <Bar dataKey="danceability" fill="#374c80" />
-          <Bar dataKey="energy" fill="#7a5195" />
-          <Bar dataKey="instrumentalness" fill="#bc5090" />
-          <Bar dataKey="liveness" fill="#ef5675" />
-          <Bar dataKey="speechiness" fill="#ff764a" />
-          <Bar dataKey="valence" fill="#ffa600" />
-        </BarChart>
+        <h2>Audio Features</h2>
+        <div className="trackAnalysis__chart">
+          <BarChart
+            width={800}
+            height={600}
+            data={features}
+            barSize={60}
+            barGap={25}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="acousticness" fill="#003f5c" />
+            <Bar dataKey="danceability" fill="#374c80" />
+            <Bar dataKey="energy" fill="#7a5195" />
+            <Bar dataKey="instrumentalness" fill="#bc5090" />
+            <Bar dataKey="liveness" fill="#ef5675" />
+            <Bar dataKey="speechiness" fill="#ff764a" />
+            <Bar dataKey="valence" fill="#ffa600" />
+          </BarChart>
+        </div>
       </div>
-    </div>
+    </FadeIn>
   );
 }
 
 export default memo(TrackAnalysis);
-
-// acousticness: 0.247;
-// analysis_url: "https://api.spotify.com/v1/audio-analysis/7ytR5pFWmSjzHJIeQkgog4";
-// danceability: 0.746;
-// duration_ms: 181733;
-// energy: 0.69;
-// id: "7ytR5pFWmSjzHJIeQkgog4";
-// instrumentalness: 0;
-// key: 11;
-// liveness: 0.101;
-// loudness: -7.956;
-// mode: 1;
-// speechiness: 0.164;
-// tempo: 89.977;
-// time_signature: 4;
-// track_href: "https://api.spotify.com/v1/tracks/7ytR5pFWmSjzHJIeQkgog4";
-// type: "audio_features";
-// uri: "spotify:track:7ytR5pFWmSjzHJIeQkgog4";
-// valence: 0.497;
