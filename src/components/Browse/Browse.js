@@ -34,16 +34,16 @@ function Browse() {
   let result;
   try {
     result = data.data.categories.items.map((item) => (
-      <div className="browse__categories__container">
-        <div key={item.id} className="browse__media">
+      <div key={item.id} className="browse__categories__container">
+        <div className="browse__media">
           <img
-            alt={item.id}
+            alt={item.name}
             src={item.icons[0].url}
             className="browse__media__img"
           />
         </div>
-        <div className="content-overlay">
-          <h2>{item.name}</h2>
+        <div className="browse__title">
+          <h3>{item.name}</h3>
         </div>
       </div>
     ));
@@ -53,7 +53,7 @@ function Browse() {
     <div className="browse">
       <SearchForm />
       <div className="browse__container">
-        <h2 className="browse__title">Categories</h2>
+        <h2 className="browse__mainTitle">Categories</h2>
         <div className="browse__categories">{result}</div>
       </div>
     </div>
