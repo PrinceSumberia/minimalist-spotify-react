@@ -34,7 +34,6 @@ function Browse() {
 
   return (
     <div className="browse">
-      <SearchForm />
       <div className="btn-container" onClick={handleClick}>
         <button className="btn-view" value="category">
           Categories
@@ -50,9 +49,9 @@ function Browse() {
         </button>
       </div>
       <div className="browse__container">
-        <div className="browse__header">
+        {/* <div className="browse__header">
           <h3 className="browse__mainTitle">{currentView.toUpperCase()}</h3>
-        </div>
+        </div> */}
         {getCurrentView()}
       </div>
     </div>

@@ -1,0 +1,16 @@
+.featured {
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  &__item {
+    transition: all .4s;
+
+    &:hover {
+      transform: scale(1.07);
+    }
+  }
+}
