@@ -4,6 +4,7 @@ import Featured from "../Featured/Featured";
 import Podcast from "../Podcast/Podcast";
 import SearchForm from "../SearchForm/SearchForm";
 import "./BrowseStyles.scss";
+import classNames from "classnames";
 
 function Topchart() {
   return <h1>Topchart</h1>;
@@ -35,16 +36,36 @@ function Browse() {
   return (
     <div className="browse">
       <div className="btn-container" onClick={handleClick}>
-        <button className="btn-view" value="category">
+        <button
+          className={classNames("btn-view", {
+            "btn-view--active": currentView === "category",
+          })}
+          value="category"
+        >
           Categories
         </button>
-        <button className="btn-view" value="featured">
+        <button
+          className={classNames("btn-view", {
+            "btn-view--active": currentView === "featured",
+          })}
+          value="featured"
+        >
           Featured
         </button>
-        <button className="btn-view" value="topchart">
+        <button
+          className={classNames("btn-view", {
+            "btn-view--active": currentView === "topchart",
+          })}
+          value="topchart"
+        >
           Top Charts
         </button>
-        <button className="btn-view" value="podcast">
+        <button
+          className={classNames("btn-view", {
+            "btn-view--active": currentView === "podcast",
+          })}
+          value="podcast"
+        >
           Podcasts
         </button>
       </div>
