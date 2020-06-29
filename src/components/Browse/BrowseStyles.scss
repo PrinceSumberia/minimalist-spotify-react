@@ -16,48 +16,6 @@
     align-items: center;
     margin-bottom: 1rem;
   }
-
-  &__categories {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2.5rem;
-    text-align: center;
-    font-weight: 600;
-
-    &__container {
-      position: relative;
-      overflow: hidden;
-      transition: all .4s;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-
-    &__container:hover .content-overlay {
-      opacity: 1;
-    }
-
-
-  }
-
-  &__media {
-
-    &__img {
-      border-radius: 1rem;
-      width: 100%;
-      display: block;
-      object-fit: cover;
-    }
-  }
-
-  &__title {
-    position: absolute;
-    color: var(--color-white);
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 }
 
 .btn-container {

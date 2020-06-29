@@ -1,5 +1,5 @@
 import React, { memo, useContext, useEffect, useState } from "react";
-import Lootie from "react-lottie";
+import FadeIn from "react-fade-in";
 import {
   Bar,
   BarChart,
@@ -9,12 +9,11 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import * as animationData from "../../assets/loading2.json";
 import { ANALYSIS_URL, FEATURES_URL } from "../../constants/constants";
 import { CurrentSongContext, DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
+import Loader from "../Loader/Loader";
 import "./TrackAnalysisStyles.scss";
-import FadeIn from "react-fade-in";
 
 function TrackAnalysis({ match, location }) {
   const { accessToken, setIsPlaying } = useContext(DataContext);
@@ -60,15 +59,6 @@ function TrackAnalysis({ match, location }) {
     }
   }, [data, dataAnalysis]);
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData.default,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
-
   let beats, bars, tempo, sections, segments, tatums;
   try {
     beats = analysis.beats.length;
@@ -86,9 +76,7 @@ function TrackAnalysis({ match, location }) {
   };
 
   return loading ? (
-    <div className="loading">
-      <Lootie options={defaultOptions} height={300} width={300} />
-    </div>
+    <Loader />
   ) : (
     <FadeIn>
       <div className="trackAnalysis">

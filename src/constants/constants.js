@@ -17,3 +17,4 @@ export const TOP_PLAYLIST_URL = `${BASE_URL}browse/categories/toplists/playlists
 export const NEWALBUMS_URL = `${BASE_URL}browse/new-releases`;
 export const SERACH_URL = `${BASE_URL}search`;
 export const RECOMMENDATION_URL = `${BASE_URL}recommendations`;
+export const CATEGORIES_URL = `${BASE_URL}browse/categories`;

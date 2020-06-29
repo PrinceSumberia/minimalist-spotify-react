@@ -1,73 +1,16 @@
-import React, { useContext, useState } from "react";
-import { DataContext } from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
+import React, { useState } from "react";
+import Categories from "../Categories/Categories";
+import Featured from "../Featured/Featured";
+import Podcast from "../Podcast/Podcast";
 import SearchForm from "../SearchForm/SearchForm";
 import "./BrowseStyles.scss";
 
-function Categories() {
-  const { accessToken } = useContext(DataContext);
-  const headers = {
-    Authorization: "Bearer " + accessToken,
-  };
-
-  const [data] = useFetchData(
-    "",
-    "https://api.spotify.com/v1/browse/categories",
-    headers
-  );
-
-  let result;
-  try {
-    result = data.data.categories.items.map((item) => (
-      <div key={item.id} className="browse__categories__container">
-        <div className="browse__media">
-          <img
-            alt={item.name}
-            src={item.icons[0].url}
-            className="browse__media__img"
-          />
-        </div>
-        <div className="browse__title">
-          <h3>{item.name}</h3>
-        </div>
-      </div>
-    ));
-  } catch (err) {}
-  return <div className="browse__categories">{result}</div>;
-}
-
-function Featured() {
-  return <h1>Featured</h1>;
-}
-function Podcast() {
-  return <h1>Podcasts</h1>;
-}
 function Topchart() {
   return <h1>Topchart</h1>;
 }
 
 function Browse() {
-  // const { accessToken } = useContext(DataContext);
-  // const headers = {
-  //   Authorization: "Bearer " + accessToken,
-  // };
-
   const [currentView, setCurrentView] = useState("category");
-  // const [data] = useFetchData("", RECOMMENDATION_URL, headers);
-  // const [data] = useFetchData(
-  //   "",
-  //   "https://api.spotify.com/v1/recommendations/available-genre-seeds",
-  //   headers
-  // );
-  // console.log(data);
-  // // console.log(data);
-  // // console.log(data2);
-  // const [data2] = useFetchData(
-  //   "",
-  //   "https://api.spotify.com/v1/browse/categories/toplists/playlists",
-  //   headers
-  // );
-
   const handleClick = (e) => {
     if (e.target.tagName.toLowerCase() === "button") {
       setCurrentView(e.target.value);
