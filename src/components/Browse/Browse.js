@@ -39,6 +39,16 @@ function Categories() {
   return <div className="browse__categories">{result}</div>;
 }
 
+function Featured() {
+  return <h1>Featured</h1>;
+}
+function Podcast() {
+  return <h1>Podcasts</h1>;
+}
+function Topchart() {
+  return <h1>Topchart</h1>;
+}
+
 function Browse() {
   const { accessToken } = useContext(DataContext);
   const headers = {
@@ -67,7 +77,20 @@ function Browse() {
     }
   };
 
-  const getCurrentView = () => {};
+  const getCurrentView = () => {
+    switch (currentView) {
+      case "category":
+        return <Categories />;
+      case "featured":
+        return <Featured />;
+      case "topchart":
+        return <Topchart />;
+      case "podcast":
+        return <Podcast />;
+      default:
+        return <Categories />;
+    }
+  };
 
   return (
     <div className="browse">
@@ -90,7 +113,7 @@ function Browse() {
         <div className="browse__header">
           <h3 className="browse__mainTitle">{currentView.toUpperCase()}</h3>
         </div>
-        <Categories />
+        {getCurrentView()}
       </div>
     </div>
   );
