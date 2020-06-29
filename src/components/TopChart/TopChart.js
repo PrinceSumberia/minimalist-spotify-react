@@ -10,7 +10,7 @@ import Cards from "../Cards/Cards";
 import SearchForm from "../SearchForm/SearchForm";
 import "./TopChartStyles.scss";
 import { memo } from "react";
-import { FEATURED_PLAYLIST_URL } from "../../constants/constants";
+import { TOP_PLAYLIST_URL } from "../../constants/constants";
 
 function TopChart() {
   const { accessToken } = useContext(DataContext);
@@ -23,7 +23,7 @@ function TopChart() {
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
-  const [data] = useFetchData("", FEATURED_PLAYLIST_URL, headers);
+  const [data] = useFetchData("", TOP_PLAYLIST_URL, headers);
 
   useEffect(() => {
     if (data.success) {
