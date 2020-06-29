@@ -1,11 +1,8 @@
-import React from "react";
-import SearchForm from "../SearchForm/SearchForm";
-import useFetchData from "../../hooks/useFetchData";
-import { RECOMMENDATION_URL } from "../../constants/constants";
-import { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../../context/DataContext";
+import useFetchData from "../../hooks/useFetchData";
+import SearchForm from "../SearchForm/SearchForm";
 import "./BrowseStyles.scss";
-import { useState } from "react";
 
 function Categories() {
   const { accessToken } = useContext(DataContext);
@@ -50,10 +47,10 @@ function Topchart() {
 }
 
 function Browse() {
-  const { accessToken } = useContext(DataContext);
-  const headers = {
-    Authorization: "Bearer " + accessToken,
-  };
+  // const { accessToken } = useContext(DataContext);
+  // const headers = {
+  //   Authorization: "Bearer " + accessToken,
+  // };
 
   const [currentView, setCurrentView] = useState("category");
   // const [data] = useFetchData("", RECOMMENDATION_URL, headers);
