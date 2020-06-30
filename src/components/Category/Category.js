@@ -5,6 +5,7 @@ import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import "./CategoryStyles.scss";
+import { useHistory } from "react-router-dom";
 
 function Category({ location, match }) {
   const { accessToken } = useContext(DataContext);
@@ -16,6 +17,11 @@ function Category({ location, match }) {
   const url = `${CATEGORIES_URL}/${id}/playlists`;
 
   const [data] = useFetchData("", url, headers);
+  const history = useHistory();
+
+  const handleBack = () => {
+    history.push("/dashboard/browse");
+  };
 
   let lists;
   try {
@@ -35,7 +41,7 @@ function Category({ location, match }) {
   return (
     <div className="category">
       <div className="category__header">
-        <div className="category__back">
+        <div className="category__back" onClick={handleBack}>
           <ArrowLeft />
         </div>
         <h2 className="category__title">{location.state.name}</h2>
