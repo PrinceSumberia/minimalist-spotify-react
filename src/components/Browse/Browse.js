@@ -60,14 +60,6 @@ function Browse() {
         >
           Top Charts
         </button>
-        <button
-          className={classNames("btn-view", {
-            "btn-view--active": currentView === "podcast",
-          })}
-          value="podcast"
-        >
-          Podcasts
-        </button>
       </div>
       <div className="browse__container">
         {/* <div className="browse__header">

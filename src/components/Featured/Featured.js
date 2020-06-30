@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { useContext } from "react";
-import { DataContext } from "../../context/DataContext";
-import "./FeaturedStyles.scss";
-import useFetchData from "../../hooks/useFetchData";
+import React, { useContext, useEffect, useState } from "react";
 import { FEATURED_PLAYLIST_URL } from "../../constants/constants";
-import Loader from "../Loader/Loader";
-import { useEffect } from "react";
+import { DataContext } from "../../context/DataContext";
+import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
+import Loader from "../Loader/Loader";
+import "./FeaturedStyles.scss";
 
 function Featured() {
   const { accessToken } = useContext(DataContext);
@@ -27,9 +25,8 @@ function Featured() {
   }, [data]);
 
   const lists = list.map((list) => (
-    <div className="featured__item">
+    <div className="featured__item" key={list.id}>
       <Cards
-        key={list.id}
         id={list.id}
         title={list.name}
         name={list.name}
