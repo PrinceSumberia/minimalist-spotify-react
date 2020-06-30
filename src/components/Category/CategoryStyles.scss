@@ -1,0 +1,16 @@
+.category {
+  margin-top: 3rem;
+
+  &__header {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 2rem;
+    gap: 2rem;
+  }
+}

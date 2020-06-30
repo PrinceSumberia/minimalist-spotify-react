@@ -1,23 +1,23 @@
-import React, { memo, useContext, useEffect } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
+import FadeIn from "react-fade-in";
+import Lootie from "react-lottie";
+import { Route, Switch } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as animationData from "../../assets/loading.json";
 import {
   CurrentPlayListProvider,
   CurrentSongProvider,
   DataContext,
 } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
+import Browse from "../Browse/Browse";
+import Category from "../Category/Category";
 import Dashboard from "../Dashboard/Dashboard";
 import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
-import "./SpotifyAppStyles.scss";
-import { Route, Switch } from "react-router-dom";
 import TrackAnalysis from "../TrackAnalysis/TrackAnalysis";
-import { useState } from "react";
-import * as animationData from "../../assets/loading.json";
-import Lootie from "react-lottie";
-import FadeIn from "react-fade-in";
-import Browse from "../Browse/Browse";
+import "./SpotifyAppStyles.scss";
 
 function SpotifyApp() {
   const {
@@ -104,6 +104,11 @@ function SpotifyApp() {
                   exact
                   path="/dashboard/browse"
                   render={() => <Browse />}
+                />
+                <Route
+                  exact
+                  path="/dashboard/browse/category/:id"
+                  render={(props) => <Category {...props} />}
                 />
               </Switch>
               <Footer />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Categories from "../Categories/Categories";
 import Featured from "../Featured/Featured";
-import Podcast from "../Podcast/Podcast";
+import Podcast from "../Category/Category";
 import SearchForm from "../SearchForm/SearchForm";
 import "./BrowseStyles.scss";
 import classNames from "classnames";

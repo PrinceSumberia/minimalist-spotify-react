@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { CATEGORIES_URL } from "../../constants/constants";
 import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Loader from "../Loader/Loader";
 import "./CategoriesStyles.scss";
-import { useHistory } from "react-router-dom";
-import { ArrowDownLeft, ArrowDownRight } from "react-feather";
-import axios from "axios";
 
 function Categories() {
   let history = useHistory();
@@ -17,8 +15,6 @@ function Categories() {
   };
 
   const [categories, setCategories] = useState([]);
-  const [nextURL, setNextURL] = useState("");
-  const [prevURL, setPrevURL] = useState("");
 
   const [data] = useFetchData("", url, headers);
 
@@ -32,7 +28,13 @@ function Categories() {
   }, [data]);
 
   const handleClick = (e) => {
-    console.log(e.target.id);
+    const id = e.currentTarget.id;
+    const arr = categories.filter((item) => item.id === id);
+    const name = arr[0].name;
+    history.push({
+      pathname: `/dashboard/browse/category/${id}`,
+      state: { name },
+    });
   };
 
   let result = categories.map((item) => (
