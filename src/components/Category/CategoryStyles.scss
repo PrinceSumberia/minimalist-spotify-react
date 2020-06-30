@@ -1,16 +1,32 @@
 .category {
   margin-top: 3rem;
+  padding: 2rem;
 
   &__header {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  &__back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary-light-2);
+
+    &:hover {
+      color: var(--color-green);
+    }
+  }
+
+  &__title {
+    margin-left: 2rem;
     font-size: 3rem;
-    margin-bottom: 2rem;
   }
 
   &__content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 2rem;
     gap: 2rem;
   }
 }

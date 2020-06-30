@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
+import { ChevronLeft, ArrowLeft } from "react-feather";
+import { CATEGORIES_URL } from "../../constants/constants";
 import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import "./CategoryStyles.scss";
-import { CATEGORIES_URL } from "../../constants/constants";
 
 function Category({ location, match }) {
   const { accessToken } = useContext(DataContext);
@@ -33,7 +34,12 @@ function Category({ location, match }) {
   } catch (err) {}
   return (
     <div className="category">
-      <h2 className="category__header">{location.state.name}</h2>
+      <div className="category__header">
+        <div className="category__back">
+          <ArrowLeft />
+        </div>
+        <h2 className="category__title">{location.state.name}</h2>
+      </div>
       <div className="category__content">{lists}</div>;
     </div>
   );
