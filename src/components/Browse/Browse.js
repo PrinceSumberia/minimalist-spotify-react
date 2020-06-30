@@ -1,13 +1,8 @@
 import classNames from "classnames";
 import React, { useState } from "react";
 import Categories from "../Categories/Categories";
-import Podcast from "../Category/Category";
 import Featured from "../Featured/Featured";
 import "./BrowseStyles.scss";
-
-function Topchart() {
-  return <h1>Topchart</h1>;
-}
 
 function Browse() {
   const [currentView, setCurrentView] = useState("category");
