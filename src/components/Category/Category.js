@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
-import { ChevronLeft, ArrowLeft } from "react-feather";
+import { ArrowLeft } from "react-feather";
+import { useHistory } from "react-router-dom";
 import { CATEGORIES_URL } from "../../constants/constants";
 import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import "./CategoryStyles.scss";
-import { useHistory } from "react-router-dom";
 
 function Category({ location, match }) {
   const { accessToken } = useContext(DataContext);
+  const history = useHistory();
+
   const id = match.params.id;
+
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
@@ -17,13 +20,13 @@ function Category({ location, match }) {
   const url = `${CATEGORIES_URL}/${id}/playlists`;
 
   const [data] = useFetchData("", url, headers);
-  const history = useHistory();
 
   const handleBack = () => {
     history.push("/dashboard/browse");
   };
 
   let lists;
+
   try {
     lists = data.data.playlists.items.map((list) => (
       <div className="category__list" key={list.id}>
@@ -38,6 +41,7 @@ function Category({ location, match }) {
       </div>
     ));
   } catch (err) {}
+
   return (
     <div className="category">
       <div className="category__header">

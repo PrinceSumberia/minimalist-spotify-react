@@ -1,11 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import "./CardsStyles.scss";
-import { memo } from "react";
 
 function Cards({ id, img, name, title, subtitle, handleClick }) {
   const handleCardClick = () => {
     handleClick(id, name);
   };
+
   return (
     <div className="card" onClick={handleCardClick}>
       <div className="card__imgContainer">

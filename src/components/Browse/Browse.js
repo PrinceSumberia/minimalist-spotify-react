@@ -1,10 +1,9 @@
+import classNames from "classnames";
 import React, { useState } from "react";
 import Categories from "../Categories/Categories";
-import Featured from "../Featured/Featured";
 import Podcast from "../Category/Category";
-import SearchForm from "../SearchForm/SearchForm";
+import Featured from "../Featured/Featured";
 import "./BrowseStyles.scss";
-import classNames from "classnames";
 
 function Topchart() {
   return <h1>Topchart</h1>;
@@ -24,10 +23,6 @@ function Browse() {
         return <Categories />;
       case "featured":
         return <Featured />;
-      case "topchart":
-        return <Topchart />;
-      case "podcast":
-        return <Podcast />;
       default:
         return <Categories />;
     }
@@ -52,21 +47,8 @@ function Browse() {
         >
           Featured
         </button>
-        <button
-          className={classNames("btn-view", {
-            "btn-view--active": currentView === "topchart",
-          })}
-          value="topchart"
-        >
-          Top Charts
-        </button>
       </div>
-      <div className="browse__container">
-        {/* <div className="browse__header">
-          <h3 className="browse__mainTitle">{currentView.toUpperCase()}</h3>
-        </div> */}
-        {getCurrentView()}
-      </div>
+      <div className="browse__container">{getCurrentView()}</div>
     </div>
   );
 }
