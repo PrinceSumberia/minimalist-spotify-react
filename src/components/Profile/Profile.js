@@ -26,7 +26,7 @@ function Profile() {
   return (
     <div className="profile">
       <div className="media">
-        <img src={src} alt="" className="media__img" />
+        <img src={src} alt="user" className="media__img" />
       </div>
       <div className="user">
         <h4 className="user__name">

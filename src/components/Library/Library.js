@@ -4,6 +4,7 @@ import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import Song from "../Song/Song";
+import "./LibraryStyles.scss";
 
 function Library() {
   const { accessToken } = useContext(DataContext);
