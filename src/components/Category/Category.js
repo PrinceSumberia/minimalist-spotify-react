@@ -2,13 +2,16 @@ import React, { useContext } from "react";
 import { ArrowLeft } from "react-feather";
 import { useHistory } from "react-router-dom";
 import { CATEGORIES_URL } from "../../constants/constants";
-import { DataContext } from "../../context/DataContext";
+import { DataContext, CurrentPlayListContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import "./CategoryStyles.scss";
 
 function Category({ location, match }) {
   const { accessToken } = useContext(DataContext);
+  const { setCurrentPlayListId, setCurrentPlayListType } = useContext(
+    CurrentPlayListContext
+  );
   const history = useHistory();
 
   const id = match.params.id;
@@ -25,6 +28,11 @@ function Category({ location, match }) {
     history.push("/dashboard/browse");
   };
 
+  const getID = (id, name) => {
+    setCurrentPlayListId(id);
+    setCurrentPlayListType({ name: name, type: "playlists" });
+  };
+
   let lists;
 
   try {
@@ -37,6 +45,7 @@ function Category({ location, match }) {
           name={list.name}
           img={list.images[0].url}
           subtitle={`Total Tracks: ${list.tracks.total}`}
+          handleClick={getID}
         />
       </div>
     ));
