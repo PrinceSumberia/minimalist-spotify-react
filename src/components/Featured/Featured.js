@@ -5,6 +5,7 @@ import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import Loader from "../Loader/Loader";
 import "./FeaturedStyles.scss";
+import { useHistory } from "react-router-dom";
 
 function Featured() {
   const { accessToken } = useContext(DataContext);
@@ -13,6 +14,7 @@ function Featured() {
     CurrentPlayListContext
   );
   const [list, setList] = useState([]);
+  const history = useHistory();
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
@@ -30,6 +32,7 @@ function Featured() {
   const getID = (id, name) => {
     setCurrentPlayListId(id);
     setCurrentPlayListType({ name: name, type: "playlists" });
+    history.push("/dashboard");
   };
 
   const lists = list.map((list) => (

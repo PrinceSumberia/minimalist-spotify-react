@@ -31,6 +31,7 @@ function Category({ location, match }) {
   const getID = (id, name) => {
     setCurrentPlayListId(id);
     setCurrentPlayListType({ name: name, type: "playlists" });
+    history.push("/dashboard");
   };
 
   let lists;

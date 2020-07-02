@@ -21,9 +21,9 @@ function Navbar() {
         </a>
       </div>
       <div className="navbar__item">
-        <a href="#home" className="navbar__link">
+        <NavLink to="/dashboard/library" className="navbar__link">
           Library
-        </a>
+        </NavLink>
       </div>
     </div>
   );

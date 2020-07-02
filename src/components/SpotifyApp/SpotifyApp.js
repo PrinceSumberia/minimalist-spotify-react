@@ -18,6 +18,7 @@ import Footer from "../Footer/Footer";
 import Sidebar from "../Sidebar/Sidebar";
 import TrackAnalysis from "../TrackAnalysis/TrackAnalysis";
 import "./SpotifyAppStyles.scss";
+import Library from "../Library/Library";
 
 function SpotifyApp() {
   const {
@@ -99,6 +100,11 @@ function SpotifyApp() {
                   exact
                   path="/dashboard/tracks/:id"
                   render={(props) => <TrackAnalysis {...props} />}
+                />
+                <Route
+                  exact
+                  path="/dashboard/library"
+                  render={() => <Library />}
                 />
                 <Route
                   exact
