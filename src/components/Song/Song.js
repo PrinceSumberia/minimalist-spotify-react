@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { memo, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { CurrentSongContext, DataContext } from "../../context/DataContext";
-import "./Song.scss";
+import "./SongStyles.scss";
 import classNames from "classnames";
 
 function Song({
