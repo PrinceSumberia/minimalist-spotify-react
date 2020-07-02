@@ -38,7 +38,7 @@ function Song({
   const handleAnalyse = (e) => {
     e.stopPropagation();
     history.push({
-      pathname: `/dashboard/tracks/${id}`,
+      pathname: `/tracks/${id}`,
       state: { uri, name, artist, duration, image, id, duration_ms, explicit },
     });
   };

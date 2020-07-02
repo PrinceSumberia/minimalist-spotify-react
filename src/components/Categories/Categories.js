@@ -32,7 +32,7 @@ function Categories() {
     const arr = categories.filter((item) => item.id === id);
     const name = arr[0].name;
     history.push({
-      pathname: `/dashboard/browse/category/${id}`,
+      pathname: `/browse/category/${id}`,
       state: { name },
     });
   };

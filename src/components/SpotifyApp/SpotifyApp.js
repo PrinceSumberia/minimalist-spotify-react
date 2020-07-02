@@ -1,7 +1,7 @@
 import React, { memo, useContext, useEffect, useState } from "react";
 import FadeIn from "react-fade-in";
 import Lootie from "react-lottie";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as animationData from "../../assets/loading.json";
@@ -95,27 +95,19 @@ function SpotifyApp() {
             </div>
             <div className="mainContent">
               <Switch>
-                <Route exact path="/dashboard" render={() => <Dashboard />} />
                 <Route
                   exact
-                  path="/dashboard/tracks/:id"
+                  path="/tracks/:id"
                   render={(props) => <TrackAnalysis {...props} />}
                 />
+                <Route exact path="/library" render={() => <Library />} />
+                <Route exact path="/browse" render={() => <Browse />} />
                 <Route
                   exact
-                  path="/dashboard/library"
-                  render={() => <Library />}
-                />
-                <Route
-                  exact
-                  path="/dashboard/browse"
-                  render={() => <Browse />}
-                />
-                <Route
-                  exact
-                  path="/dashboard/browse/category/:id"
+                  path="/browse/category/:id"
                   render={(props) => <Category {...props} />}
                 />
+                <Route exact path="/" render={() => <Dashboard />} />
               </Switch>
               <Footer />
             </div>

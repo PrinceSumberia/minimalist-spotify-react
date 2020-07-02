@@ -25,13 +25,13 @@ function Category({ location, match }) {
   const [data] = useFetchData("", url, headers);
 
   const handleBack = () => {
-    history.push("/dashboard/browse");
+    history.push("/browse");
   };
 
   const getID = (id, name) => {
     setCurrentPlayListId(id);
     setCurrentPlayListType({ name: name, type: "playlists" });
-    history.push("/dashboard");
+    history.push("/");
   };
 
   let lists;

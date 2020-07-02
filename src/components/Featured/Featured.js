@@ -32,7 +32,7 @@ function Featured() {
   const getID = (id, name) => {
     setCurrentPlayListId(id);
     setCurrentPlayListType({ name: name, type: "playlists" });
-    history.push("/dashboard");
+    history.push("/");
   };
 
   const lists = list.map((list) => (

@@ -14,9 +14,9 @@ function App() {
   return (
     <AuthProvider>
       <Switch>
-        <Route exact path="/" render={() => <Login />} />
+        <Route exact path="/login" render={() => <Login />} />
         <DataProvider>
-          <PrivateRoute exact path="/dashboard*" component={SpotifyApp} />
+          <PrivateRoute exact path="/*" component={SpotifyApp} />
         </DataProvider>
       </Switch>
     </AuthProvider>

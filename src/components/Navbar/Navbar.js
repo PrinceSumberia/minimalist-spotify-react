@@ -6,12 +6,12 @@ function Navbar() {
   return (
     <div className="navbar">
       <div className="navbar__item">
-        <NavLink to="/dashboard" className="navbar__link">
+        <NavLink to="/" className="navbar__link">
           Dashboard
         </NavLink>
       </div>
       <div className="navbar__item">
-        <NavLink to="/dashboard/browse" className="navbar__link">
+        <NavLink to="/browse" className="navbar__link">
           Browse
         </NavLink>
       </div>
@@ -21,7 +21,7 @@ function Navbar() {
         </a>
       </div>
       <div className="navbar__item">
-        <NavLink to="/dashboard/library" className="navbar__link">
+        <NavLink to="/library" className="navbar__link">
           Library
         </NavLink>
       </div>
