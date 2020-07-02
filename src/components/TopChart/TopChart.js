@@ -13,7 +13,12 @@ import { memo } from "react";
 import { TOP_PLAYLIST_URL } from "../../constants/constants";
 
 function TopChart() {
-  const { accessToken } = useContext(DataContext);
+  const {
+    accessToken,
+    setIsAuthenticated,
+    setAccessToken,
+    sdkPlayer,
+  } = useContext(DataContext);
   const { topPlayList, setTopPlayList } = useContext(TopPlayListContext);
   const scroller = useRef(null);
   const { setCurrentPlayListId, setCurrentPlayListType } = useContext(
@@ -24,6 +29,13 @@ function TopChart() {
     Authorization: "Bearer " + accessToken,
   };
   const [data] = useFetchData("", TOP_PLAYLIST_URL, headers);
+
+  if (data.status === 401) {
+    window.localStorage.removeItem("accessToken");
+    sdkPlayer.disconnect();
+    setIsAuthenticated(false);
+    setAccessToken(null);
+  }
 
   useEffect(() => {
     if (data.success) {

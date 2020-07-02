@@ -16,7 +16,13 @@ import Loader from "../Loader/Loader";
 import "./TrackAnalysisStyles.scss";
 
 function TrackAnalysis({ match, location }) {
-  const { accessToken, setIsPlaying } = useContext(DataContext);
+  const {
+    accessToken,
+    setIsPlaying,
+    sdkPlayer,
+    setIsAuthenticated,
+    setAccessToken,
+  } = useContext(DataContext);
   const { setCurrentSong } = useContext(CurrentSongContext);
   const [analysis, setAnalysis] = useState({});
   const [features, setFeatures] = useState([]);
@@ -43,6 +49,13 @@ function TrackAnalysis({ match, location }) {
 
   const [data] = useFetchData("", audioFeatureURL, headers);
   const [dataAnalysis] = useFetchData("", audioAnalysisURL, headers);
+
+  if (data.status === 401) {
+    window.localStorage.removeItem("accessToken");
+    sdkPlayer.disconnect();
+    setIsAuthenticated(false);
+    setAccessToken(null);
+  }
 
   useEffect(() => {
     if (data.success && dataAnalysis.success) {

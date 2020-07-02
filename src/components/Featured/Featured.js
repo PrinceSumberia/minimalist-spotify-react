@@ -8,7 +8,12 @@ import "./FeaturedStyles.scss";
 import { useHistory } from "react-router-dom";
 
 function Featured() {
-  const { accessToken } = useContext(DataContext);
+  const {
+    accessToken,
+    sdkPlayer,
+    setIsAuthenticated,
+    setAccessToken,
+  } = useContext(DataContext);
   const [loading, setLoading] = useState(true);
   const { setCurrentPlayListId, setCurrentPlayListType } = useContext(
     CurrentPlayListContext
@@ -20,6 +25,13 @@ function Featured() {
   };
 
   const [data] = useFetchData("", FEATURED_PLAYLIST_URL, headers);
+
+  if (data.status === 401) {
+    window.localStorage.removeItem("accessToken");
+    sdkPlayer.disconnect();
+    setIsAuthenticated(false);
+    setAccessToken(null);
+  }
 
   useEffect(() => {
     if (data.success) {

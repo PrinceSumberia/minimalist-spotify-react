@@ -19,6 +19,9 @@ function Playlist() {
     currentPlayListType,
   } = useContext(CurrentPlayListContext);
   const { currentSong, setCurrentSong } = useContext(CurrentSongContext);
+  const { sdkPlayer, setIsAuthenticated, setAccessToken } = useContext(
+    DataContext
+  );
   let url;
   if (currentPlayListType.type === "albums") {
     url = `https://api.spotify.com/v1/${currentPlayListType.type}/${currentPlayListId}`;
@@ -36,6 +39,13 @@ function Playlist() {
     "https://api.spotify.com/v1/me/tracks",
     headers
   );
+
+  if (likedSongs.status === 401) {
+    window.localStorage.removeItem("accessToken");
+    sdkPlayer.disconnect();
+    setIsAuthenticated(false);
+    setAccessToken(null);
+  }
 
   useEffect(() => {
     try {

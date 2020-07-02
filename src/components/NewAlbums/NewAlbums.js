@@ -10,7 +10,12 @@ import "./NewAlbumsStyles.scss";
 import { NEWALBUMS_URL } from "../../constants/constants";
 
 function NewAlbums() {
-  const { accessToken } = useContext(DataContext);
+  const {
+    accessToken,
+    sdkPlayer,
+    setIsAuthenticated,
+    setAccessToken,
+  } = useContext(DataContext);
   const { newAlbum, setNewAlbum } = useContext(NewAlbumContext);
   const { setCurrentPlayListId, setCurrentPlayListType } = useContext(
     CurrentPlayListContext
@@ -21,6 +26,13 @@ function NewAlbums() {
   };
 
   const [data] = useFetchData("", NEWALBUMS_URL, headers);
+
+  if (data.status === 401) {
+    window.localStorage.removeItem("accessToken");
+    sdkPlayer.disconnect();
+    setIsAuthenticated(false);
+    setAccessToken(null);
+  }
 
   useEffect(() => {
     let albumData = [];

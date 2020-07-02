@@ -9,7 +9,12 @@ import "./CategoriesStyles.scss";
 function Categories() {
   let history = useHistory();
   let url = CATEGORIES_URL;
-  const { accessToken } = useContext(DataContext);
+  const {
+    accessToken,
+    sdkPlayer,
+    setIsAuthenticated,
+    setAccessToken,
+  } = useContext(DataContext);
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
@@ -17,6 +22,13 @@ function Categories() {
   const [categories, setCategories] = useState([]);
 
   const [data] = useFetchData("", url, headers);
+
+  if (data.status === 401) {
+    window.localStorage.removeItem("accessToken");
+    sdkPlayer.disconnect();
+    setIsAuthenticated(false);
+    setAccessToken(null);
+  }
 
   const [loading, setLoading] = useState(true);
 

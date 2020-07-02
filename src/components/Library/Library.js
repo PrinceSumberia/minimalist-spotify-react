@@ -12,15 +12,22 @@ function Library() {
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
-  const [{ data }] = useFetchData(
+  const [data, sdkPlayer, setIsAuthenticated, setAccessToken] = useFetchData(
     "",
     "https://api.spotify.com/v1/me/tracks",
     headers
   );
 
+  if (data.status === 401) {
+    window.localStorage.removeItem("accessToken");
+    sdkPlayer.disconnect();
+    setIsAuthenticated(false);
+    setAccessToken(null);
+  }
+
   useEffect(() => {
     try {
-      let dataList = data.items.map((item) => {
+      let dataList = data.data.items.map((item) => {
         const { id, name, artists, duration_ms, explicit, uri } = item.track;
         const images = item.track.album.images;
         const index = name.search(/\(/);
