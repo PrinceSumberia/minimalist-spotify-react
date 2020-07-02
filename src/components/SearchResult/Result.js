@@ -18,7 +18,7 @@ function Result({ query }) {
   const [data] = useFetchData("", url, headers);
 
   const handleLike = () => {
-    console.log("Like");
+    // console.log("Like");
   };
 
   useEffect(() => {
@@ -50,13 +50,6 @@ function Result({ query }) {
   }, [data]);
 
   let songList = result.map((song) => (
-    // <Cards
-    //   key={song.id}
-    //   id={song.id}
-    //   title={song.name}
-    //   name={song.name}
-    //   img={song.image}
-    // />
     <Song key={song.id} {...song} handleLike={handleLike} view="minimal" />
   ));
 
