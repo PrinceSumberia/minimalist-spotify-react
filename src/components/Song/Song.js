@@ -19,6 +19,7 @@ function Song({
   explicit,
   uri,
   thumbnail,
+  view,
 }) {
   const { setCurrentSong } = useContext(CurrentSongContext);
   const { setIsPlaying } = useContext(DataContext);
@@ -49,20 +50,24 @@ function Song({
         <img src={thumbnail} alt="" className="song__imgCont__img" />
       </div>
       <div className="song__name">{name}</div>
-      <div className="song__artist">{artist}</div>
-      <div className="song__meta">
-        <div className="meta__duration">{duration}</div>
-        <div className="meta__analyse">
-          <FontAwesomeIcon icon={faFlask} onClick={handleAnalyse} />
-        </div>
-        <div
-          className={classNames("meta__like", {
-            "meta__like--filled": isLiked,
-          })}
-        >
-          <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
-        </div>
-      </div>
+      {view !== "minimal" && (
+        <>
+          <div className="song__artist">{artist}</div>
+          <div className="song__meta">
+            <div className="meta__duration">{duration}</div>
+            <div className="meta__analyse">
+              <FontAwesomeIcon icon={faFlask} onClick={handleAnalyse} />
+            </div>
+            <div
+              className={classNames("meta__like", {
+                "meta__like--filled": isLiked,
+              })}
+            >
+              <FontAwesomeIcon icon={faHeart} onClick={handleClick} />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

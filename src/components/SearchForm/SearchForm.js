@@ -2,20 +2,18 @@ import React, { memo } from "react";
 import { Search } from "react-feather";
 import useInputState from "../../hooks/useInputState";
 import "./SearchFormStyles.scss";
-import { useEffect } from "react";
 
-function SearchForm() {
+function SearchForm({ handleSubmit }) {
   const [searchInput, handleSearchInput, resetSearchInput] = useInputState("");
 
-  const handleSubmit = (e) => {
+  const handleFormSubmit = (e) => {
+    handleSubmit(searchInput);
     e.preventDefault();
     resetSearchInput();
   };
 
-  useEffect(() => {});
-
   return (
-    <form className="search" onSubmit={handleSubmit}>
+    <form className="search" onSubmit={handleFormSubmit}>
       <input
         value={searchInput}
         className="search__input"

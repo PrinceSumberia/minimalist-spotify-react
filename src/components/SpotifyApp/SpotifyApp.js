@@ -19,6 +19,7 @@ import Library from "../Library/Library";
 import Sidebar from "../Sidebar/Sidebar";
 import TrackAnalysis from "../TrackAnalysis/TrackAnalysis";
 import "./SpotifyAppStyles.scss";
+import SearchResult from "../SearchResult/SearchResult";
 
 function SpotifyApp() {
   const {
@@ -102,6 +103,11 @@ function SpotifyApp() {
                 />
                 <Route exact path="/library" render={() => <Library />} />
                 <Route exact path="/browse" render={() => <Browse />} />
+                <Route
+                  exact
+                  path="/search"
+                  render={(props) => <SearchResult {...props} />}
+                />
                 <Route
                   exact
                   path="/browse/category/:id"

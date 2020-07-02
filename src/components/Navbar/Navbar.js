@@ -16,9 +16,9 @@ function Navbar() {
         </NavLink>
       </div>
       <div className="navbar__item">
-        <a href="#home" className="navbar__link">
+        <NavLink to="/search" className="navbar__link">
           Search
-        </a>
+        </NavLink>
       </div>
       <div className="navbar__item">
         <NavLink to="/library" className="navbar__link">

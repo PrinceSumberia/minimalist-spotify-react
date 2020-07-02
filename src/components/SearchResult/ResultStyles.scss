@@ -1,0 +1,21 @@
+.result {
+
+  &__songlist {
+
+    &__container {
+      padding: 2rem;
+    }
+
+    &__songs {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      height: 50vh;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__header {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,10 @@
+.searchresult {
+  min-height: 80vh;
+
+  &__form {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
