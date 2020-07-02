@@ -1,7 +1,7 @@
 import React, { memo, useContext, useEffect, useState } from "react";
 import FadeIn from "react-fade-in";
 import Lootie from "react-lottie";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as animationData from "../../assets/loading.json";
@@ -15,10 +15,10 @@ import Browse from "../Browse/Browse";
 import Category from "../Category/Category";
 import Dashboard from "../Dashboard/Dashboard";
 import Footer from "../Footer/Footer";
+import Library from "../Library/Library";
 import Sidebar from "../Sidebar/Sidebar";
 import TrackAnalysis from "../TrackAnalysis/TrackAnalysis";
 import "./SpotifyAppStyles.scss";
-import Library from "../Library/Library";
 
 function SpotifyApp() {
   const {

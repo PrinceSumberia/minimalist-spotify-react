@@ -1,4 +1,5 @@
-import React, { memo, useContext, useEffect } from "react";
+import axios from "axios";
+import React, { memo, useContext, useEffect, useState } from "react";
 import {
   CurrentPlayListContext,
   CurrentSongContext,
@@ -27,7 +28,22 @@ function Playlist() {
   const headers = {
     Authorization: "Bearer " + accessToken,
   };
+  const [favList, setFavList] = useState([]);
   const [{ data }] = useFetchData("", url, headers);
+
+  const [likedSongs] = useFetchData(
+    "",
+    "https://api.spotify.com/v1/me/tracks",
+    headers
+  );
+
+  useEffect(() => {
+    try {
+      let likedArr = likedSongs.data.items.map((song) => song.track.id);
+      setFavList(likedArr);
+    } catch (err) {}
+  }, [likedSongs]);
+
   let songList;
 
   useEffect(() => {
@@ -52,7 +68,7 @@ function Playlist() {
               duration: millisToMinutesAndSeconds(duration_ms),
               duration_ms,
               explicit,
-              isLiked: false,
+              isLiked: favList.includes(id),
               uri,
             };
           }
@@ -89,7 +105,7 @@ function Playlist() {
               duration: millisToMinutesAndSeconds(duration_ms),
               duration_ms,
               explicit,
-              isLiked: false,
+              isLiked: favList.includes(id),
               uri,
             };
           }
@@ -106,17 +122,61 @@ function Playlist() {
     currentPlayListId,
     currentSong.uri,
     setCurrentSong,
+    favList,
   ]);
 
   const handleLike = (id) => {
     let updatedSongList = currentPlayList.map((song) => {
       if (song.id === id) {
+        if (song.isLiked) {
+          removeFav(id);
+        } else {
+          addFav(id);
+        }
         const updatedSong = { ...song, isLiked: !song.isLiked };
         return updatedSong;
       }
       return song;
     });
     setCurrentPlayList(updatedSongList);
+  };
+
+  const addFav = async (id) => {
+    const response = await axios.put(
+      "https://api.spotify.com/v1/me/tracks",
+      {
+        ids: [id],
+      },
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.status === 200) {
+      console.log("Song Added to Favorites");
+    }
+  };
+
+  const removeFav = async (id) => {
+    const response = await axios.delete(
+      "https://api.spotify.com/v1/me/tracks",
+      {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        data: {
+          ids: [id],
+        },
+      }
+    );
+    if (response.status === 200) {
+      console.log("Song Removed From Favorites");
+    }
   };
 
   if (currentPlayList) {
