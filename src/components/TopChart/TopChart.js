@@ -11,6 +11,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import "./TopChartStyles.scss";
 import { memo } from "react";
 import { TOP_PLAYLIST_URL } from "../../constants/constants";
+import { useHistory } from "react-router-dom";
 
 function TopChart() {
   const {
@@ -40,7 +41,6 @@ function TopChart() {
   useEffect(() => {
     if (data.success) {
       const { items } = data.data.playlists;
-      console.log("items", items);
       setTopPlayList(items);
     }
   }, [data, setTopPlayList]);
@@ -58,9 +58,20 @@ function TopChart() {
     }
   };
 
+  const history = useHistory();
+
   const getID = (id, name) => {
     setCurrentPlayListId(id);
     setCurrentPlayListType({ name: name, type: "playlists" });
+  };
+
+  const handleSubmit = (query) => {
+    history.push({
+      pathname: "/search",
+      state: {
+        query,
+      },
+    });
   };
 
   const lists = topPlayList.map((list) => (
@@ -82,7 +93,7 @@ function TopChart() {
           <ChevronLeft className="icons" id="scrollLeft" />
           <ChevronRight className="icons" id="scrollRight" />
         </div>
-        <SearchForm />
+        <SearchForm handleSubmit={handleSubmit} />
         <h3 className="topchart-heading">Billboard Topchart</h3>
       </div>
       <div ref={scroller} className="charts-container">

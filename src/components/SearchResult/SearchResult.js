@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import Result from "./Result";
 import "./SearchResultStyles.scss";
 
-function SearchResult() {
+function SearchResult(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    try {
+      if (props.location.state.query) {
+        setQuery(props.location.state.query);
+        setIsLoading(false);
+      }
+    } catch (err) {}
+  }, [props.location]);
 
   const handleQuery = (query) => {
     setQuery(query);

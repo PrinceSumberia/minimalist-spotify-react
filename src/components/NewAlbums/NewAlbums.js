@@ -36,7 +36,6 @@ function NewAlbums() {
 
   useEffect(() => {
     let albumData = [];
-    console.log(data.data);
     if (data.status === 200) {
       const filterData = data.data.albums.items.filter(
         (track) => track.album_type === "album"
