@@ -7,7 +7,7 @@ function SearchForm({ handleSubmit }) {
   const [searchInput, handleSearchInput, resetSearchInput] = useInputState("");
 
   const handleFormSubmit = (e) => {
-    handleSubmit(searchInput);
+    handleSubmit(searchInput.trim().replace(/ /g, "+"));
     e.preventDefault();
     resetSearchInput();
   };
