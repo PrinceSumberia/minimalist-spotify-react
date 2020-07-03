@@ -1,8 +1,9 @@
 .searchresult {
-  min-height: 80vh;
+  min-height: 75vh;
+  margin-top: 3rem;
 
   &__form {
-    margin-top: 1rem;
+    margin-top: .5rem;
     display: flex;
     align-items: center;
     justify-content: center;

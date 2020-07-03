@@ -50,9 +50,9 @@ function Song({
         <img src={thumbnail} alt="" className="song__imgCont__img" />
       </div>
       <div className="song__name">{name}</div>
+      <div className="song__artist">{artist}</div>
       {view !== "minimal" && (
         <>
-          <div className="song__artist">{artist}</div>
           <div className="song__meta">
             <div className="meta__duration">{duration}</div>
             <div className="meta__analyse">

@@ -10,25 +10,25 @@
     border: none;
     border-radius: var(--border-radius);
     padding: 1.2rem 2rem;
-    margin: 2rem 0;
+    // margin: 2rem 0;
     background-color: var(--color-primary-light-1);
     font-family: inherit;
     font-size: 1.4rem;
     transition: all 0.2s;
     margin-right: -3.25rem;
-    
+
     &:focus {
       width: 100%;
       outline: none;
       border: none;
     }
 
-     &::-webkit-input-placeholder {
+    &::-webkit-input-placeholder {
       font-weight: 100;
       color: var(--color-primary-light-2);
     }
   }
-  
+
   &__button {
     border: none;
     outline: none;

@@ -40,6 +40,7 @@ function TopChart() {
   useEffect(() => {
     if (data.success) {
       const { items } = data.data.playlists;
+      console.log("items", items);
       setTopPlayList(items);
     }
   }, [data, setTopPlayList]);
