@@ -1,0 +1,51 @@
+// RESPONSIVE BREAKPOINTS
+// $bp-largest: 75em; //1200px 1200/16=75em
+// $bp-large: 68.75em; //1100px 1100/16=68.75em
+// $bp-medium: 56.25em; //900px 900/16=56.25em
+// $bp-small: 37.5em; //600px 600/16=37.5em
+// $bp-smallest: 31.25em; //500px 500/16=31.25em
+
+@mixin bp($point) {
+  $bp-large-largest: "(max-width: 89em)"; // 1200px
+  $bp-largest: "(max-width: 75em)"; // 1200px
+  $bp-large: "(max-width: 68.75em )"; // 1100px
+  $bp-medium: "(max-width: 56.25em)"; // 950px
+  $bp-small: "(max-width: 37.5em)"; // 600px
+  $bp-smallest: "(max-width: 31.25em)"; // 500px
+
+  @if $point==bp-large-largest {
+    @media #{$bp-large-largest} {
+      @content;
+    }
+  }
+
+  @if $point==bp-largest {
+    @media #{$bp-largest} {
+      @content;
+    }
+  }
+
+  @else if $point==bp-large {
+    @media #{$bp-large} {
+      @content;
+    }
+  }
+
+  @else if $point==bp-medium {
+    @media #{$bp-medium} {
+      @content;
+    }
+  }
+
+  @else if $point==bp-small {
+    @media #{$bp-small} {
+      @content;
+    }
+  }
+
+  @else if $point==bp-smallest {
+    @media #{$bp-smallest} {
+      @content;
+    }
+  }
+}

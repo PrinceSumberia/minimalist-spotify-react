@@ -1,3 +1,5 @@
+@import "../../mixins.scss";
+
 .login {
   height: 100vh;
   display: flex;
@@ -9,6 +11,16 @@
     font-size: 4.5rem;
     text-transform: capitalize;
     margin-bottom: 3rem;
+
+    @include bp(bp-large) {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    @include bp(bp-medium) {
+      font-size: 3rem;
+      // margin-bottom: 2rem;
+    }
   }
 
   &__btn {

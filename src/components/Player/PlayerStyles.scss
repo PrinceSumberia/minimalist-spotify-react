@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .player {
   margin-top: 1rem;
   display: flex;
@@ -7,13 +9,23 @@
   padding: 4rem;
   text-align: center;
 
+  @include bp(bp-largest) {
+    padding: 2rem;
+  }
+
 
   &__image__container {
+    align-self: center;
     width: 30rem;
     height: 22rem;
     border-radius: var(--border-radius);
     overflow: hidden;
     margin-bottom: 2rem;
+
+    @include bp(bp-largest) {
+      width: 25rem;
+      height: 16rem;
+    }
 
     &__img {
       display: block;
@@ -56,6 +68,11 @@
       justify-content: center;
       align-items: center;
       z-index: 5;
+
+      @include bp(bp-largest) {
+        width: 14rem;
+        height: 14rem;
+      }
 
       &::before {
         position: absolute;

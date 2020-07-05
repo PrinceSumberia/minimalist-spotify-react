@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .newalbum {
 
   text-align: center;
@@ -6,18 +8,26 @@
   align-items: center;
   flex-direction: column;
 
+  @include bp(bp-large) {}
+
   &__title {
     margin: 4rem 0 0 0;
     font-size: 2.2rem;
   }
 
   &__cards {
+
     &--space {
       margin: 4rem 0;
       transition: all .2s;
 
+
       &:hover {
         transform: scale(1.1);
+
+        @include bp(bp-large) {
+          transform: scale(1);
+        }
       }
     }
 

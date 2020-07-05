@@ -1,10 +1,26 @@
+@import '../../mixins';
+
 .card {
   flex: 0 0 auto;
   margin: 0 2rem;
 
+  @include bp(bp-medium) {
+    margin: 0 1.5rem;
+  }
+
   &__imgContainer {
     width: 22rem;
     height: 22rem;
+
+    @include bp(bp-large) {
+      width: 16rem;
+      height: 16rem;
+    }
+
+    @include bp(bp-medium) {
+      width: 16rem;
+      height: 16rem;
+    }
 
     &__img {
       display: block;

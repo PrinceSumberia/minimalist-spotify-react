@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .main {
 
   &__content {
@@ -7,6 +9,10 @@
 
   &__toptracks {
     flex: 0 0 70%;
+
+    @include bp(bp-medium) {
+      // flex: 0 0 50%;
+    }
   }
 
   &__comingsoon {
