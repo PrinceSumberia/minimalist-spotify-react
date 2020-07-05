@@ -22,6 +22,11 @@
       height: 16rem;
     }
 
+    @include bp(bp-medium-3) {
+      width: 13rem;
+      height: 13rem;
+    }
+
     &__img {
       display: block;
       width: 100%;

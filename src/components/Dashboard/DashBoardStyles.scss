@@ -5,6 +5,14 @@
   &__content {
     display: flex;
     padding: 1rem;
+
+    @include bp(bp-medium-2) {
+      flex-direction: column;
+    }
+
+    @include bp(bp-medium-2) {
+      padding: .2rem;
+    }
   }
 
   &__toptracks {
@@ -23,7 +31,12 @@
     flex: 1;
 
     @include bp(bp-large) {
-      // margin-left: 2rem;
+      margin-right: 1rem;
+    }
+
+    @include bp(bp-medium-2) {
+      margin-right: 0;
+      // order: 2;
     }
   }
 }

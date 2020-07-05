@@ -8,18 +8,42 @@
   align-items: center;
   flex-direction: column;
 
-  @include bp(bp-large) {}
-
   &__title {
     margin: 4rem 0 0 0;
     font-size: 2.2rem;
+
+    @include bp(bp-medium-2) {
+      margin: 2rem;
+      align-self: start;
+    }
   }
 
   &__cards {
 
+    @include bp(bp-medium-2) {
+      align-self: stretch;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow-x: scroll;
+      grid-auto-flow: column;
+      scrollbar-width: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      scroll-snap-type: x proximity;
+
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
     &--space {
       margin: 4rem 0;
       transition: all .2s;
+
+      @include bp(bp-medium-2) {
+        margin: 0;
+      }
 
 
       &:hover {

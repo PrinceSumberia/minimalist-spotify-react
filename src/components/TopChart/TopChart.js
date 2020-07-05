@@ -93,7 +93,7 @@ function TopChart() {
           <ChevronLeft className="icons" id="scrollLeft" />
           <ChevronRight className="icons" id="scrollRight" />
         </div>
-        <SearchForm handleSubmit={handleSubmit} />
+        <SearchForm handleSubmit={handleSubmit} className="topchart-search" />
         <h3 className="topchart-heading">Billboard Topchart</h3>
       </div>
       <div ref={scroller} className="charts-container">

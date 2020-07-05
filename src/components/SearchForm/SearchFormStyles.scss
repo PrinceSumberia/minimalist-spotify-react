@@ -1,9 +1,12 @@
+@import '../../mixins.scss';
+
 .search {
-  // margin: .5rem 0;
-  width: 40rem;
+  // width: 40rem;
+  width: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
+
 
   &__input {
     width: 90%;
@@ -21,6 +24,10 @@
       width: 100%;
       outline: none;
       border: none;
+
+      @include bp(bp-medium-2) {
+        width: 90%;
+      }
     }
 
     &::-webkit-input-placeholder {

@@ -10,8 +10,10 @@
   $bp-largest: "(max-width: 75em)"; // 1200px
   $bp-large: "(max-width: 68.75em )"; // 1100px
   $bp-medium: "(max-width: 56.25em)"; // 950px
+  $bp-medium-2: "(max-width: 51.25em)"; // 820px
+  $bp-medium-3: "(max-width: 40em)"; // 640px
   $bp-small: "(max-width: 37.5em)"; // 600px
-  $bp-smallest: "(max-width: 31.25em)"; // 500px
+  $bp-smallest: "(max-width: 35.625em)"; // 500px
 
   @if $point==bp-large-largest {
     @media #{$bp-large-largest} {
@@ -33,6 +35,18 @@
 
   @else if $point==bp-medium {
     @media #{$bp-medium} {
+      @content;
+    }
+  }
+
+  @else if $point==bp-medium-2 {
+    @media #{$bp-medium-2} {
+      @content;
+    }
+  }
+
+  @else if $point==bp-medium-3 {
+    @media #{$bp-medium-2} {
       @content;
     }
   }

@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .topchart-container {
   display: flex;
   flex-direction: column;
@@ -9,10 +11,29 @@
   align-items: center;
   font-size: 2rem;
   margin: 3rem 1rem;
+
+  @include bp(bp-medium-2) {
+    margin-bottom: 2rem;
+  }
+
+  @include bp(bp-smallest) {
+    font-size: 1.5rem;
+  }
 }
 
 .topchart-heading {
   margin-right: 2rem;
+
+  @include bp(bp-medium-2) {
+    margin-right: 1rem;
+  }
+}
+
+.topchart-search {
+
+  @include bp(bp-medium-2) {
+    display: none;
+  }
 }
 
 
@@ -23,6 +44,10 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   padding: .5rem;
+
+  scrollbar-width: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 
   &::-webkit-scrollbar {
     display: none;

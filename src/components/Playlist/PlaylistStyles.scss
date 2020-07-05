@@ -1,3 +1,5 @@
+@import '../../mixins.scss';
+
 .playlist {
   &__container {
     background-color: var(--color-white);
@@ -7,6 +9,10 @@
     margin: 2rem;
     margin-top: 4rem;
     text-transform: capitalize;
+
+    @include bp(bp-medium-2) {
+      margin-top: 2rem;
+    }
 
     &__title {
       font-size: 2rem;

@@ -12,6 +12,13 @@
       overflow-y: hidden;
       display: flex;
       overflow-x: scroll;
+      scrollbar-width: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 
