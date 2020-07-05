@@ -49,6 +49,12 @@ function SpotifyApp() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMobile = window.matchMedia("only screen and (max-width: 760px)")
+      .matches;
+
+    if (isMobile) {
+      setLoading(false);
+    }
     window.onSpotifyWebPlaybackSDKReady = () => {
       let player = new window.Spotify.Player({
         name: "SDK Player",

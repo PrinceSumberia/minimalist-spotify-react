@@ -30,8 +30,9 @@
 }
 
 .topchart-search {
+  width: 45%;
 
-  @include bp(bp-medium-2) {
+  @include bp(bp-smallest) {
     display: none;
   }
 }
