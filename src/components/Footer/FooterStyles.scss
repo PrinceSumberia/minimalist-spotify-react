@@ -1,3 +1,5 @@
+@import '../../mixins.scss';
+
 .footer {
   display: flex;
   justify-content: center;
@@ -40,6 +42,12 @@
   &__container {
     display: flex;
     align-items: center;
+
+    @include bp(bp-medium-2) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 
@@ -51,11 +59,19 @@
   color: var(--color-white);
   margin-right: 2rem;
   border-radius: .5rem;
+
+  @include bp(bp-medium-2) {
+    margin: 2rem 0;
+  }
 }
 
 .logo {
   display: block;
   border-radius: .5rem;
+
+  @include bp(bp-medium-2) {
+    margin-top: 1.5rem;
+  }
 }
 
 
