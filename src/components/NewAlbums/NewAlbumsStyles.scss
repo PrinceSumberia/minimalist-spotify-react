@@ -25,7 +25,7 @@
       &:hover {
         transform: scale(1.1);
 
-        @include bp(bp-large) {
+        @include bp(bp-largest) {
           transform: scale(1);
         }
       }

@@ -10,12 +10,20 @@
   &__toptracks {
     flex: 0 0 70%;
 
-    @include bp(bp-medium) {
-      // flex: 0 0 50%;
+    @include bp(bp-large) {
+      flex: 0 0 80%;
+    }
+
+    @include bp(bp-large) {
+      flex: 0 0 78%;
     }
   }
 
   &__comingsoon {
     flex: 1;
+
+    @include bp(bp-large) {
+      // margin-left: 2rem;
+    }
   }
 }
