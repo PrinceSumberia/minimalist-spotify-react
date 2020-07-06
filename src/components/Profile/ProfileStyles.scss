@@ -1,3 +1,5 @@
+@import '../../mixins.scss';
+
 .profile {
   display: flex;
   justify-content: space-between;
@@ -5,12 +7,21 @@
   background-color: var(--color-white);
   padding: 2rem;
   border-radius: 2rem;
+
+  @include bp(bp-large) {
+    margin-top: 1rem;
+    padding: 0 2rem;
+  }
 }
 
 .media {
   width: 5.5rem;
   height: 5.5rem;
   margin-right: 1.5rem;
+
+  @include bp(bp-small) {
+    display: none;
+  }
 
   &__img {
     border-radius: 1.5rem;
@@ -29,6 +40,16 @@
 
     & span {
       text-transform: uppercase;
+    }
+
+    @include bp(bp-large) {
+      margin-right: 1rem;
+    }
+  }
+
+  &__email {
+    @include bp(bp-large) {
+      display: none;
     }
   }
 }

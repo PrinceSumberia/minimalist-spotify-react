@@ -32,7 +32,7 @@ function Profile() {
         <h4 className="user__name">
           Hi, <span>{display_name}</span>
         </h4>
-        <p className="user_email">{email}</p>
+        <p className="user__email">{email}</p>
       </div>
       <div className="controls">
         <div className="controls__notification" onClick={logout}>

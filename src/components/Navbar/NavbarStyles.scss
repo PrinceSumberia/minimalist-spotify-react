@@ -1,11 +1,25 @@
+@import '../../mixins.scss';
+
 .navbar {
   margin-top: 3rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
+  @include bp(bp-large) {
+    margin-top: 1rem;
+  }
+
   &__item {
     transition: all .3s;
+
+    @include bp(bp-large) {
+      margin-right: 2.5rem;
+    }
+
+    @include bp(bp-small) {
+      margin-right: 1.5rem;
+    }
 
     &:hover {
       backface-visibility: hidden;

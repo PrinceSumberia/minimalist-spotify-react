@@ -10,6 +10,11 @@
     padding: 2rem;
   }
 
+  @include bp(bp-large) {
+    flex-direction: column;
+    background-color: var(--color-white);
+  }
+
   @include bp(bp-medium) {
     padding: 0rem;
   }
@@ -30,21 +35,22 @@
   }
 
   @include bp(bp-large) {
-    display: none;
+    margin-top: 2rem;
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0;
   }
-
-  // @include bp(bp-large) {
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
 
   &__player {
     position: -webkit-sticky;
     position: sticky;
     top: 1rem;
 
-
+    @include bp(bp-large) {
+      display: none;
+    }
   }
 }
 
