@@ -1,13 +1,20 @@
 @import '../../mixins.scss';
 
 .navbar {
+  align-self: center;
   margin-top: 3rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
 
   @include bp(bp-large) {
     margin-top: 1rem;
+  }
+
+  &__toggle {
+    display: none;
+
+    @include bp(bp-large) {
+      display: block;
+      text-align: right;
+    }
   }
 
   &__logout {
@@ -15,6 +22,25 @@
 
     @include bp(bp-large) {
       display: block;
+    }
+  }
+
+  &__items {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    transition: all .4s;
+
+    @include bp(bp-large) {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    &__expand {
+      opacity: 1;
+      max-height: max-content;
     }
   }
 
