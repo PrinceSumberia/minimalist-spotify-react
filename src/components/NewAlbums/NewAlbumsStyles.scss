@@ -8,12 +8,27 @@
   align-items: center;
   flex-direction: column;
 
+  &__container {
+    @include bp(bp-medium-2) {
+      align-self: stretch;
+      display: flex;
+    }
+  }
+
+  &__scrollers {
+    display: none;
+
+    @include bp(bp-medium-2) {
+      display: block;
+    }
+  }
+
   &__title {
     margin: 4rem 0 0 0;
     font-size: 2.2rem;
 
     @include bp(bp-medium-2) {
-      margin: 2rem;
+      margin: 2rem 0 2rem 2rem;
       align-self: start;
     }
   }

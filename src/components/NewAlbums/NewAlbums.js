@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, memo } from "react";
+import React, { useContext, useEffect, memo, useRef } from "react";
 import {
   CurrentPlayListContext,
   DataContext,
@@ -8,6 +8,7 @@ import useFetchData from "../../hooks/useFetchData";
 import Cards from "../Cards/Cards";
 import "./NewAlbumsStyles.scss";
 import { NEWALBUMS_URL } from "../../constants/constants";
+import { ChevronLeft, ChevronRight } from "react-feather";
 
 function NewAlbums() {
   const {
@@ -20,6 +21,7 @@ function NewAlbums() {
   const { setCurrentPlayListId, setCurrentPlayListType } = useContext(
     CurrentPlayListContext
   );
+  const newAlbum_scroller = useRef(null);
 
   const headers = {
     Authorization: "Bearer " + accessToken,
@@ -61,10 +63,32 @@ function NewAlbums() {
     setCurrentPlayListId(id);
   };
 
+  const handleScroll = (e) => {
+    e.preventDefault();
+    if (e.target.id === "scrollLeft") {
+      let pos = newAlbum_scroller.current.scrollLeft;
+      pos -= 1000;
+      newAlbum_scroller.current.scroll({ left: pos, behavior: "smooth" });
+    } else if (e.target.id === "scrollRight") {
+      let pos = newAlbum_scroller.current.scrollLeft;
+      pos += 1000;
+      newAlbum_scroller.current.scroll({ left: pos, behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="newalbum">
-      <h4 className="newalbum__title">Latest Albums</h4>
-      <div className="newalbum__cards">
+      <div className="newalbum__container">
+        <h4 className="newalbum__title">Latest Albums</h4>
+        <div className="scrollers" onClick={handleScroll}>
+          <ChevronLeft className="icons newalbum__scrollers" id="scrollLeft" />
+          <ChevronRight
+            className="icons newalbum__scrollers"
+            id="scrollRight"
+          />
+        </div>
+      </div>
+      <div className="newalbum__cards" ref={newAlbum_scroller}>
         {newAlbum.map(({ name, image, id }) => (
           <div key={id} className="newalbum__cards--space">
             <Cards name={name} id={id} img={image.url} handleClick={getID} />

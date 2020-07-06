@@ -2,11 +2,16 @@
 
   &__header {
     font-size: 3rem;
-    margin: 1rem;
+    margin: 1rem 0 1rem 1rem;
   }
 
   &__albums {
     padding: 1rem;
+
+    &__container {
+      display: flex;
+      align-items: center;
+    }
 
     &__list {
       overflow-y: hidden;
