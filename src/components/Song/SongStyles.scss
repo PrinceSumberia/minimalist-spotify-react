@@ -32,6 +32,11 @@
     margin-right: 2rem;
     width: 5rem;
 
+    @include bp(bp-small) {
+      margin-right: 1rem;
+      width: 4rem;
+    }
+
     &__img {
       display: block;
       width: 100%;
@@ -76,10 +81,18 @@
 
   &__duration {
     margin-right: 2rem;
+
+    @include bp(bp-small) {
+      display: none;
+    }
   }
 
   &__analyse {
     margin-right: 2rem;
+
+    @include bp(bp-small) {
+      margin-right: 1rem;
+    }
 
     &:hover {
       color: red;
