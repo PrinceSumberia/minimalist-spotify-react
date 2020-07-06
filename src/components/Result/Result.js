@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { DataContext, CurrentPlayListContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
@@ -8,6 +8,7 @@ import Cards from "../Cards/Cards";
 import Loader from "../Loader/Loader";
 import { useHistory } from "react-router-dom";
 import { SERACH_URL } from "../../constants/constants";
+import { ChevronRight, ChevronLeft } from "react-feather";
 
 function Result({ query }) {
   const { accessToken } = useContext(DataContext);
@@ -18,6 +19,7 @@ function Result({ query }) {
   const [albumList, setAblumList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   let history = useHistory();
+  const album_scroller = useRef(null);
 
   const headers = {
     Authorization: "Bearer " + accessToken,
@@ -81,6 +83,19 @@ function Result({ query }) {
     history.push("/");
   };
 
+  const handleScroll = (e) => {
+    e.preventDefault();
+    if (e.target.id === "scrollLeft") {
+      let pos = album_scroller.current.scrollLeft;
+      pos -= 1000;
+      album_scroller.current.scroll({ left: pos, behavior: "smooth" });
+    } else if (e.target.id === "scrollRight") {
+      let pos = album_scroller.current.scrollLeft;
+      pos += 1000;
+      album_scroller.current.scroll({ left: pos, behavior: "smooth" });
+    }
+  };
+
   let albums = albumList.map(({ name, id, image }) => (
     <Cards key={id} name={name} id={id} img={image.url} handleClick={getID} />
   ));
@@ -90,8 +105,16 @@ function Result({ query }) {
   ) : (
     <div className="result">
       <div className="result__albums">
-        <h2 className="result__header">Albums</h2>
-        <div className="result__albums__list">{albums}</div>
+        <div className="result__albums__container">
+          <h2 className="result__header">Albums</h2>
+          <div className="scrollers" onClick={handleScroll}>
+            <ChevronLeft className="icons" id="scrollLeft" />
+            <ChevronRight className="icons" id="scrollRight" />
+          </div>
+        </div>
+        <div className="result__albums__list" ref={album_scroller}>
+          {albums}
+        </div>
       </div>
       <div className="result__songlist">
         <h2 className="result__header">Tracks</h2>

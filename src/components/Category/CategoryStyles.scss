@@ -1,3 +1,5 @@
+@import '../../mixins.scss';
+
 .category {
   margin-top: 3rem;
   padding: 2rem;
@@ -28,5 +30,9 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+
+    @include bp(bp-small) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
