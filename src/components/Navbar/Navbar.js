@@ -25,6 +25,12 @@ function Navbar() {
           Library
         </NavLink>
       </div>
+
+      <div className="navbar__item navbar__logout">
+        <NavLink to="/library" className="navbar__link">
+          Logout
+        </NavLink>
+      </div>
     </div>
   );
 }

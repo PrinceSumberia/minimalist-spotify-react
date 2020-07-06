@@ -19,10 +19,6 @@
   height: 5.5rem;
   margin-right: 1.5rem;
 
-  @include bp(bp-small) {
-    display: none;
-  }
-
   &__img {
     border-radius: 1.5rem;
     display: block;
@@ -37,6 +33,10 @@
 
   &__name {
     font-weight: 700;
+
+    @include bp(bp-small) {
+      display: none;
+    }
 
     & span {
       text-transform: uppercase;
@@ -61,15 +61,13 @@
   align-items: center;
 
 
-  &__notification {
+  &__logout {
     margin-right: 1rem;
 
-    &:hover {
-      color: var(--color-green);
+    @include bp(bp-large) {
+      display: none;
     }
-  }
 
-  &__settings {
     &:hover {
       color: var(--color-green);
     }

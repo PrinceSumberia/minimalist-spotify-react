@@ -35,7 +35,7 @@ function Profile() {
         <p className="user__email">{email}</p>
       </div>
       <div className="controls">
-        <div className="controls__notification" onClick={logout}>
+        <div className="controls__logout" onClick={logout}>
           <LogOut />
         </div>
       </div>
