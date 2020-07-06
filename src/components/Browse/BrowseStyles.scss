@@ -1,9 +1,15 @@
+@import '../../mixins.scss';
+
 .browse {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 3rem;
+
+  @include bp(bp-small) {
+    padding: 2rem;
+  }
 
   &__mainTitle {
     font-size: 3rem;

@@ -1,9 +1,23 @@
+@import '../../mixins.scss';
+
 .categories {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 2.5rem;
   text-align: center;
   font-weight: 600;
+
+  @include bp(bp-large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include bp(bp-small) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include bp(bp-smallest) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   &__container {
     position: relative;
