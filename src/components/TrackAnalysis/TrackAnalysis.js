@@ -8,6 +8,7 @@ import {
   Tooltip,
   XAxis,
   YAxis,
+  ResponsiveContainer,
 } from "recharts";
 import { ANALYSIS_URL, FEATURES_URL } from "../../constants/constants";
 import { CurrentSongContext, DataContext } from "../../context/DataContext";
@@ -147,27 +148,29 @@ function TrackAnalysis({ match, location }) {
         </div>
         <h2>Audio Features</h2>
         <div className="trackAnalysis__chart">
-          <BarChart
-            width={800}
-            height={600}
-            data={features}
-            barSize={60}
-            barGap={25}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="acousticness" fill="#003f5c" />
-            <Bar dataKey="danceability" fill="#374c80" />
-            <Bar dataKey="energy" fill="#7a5195" />
-            <Bar dataKey="instrumentalness" fill="#bc5090" />
-            <Bar dataKey="liveness" fill="#ef5675" />
-            <Bar dataKey="speechiness" fill="#ff764a" />
-            <Bar dataKey="valence" fill="#ffa600" />
-          </BarChart>
+          <ResponsiveContainer>
+            <BarChart
+              width={800}
+              height={600}
+              data={features}
+              barSize={60}
+              barGap={25}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="acousticness" fill="#003f5c" />
+              <Bar dataKey="danceability" fill="#374c80" />
+              <Bar dataKey="energy" fill="#7a5195" />
+              <Bar dataKey="instrumentalness" fill="#bc5090" />
+              <Bar dataKey="liveness" fill="#ef5675" />
+              <Bar dataKey="speechiness" fill="#ff764a" />
+              <Bar dataKey="valence" fill="#ffa600" />
+            </BarChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </FadeIn>
