@@ -27,17 +27,24 @@
   @include bp(bp-largest) {
     flex: 0 0 20%;
     margin-right: 1rem;
-    // display: none;
   }
 
   @include bp(bp-large) {
     display: none;
   }
 
+  // @include bp(bp-large) {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+
   &__player {
     position: -webkit-sticky;
     position: sticky;
     top: 1rem;
+
+
   }
 }
 
