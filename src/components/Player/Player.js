@@ -17,6 +17,7 @@ const Player = () => {
   const { currentSong, setCurrentSong } = useContext(CurrentSongContext);
   const { name, artist, duration, image, duration_ms } = currentSong;
   const [currentPosition, setCurrentPosition] = useState("0.00");
+  const [isMobile, setIsMobile] = useState(false);
 
   let rangeRef = useRef(null);
 
@@ -37,6 +38,15 @@ const Player = () => {
       });
     });
   };
+
+  useEffect(() => {
+    let isMobile = window.matchMedia("only screen and (max-width: 760px)")
+      .matches;
+
+    if (isMobile) {
+      setIsMobile(false);
+    }
+  }, [setIsMobile]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -123,7 +133,52 @@ const Player = () => {
     }
   };
 
-  return (
+  const miniPLayer = () => {
+    return (
+      <div className="miniPlayer">
+        <div className="miniPlayer__meta">
+          <div className="miniPlayer__media">
+            <img className="miniPlayer__media__img" src={image} alt={name} />
+          </div>
+          <div className="miniPlayer__name">
+            <h3 className="miniPlayer__title">{name}</h3>
+            <p className="miniPlayer__subtitle">{artist}</p>
+          </div>
+        </div>
+        <div className="miniPlayer__controls">
+          <div className="miniPlayer__buttons">
+            <SkipBack className="miniPlayer__icon" onClick={handlePrev} />
+            <div
+              className={classNames("miniPlayer__control__play", {
+                player__animate: isPlaying,
+              })}
+              onClick={handlePlayPause}
+            >
+              {isPlaying ? (
+                <PauseCircle className="miniPlayer__icon miniPlayer__icon__play" />
+              ) : (
+                <PlayCircle className="miniPlayer__icon miniPlayer__icon__pause" />
+              )}
+            </div>
+            <SkipForward className="miniPlayer__icon" onClick={handleNext} />
+          </div>
+          <input
+            type="range"
+            ref={rangeRef}
+            className="miniPlayer__progress"
+            defaultValue={0}
+            min={0}
+            max={duration_ms}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+    );
+  };
+
+  return isMobile ? (
+    miniPLayer
+  ) : (
     <div className="player">
       <div className="player__image__container">
         <img className="player__image__container__img" src={image} alt={name} />
