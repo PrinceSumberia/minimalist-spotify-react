@@ -1,10 +1,20 @@
+@import '../../mixins.scss';
+
 .searchresult {
   min-height: 75vh;
   margin-top: 3rem;
+
+  @include bp(bp-large) {
+    margin-top: 1.5rem;
+  }
 
   &__form {
     margin: 0 auto;
     width: 50%;
     margin-top: 1rem;
+
+    @include bp(bp-large) {
+      width: 60%;
+    }
   }
 }

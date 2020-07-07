@@ -35,7 +35,7 @@
   }
 
   @include bp(bp-large) {
-    margin-top: 2rem;
+    margin-top: 1rem;
     flex: 0 0 100%;
     display: flex;
     justify-content: space-between;
@@ -44,7 +44,7 @@
   }
 
   &__player {
-    position: -webkit-sticky;
+    position: --webkit-sticky;
     position: sticky;
     top: 1rem;
 

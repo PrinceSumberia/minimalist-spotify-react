@@ -8,6 +8,10 @@
     display: flex;
     align-items: center;
     margin-bottom: 3rem;
+
+    @include bp(bp-large) {
+      margin-bottom: 2rem;
+    }
   }
 
   &__back {
@@ -24,6 +28,11 @@
   &__title {
     margin-left: 2rem;
     font-size: 3rem;
+
+    @include bp(bp-large) {
+      margin-left: 1.5rem;
+      font-size: 2rem;
+    }
   }
 
   &__content {

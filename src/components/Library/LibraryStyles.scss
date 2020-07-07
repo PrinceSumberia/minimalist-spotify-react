@@ -1,9 +1,20 @@
+@import '../../mixins.scss';
+
 .library {
   padding: 2rem;
   min-height: 80vh;
 
+  @include bp(bp-large) {
+    padding: 1rem;
+  }
+
   &__header {
     padding: 1.5rem 2rem;
     font-size: 2rem;
+
+    @include bp(bp-large) {
+      margin-top: 1rem;
+      padding: 1rem;
+    }
   }
 }
