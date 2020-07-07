@@ -143,3 +143,28 @@
     transform: rotate(360deg);
   }
 }
+
+.miniPlayer {
+  &__meta {}
+
+  &__meta {
+    &__img {}
+  }
+
+  &__name {
+    &__title {}
+
+    &__subtitle {}
+  }
+
+  &__controls {}
+
+  &__buttons {}
+
+  &__icon {
+
+    &__play {}
+
+    &__pause {}
+  }
+}

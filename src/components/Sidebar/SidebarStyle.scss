@@ -1,0 +1,11 @@
+ .sidebar {
+   &__player {
+     position: --webkit-sticky;
+     position: sticky;
+     top: 1rem;
+
+     @include bp(bp-large) {
+       display: none;
+     }
+   }
+ }

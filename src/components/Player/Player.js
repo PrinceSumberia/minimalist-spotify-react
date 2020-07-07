@@ -39,14 +39,16 @@ const Player = () => {
     });
   };
 
-  useEffect(() => {
-    let isMobile = window.matchMedia("only screen and (max-width: 760px)")
-      .matches;
+  // useEffect(() => {
+  //   let isMobile = window.matchMedia("only screen and (max-width: 760px)")
+  //     .matches;
 
-    if (isMobile) {
-      setIsMobile(false);
-    }
-  }, [setIsMobile]);
+  //   console.log(isMobile);
+
+  //   if (isMobile) {
+  //     setIsMobile(true);
+  //   }
+  // }, [window]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -133,51 +135,45 @@ const Player = () => {
     }
   };
 
-  const miniPLayer = () => {
-    return (
-      <div className="miniPlayer">
-        <div className="miniPlayer__meta">
-          <div className="miniPlayer__media">
-            <img className="miniPlayer__media__img" src={image} alt={name} />
-          </div>
-          <div className="miniPlayer__name">
-            <h3 className="miniPlayer__title">{name}</h3>
-            <p className="miniPlayer__subtitle">{artist}</p>
-          </div>
+  return isMobile ? (
+    <div className="miniPlayer">
+      <div className="miniPlayer__meta">
+        <div className="miniPlayer__media">
+          <img className="miniPlayer__media__img" src={image} alt={name} />
         </div>
-        <div className="miniPlayer__controls">
-          <div className="miniPlayer__buttons">
-            <SkipBack className="miniPlayer__icon" onClick={handlePrev} />
-            <div
-              className={classNames("miniPlayer__control__play", {
-                player__animate: isPlaying,
-              })}
-              onClick={handlePlayPause}
-            >
-              {isPlaying ? (
-                <PauseCircle className="miniPlayer__icon miniPlayer__icon__play" />
-              ) : (
-                <PlayCircle className="miniPlayer__icon miniPlayer__icon__pause" />
-              )}
-            </div>
-            <SkipForward className="miniPlayer__icon" onClick={handleNext} />
-          </div>
-          <input
-            type="range"
-            ref={rangeRef}
-            className="miniPlayer__progress"
-            defaultValue={0}
-            min={0}
-            max={duration_ms}
-            onChange={handleChange}
-          />
+        <div className="miniPlayer__name">
+          <h3 className="miniPlayer__title">{name}</h3>
+          <p className="miniPlayer__subtitle">{artist}</p>
         </div>
       </div>
-    );
-  };
-
-  return isMobile ? (
-    miniPLayer
+      <div className="miniPlayer__controls">
+        <div className="miniPlayer__buttons">
+          <SkipBack className="miniPlayer__icon" onClick={handlePrev} />
+          <div
+            className={classNames("miniPlayer__control__play", {
+              player__animate: isPlaying,
+            })}
+            onClick={handlePlayPause}
+          >
+            {isPlaying ? (
+              <PauseCircle className="miniPlayer__icon miniPlayer__icon__play" />
+            ) : (
+              <PlayCircle className="miniPlayer__icon miniPlayer__icon__pause" />
+            )}
+          </div>
+          <SkipForward className="miniPlayer__icon" onClick={handleNext} />
+        </div>
+        <input
+          type="range"
+          ref={rangeRef}
+          className="miniPlayer__progress"
+          defaultValue={0}
+          min={0}
+          max={duration_ms}
+          onChange={handleChange}
+        />
+      </div>
+    </div>
   ) : (
     <div className="player">
       <div className="player__image__container">
@@ -221,3 +217,46 @@ const Player = () => {
 };
 
 export default memo(Player);
+
+// export const MiniPLayer = () => {
+//   return (
+//     <div className="miniPlayer">
+//       <div className="miniPlayer__meta">
+//         <div className="miniPlayer__media">
+//           <img className="miniPlayer__media__img" src={image} alt={name} />
+//         </div>
+//         <div className="miniPlayer__name">
+//           <h3 className="miniPlayer__title">{name}</h3>
+//           <p className="miniPlayer__subtitle">{artist}</p>
+//         </div>
+//       </div>
+//       <div className="miniPlayer__controls">
+//         <div className="miniPlayer__buttons">
+//           <SkipBack className="miniPlayer__icon" onClick={handlePrev} />
+//           <div
+//             className={classNames("miniPlayer__control__play", {
+//               player__animate: isPlaying,
+//             })}
+//             onClick={handlePlayPause}
+//           >
+//             {isPlaying ? (
+//               <PauseCircle className="miniPlayer__icon miniPlayer__icon__play" />
+//             ) : (
+//               <PlayCircle className="miniPlayer__icon miniPlayer__icon__pause" />
+//             )}
+//           </div>
+//           <SkipForward className="miniPlayer__icon" onClick={handleNext} />
+//         </div>
+//         <input
+//           type="range"
+//           ref={rangeRef}
+//           className="miniPlayer__progress"
+//           defaultValue={0}
+//           min={0}
+//           max={duration_ms}
+//           onChange={handleChange}
+//         />
+//       </div>
+//     </div>
+//   );
+// };
