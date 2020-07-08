@@ -10,6 +10,7 @@ import useInterval from "../../hooks/useInterval";
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import "./PlayerStyles.scss";
 import { useEffect } from "react";
+import useViewport from "../../hooks/useViewport";
 
 const Player = () => {
   const { sdkPlayer, isPlaying, setIsPlaying } = useContext(DataContext);
@@ -17,7 +18,6 @@ const Player = () => {
   const { currentSong, setCurrentSong } = useContext(CurrentSongContext);
   const { name, artist, duration, image, duration_ms } = currentSong;
   const [currentPosition, setCurrentPosition] = useState("0.00");
-  const [isMobile, setIsMobile] = useState(false);
 
   let rangeRef = useRef(null);
 
@@ -38,17 +38,6 @@ const Player = () => {
       });
     });
   };
-
-  // useEffect(() => {
-  //   let isMobile = window.matchMedia("only screen and (max-width: 760px)")
-  //     .matches;
-
-  //   console.log(isMobile);
-
-  //   if (isMobile) {
-  //     setIsMobile(true);
-  //   }
-  // }, [window]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -135,7 +124,10 @@ const Player = () => {
     }
   };
 
-  return isMobile ? (
+  const { width } = useViewport();
+  const breakpoint = 1100;
+
+  return width <= breakpoint ? (
     <div className="miniPlayer">
       <div className="miniPlayer__meta">
         <div className="miniPlayer__media">
@@ -149,12 +141,7 @@ const Player = () => {
       <div className="miniPlayer__controls">
         <div className="miniPlayer__buttons">
           <SkipBack className="miniPlayer__icon" onClick={handlePrev} />
-          <div
-            className={classNames("miniPlayer__control__play", {
-              player__animate: isPlaying,
-            })}
-            onClick={handlePlayPause}
-          >
+          <div className="miniPlayer__control__play" onClick={handlePlayPause}>
             {isPlaying ? (
               <PauseCircle className="miniPlayer__icon miniPlayer__icon__play" />
             ) : (

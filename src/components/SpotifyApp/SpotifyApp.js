@@ -55,6 +55,7 @@ function SpotifyApp() {
     if (isMobile) {
       setLoading(false);
     }
+
     window.onSpotifyWebPlaybackSDKReady = () => {
       let player = new window.Spotify.Player({
         name: "SDK Player",
