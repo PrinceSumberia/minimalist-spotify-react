@@ -24,6 +24,8 @@
   flex: 0 0 25%;
   border-radius: 2rem;
   margin-right: 3rem;
+  position: relative;
+
 
   @include bp(bp-large-largest) {
     margin-right: 2rem;

@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { CurrentSongContext, DataContext } from "../../context/DataContext";
 import "./SongStyles.scss";
 import classNames from "classnames";
+import useViewport from "../../hooks/useViewport";
+import { toast } from "react-toastify";
 
 function Song({
   id,
@@ -30,7 +32,14 @@ function Song({
     handleLike(id);
   };
 
+  const { width } = useViewport();
+  const breakpoint = 1100;
+
   const handlePlay = (e) => {
+    if (width <= breakpoint) {
+      toast.dark("Tracks can't be played on Mobile Devices");
+      return;
+    }
     e.stopPropagation();
     setCurrentSong({ uri, name, artist, duration, image, id, duration_ms });
     setIsPlaying(true);

@@ -39,6 +39,7 @@ body {
 
   min-height: 100vh;
 
+
   @include bp(bp-small) {
     font-size: 1.4rem;
   }
