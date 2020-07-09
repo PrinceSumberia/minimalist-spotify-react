@@ -9,8 +9,16 @@
   padding: 4rem;
   text-align: center;
 
+  position: --webkit-sticky;
+  position: sticky;
+  top: 1rem;
+
   @include bp(bp-largest) {
     padding: 2rem;
+  }
+
+  @include bp(bp-large) {
+    display: none;
   }
 
 
@@ -145,28 +153,116 @@
 }
 
 .miniPlayer {
-  display: grid;
-
-  &__meta {}
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  padding: 1rem;
+  top: calc(var(--vh, 1vh) *87);
+  left: 0;
+  z-index: 2000;
+  background-color: var(--color-primary-light-2);
 
   &__meta {
-    &__img {}
+    display: flex;
+    align-items: center;
+    width: 35%;
+  }
+
+  &__progressCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5rem;
+
+    @include bp(bp-small) {
+      padding: 0 2rem;
+    }
+
+    @include bp(bp-small) {
+      padding: 0;
+    }
+  }
+
+  &__progress {
+    flex: 1;
+    margin: 0 1rem;
+  }
+
+  &__media {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 1.5rem;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    @include bp(bp-medium-2) {
+      width: 4rem;
+      height: 4rem;
+      margin: 0 .5rem;
+    }
+
+    @include bp(bp-smallest) {
+      display: none;
+    }
+
+    &__img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__name {
-    &__title {}
+    text-transform: capitalize;
+    font-size: 1.5rem;
 
-    &__subtitle {}
+    @include bp(bp-medium-2) {
+      font-size: 1.3rem;
+    }
+
+    @include bp(bp-smallest) {
+      font-size: 1rem;
+    }
   }
 
-  &__controls {}
+  &__controls {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-  &__buttons {}
+    &__play {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &__icon {
+    margin: 0 2rem;
+    width: 2rem;
+    height: 2rem;
 
-    &__play {}
+    @include bp(bp-small) {
+      margin: 0 .5rem;
+    }
 
-    &__pause {}
+    &__play,
+    &__pause {
+      width: 3rem;
+      height: 3rem;
+      color: rgba($color: #000000, $alpha: .7);
+
+      @include bp(bp-medium-2) {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
   }
 }

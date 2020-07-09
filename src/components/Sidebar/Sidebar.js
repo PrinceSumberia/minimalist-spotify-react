@@ -8,9 +8,7 @@ function Sidebar() {
     <>
       <Profile />
       <Navbar />
-      <div className="sidebar__player">
-        <Player />
-      </div>
+      <Player />
     </>
   );
 }

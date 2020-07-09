@@ -141,7 +141,7 @@ const Player = () => {
       <div className="miniPlayer__controls">
         <div className="miniPlayer__buttons">
           <SkipBack className="miniPlayer__icon" onClick={handlePrev} />
-          <div className="miniPlayer__control__play" onClick={handlePlayPause}>
+          <div className="miniPlayer__controls__play" onClick={handlePlayPause}>
             {isPlaying ? (
               <PauseCircle className="miniPlayer__icon miniPlayer__icon__play" />
             ) : (
@@ -150,15 +150,19 @@ const Player = () => {
           </div>
           <SkipForward className="miniPlayer__icon" onClick={handleNext} />
         </div>
-        <input
-          type="range"
-          ref={rangeRef}
-          className="miniPlayer__progress"
-          defaultValue={0}
-          min={0}
-          max={duration_ms}
-          onChange={handleChange}
-        />
+        <div className="miniPlayer__progressCont">
+          <p>{currentPosition}</p>
+          <input
+            type="range"
+            ref={rangeRef}
+            className="miniPlayer__progress"
+            defaultValue={0}
+            min={0}
+            max={duration_ms}
+            onChange={handleChange}
+          />
+          <p>{duration}</p>
+        </div>
       </div>
     </div>
   ) : (
