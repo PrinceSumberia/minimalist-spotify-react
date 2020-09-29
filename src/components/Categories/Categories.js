@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+
+import Loader from "../Loader/Loader";
+
 import { CATEGORIES_URL } from "../../constants/constants";
 import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
-import Loader from "../Loader/Loader";
+
 import "./CategoriesStyles.scss";
 
 function Categories() {

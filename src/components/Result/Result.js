@@ -1,14 +1,18 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { DataContext, CurrentPlayListContext } from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
-import { millisToMinutesAndSeconds } from "../../utils/helpers";
+import { useHistory } from "react-router-dom";
+import { ChevronRight, ChevronLeft } from "react-feather";
+
 import Song from "../Song/Song";
-import "./ResultStyles.scss";
 import Cards from "../Cards/Cards";
 import Loader from "../Loader/Loader";
-import { useHistory } from "react-router-dom";
+
+import useFetchData from "../../hooks/useFetchData";
+import { DataContext, CurrentPlayListContext } from "../../context/DataContext";
+
+import { millisToMinutesAndSeconds } from "../../utils/helpers";
 import { SERACH_URL } from "../../constants/constants";
-import { ChevronRight, ChevronLeft } from "react-feather";
+
+import "./ResultStyles.scss";
 
 function Result({ query }) {
   const { accessToken } = useContext(DataContext);

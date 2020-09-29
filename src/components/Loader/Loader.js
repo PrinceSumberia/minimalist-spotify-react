@@ -1,6 +1,8 @@
 import React from "react";
 import Lootie from "react-lottie";
+
 import * as animationData from "../../assets/loading2.json";
+
 import "./LoaderStyles.scss";
 
 const defaultOptions = {

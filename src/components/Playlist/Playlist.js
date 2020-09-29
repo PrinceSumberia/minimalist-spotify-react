@@ -1,13 +1,17 @@
-import axios from "axios";
 import React, { memo, useContext, useEffect, useState } from "react";
+import axios from "axios";
+
+import Song from "../Song/Song";
+
+import useFetchData from "../../hooks/useFetchData";
 import {
   CurrentPlayListContext,
   CurrentSongContext,
   DataContext,
 } from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
+
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
-import Song from "../Song/Song";
+
 import "./PlaylistStyles.scss";
 
 function Playlist() {

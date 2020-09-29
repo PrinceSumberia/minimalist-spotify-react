@@ -1,16 +1,19 @@
-import classNames from "classnames";
-import React, { useContext, useRef, useState, memo } from "react";
+import React, { useContext, useEffect, useRef, useState, memo } from "react";
 import { PauseCircle, PlayCircle, SkipBack, SkipForward } from "react-feather";
+import classNames from "classnames";
+
+import useViewport from "../../hooks/useViewport";
+import useInterval from "../../hooks/useInterval";
+
 import {
   CurrentSongContext,
   DataContext,
   CurrentPlayListContext,
 } from "../../context/DataContext";
-import useInterval from "../../hooks/useInterval";
+
 import { millisToMinutesAndSeconds } from "../../utils/helpers";
+
 import "./PlayerStyles.scss";
-import { useEffect } from "react";
-import useViewport from "../../hooks/useViewport";
 
 const Player = () => {
   const { sdkPlayer, isPlaying, setIsPlaying } = useContext(DataContext);

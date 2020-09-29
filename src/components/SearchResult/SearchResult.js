@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+
 import SearchForm from "../SearchForm/SearchForm";
-import "./SearchResultStyles.scss";
 import Result from "../Result/Result";
+
+import "./SearchResultStyles.scss";
 
 function SearchResult(props) {
   const [isLoading, setIsLoading] = useState(true);

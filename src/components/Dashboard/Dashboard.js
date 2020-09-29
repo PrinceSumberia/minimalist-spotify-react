@@ -1,14 +1,17 @@
 import React, { memo } from "react";
-import "react-toastify/dist/ReactToastify.css";
+import FadeIn from "react-fade-in";
+
+import NewAlbums from "../NewAlbums/NewAlbums";
+import Playlist from "../Playlist/Playlist";
+import TopChart from "../TopChart/TopChart";
+
 import {
   NewAlbumProvider,
   TopPlayListProvider,
 } from "../../context/DataContext";
-import NewAlbums from "../NewAlbums/NewAlbums";
-import Playlist from "../Playlist/Playlist";
-import TopChart from "../TopChart/TopChart";
+
+import "react-toastify/dist/ReactToastify.css";
 import "./DashBoardStyles.scss";
-import FadeIn from "react-fade-in";
 
 function Dashboard() {
   return (

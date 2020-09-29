@@ -1,17 +1,20 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, memo } from "react";
+import { useHistory } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "react-feather";
+
+import Cards from "../Cards/Cards";
+import SearchForm from "../SearchForm/SearchForm";
+
+import useFetchData from "../../hooks/useFetchData";
 import {
   CurrentPlayListContext,
   DataContext,
   TopPlayListContext,
 } from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
-import Cards from "../Cards/Cards";
-import SearchForm from "../SearchForm/SearchForm";
-import "./TopChartStyles.scss";
-import { memo } from "react";
+
 import { TOP_PLAYLIST_URL } from "../../constants/constants";
-import { useHistory } from "react-router-dom";
+
+import "./TopChartStyles.scss";
 
 function TopChart() {
   const {

@@ -1,12 +1,14 @@
+import React, { memo, useContext } from "react";
+import classNames from "classnames";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import { faFlask, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { memo, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { CurrentSongContext, DataContext } from "../../context/DataContext";
-import "./SongStyles.scss";
-import classNames from "classnames";
+
 import useViewport from "../../hooks/useViewport";
-import { toast } from "react-toastify";
+import { CurrentSongContext, DataContext } from "../../context/DataContext";
+
+import "./SongStyles.scss";
 
 function Song({
   id,

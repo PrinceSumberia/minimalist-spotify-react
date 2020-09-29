@@ -1,9 +1,12 @@
 import React, { memo, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { AUTH_URL } from "../../constants/constants";
+
 import { AccessTokenContext, AuthContext } from "../../context/AuthContext";
-import "./LoginStyles.scss";
+
 import { getHash } from "../../utils/helpers";
+import { AUTH_URL } from "../../constants/constants";
+
+import "./LoginStyles.scss";
 
 function Login() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);

@@ -10,10 +10,14 @@ import {
   YAxis,
   ResponsiveContainer,
 } from "recharts";
-import { ANALYSIS_URL, FEATURES_URL } from "../../constants/constants";
+
+import Loader from "../Loader/Loader";
+
 import { CurrentSongContext, DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
-import Loader from "../Loader/Loader";
+
+import { ANALYSIS_URL, FEATURES_URL } from "../../constants/constants";
+
 import "./TrackAnalysisStyles.scss";
 
 function TrackAnalysis({ match, location }) {
