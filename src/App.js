@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import "./App.scss";
 import Login from "./components/Login/Login";
 import SpotifyApp from "./components/SpotifyApp/SpotifyApp";
 import { AuthProvider } from "./context/AuthContext";
