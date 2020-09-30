@@ -1,9 +1,11 @@
 import React, { memo, useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { DataContext } from "../../context/DataContext";
-import "./NavbarStyles.scss";
 import { Menu } from "react-feather";
 import classNames from "classnames";
+
+import { DataContext } from "../../context/DataContext";
+
+import "./NavbarStyles.scss";
 
 function Navbar() {
   const { setIsAuthenticated, setAccessToken, sdkPlayer } = useContext(

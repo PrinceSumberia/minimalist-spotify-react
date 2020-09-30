@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
-import { ArrowLeft } from "react-feather";
 import { useHistory } from "react-router-dom";
+import { ArrowLeft } from "react-feather";
+
+import Cards from "../Cards/Cards";
+
+import useFetchData from "../../hooks/useFetchData";
 import { CATEGORIES_URL } from "../../constants/constants";
 import { DataContext, CurrentPlayListContext } from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
-import Cards from "../Cards/Cards";
+
 import "./CategoryStyles.scss";
 
 function Category({ location, match }) {

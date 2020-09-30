@@ -1,7 +1,9 @@
 import React, { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
 import "./FooterStyles.scss";
+
 import bmac from "../../assets/bmac.svg";
 
 function Footer() {

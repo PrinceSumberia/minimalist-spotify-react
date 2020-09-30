@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FEATURED_PLAYLIST_URL } from "../../constants/constants";
-import { DataContext, CurrentPlayListContext } from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
+import { useHistory } from "react-router-dom";
+
 import Cards from "../Cards/Cards";
 import Loader from "../Loader/Loader";
+
+import useFetchData from "../../hooks/useFetchData";
+import { DataContext, CurrentPlayListContext } from "../../context/DataContext";
+
+import { FEATURED_PLAYLIST_URL } from "../../constants/constants";
+
 import "./FeaturedStyles.scss";
-import { useHistory } from "react-router-dom";
 
 function Featured() {
   const {
