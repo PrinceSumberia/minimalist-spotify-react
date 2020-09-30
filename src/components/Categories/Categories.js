@@ -3,9 +3,10 @@ import { useHistory } from "react-router-dom";
 
 import Loader from "../Loader/Loader";
 
-import { CATEGORIES_URL } from "../../constants/constants";
 import { DataContext } from "../../context/DataContext";
 import useFetchData from "../../hooks/useFetchData";
+
+import { CATEGORIES_URL } from "../../constants/constants";
 
 import "./CategoriesStyles.scss";
 
