@@ -1,16 +1,9 @@
 import React, { memo, useContext, useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import FadeIn from "react-fade-in";
 import Lootie from "react-lottie";
-import { Route, Switch } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import * as animationData from "../../assets/loading.json";
-import {
-  CurrentPlayListProvider,
-  CurrentSongProvider,
-  DataContext,
-} from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
+
 import Browse from "../Browse/Browse";
 import Category from "../Category/Category";
 import Dashboard from "../Dashboard/Dashboard";
@@ -18,8 +11,19 @@ import Footer from "../Footer/Footer";
 import Library from "../Library/Library";
 import Sidebar from "../Sidebar/Sidebar";
 import TrackAnalysis from "../TrackAnalysis/TrackAnalysis";
-import "./SpotifyAppStyles.scss";
 import SearchResult from "../SearchResult/SearchResult";
+
+import {
+  CurrentPlayListProvider,
+  CurrentSongProvider,
+  DataContext,
+} from "../../context/DataContext";
+import useFetchData from "../../hooks/useFetchData";
+
+import * as animationData from "../../assets/loading.json";
+
+import "react-toastify/dist/ReactToastify.css";
+import "./SpotifyAppStyles.scss";
 
 function SpotifyApp() {
   const {

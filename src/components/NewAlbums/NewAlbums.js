@@ -1,14 +1,18 @@
 import React, { useContext, useEffect, memo, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "react-feather";
+
+import Cards from "../Cards/Cards";
+
+import useFetchData from "../../hooks/useFetchData";
 import {
   CurrentPlayListContext,
   DataContext,
   NewAlbumContext,
 } from "../../context/DataContext";
-import useFetchData from "../../hooks/useFetchData";
-import Cards from "../Cards/Cards";
-import "./NewAlbumsStyles.scss";
+
 import { NEWALBUMS_URL } from "../../constants/constants";
-import { ChevronLeft, ChevronRight } from "react-feather";
+
+import "./NewAlbumsStyles.scss";
 
 function NewAlbums() {
   const {

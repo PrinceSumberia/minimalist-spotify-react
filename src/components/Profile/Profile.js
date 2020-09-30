@@ -1,6 +1,8 @@
 import React, { memo, useContext } from "react";
 import { LogOut } from "react-feather";
+
 import { DataContext } from "../../context/DataContext";
+
 import "./ProfileStyles.scss";
 
 function Profile() {
