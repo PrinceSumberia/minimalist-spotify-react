@@ -1,0 +1,7 @@
+[build]
+command = "CI= yarn run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
