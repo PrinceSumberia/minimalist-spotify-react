@@ -1,4 +1,4 @@
-const CLIENT_ID = import.meta.env.REACT_APP_CLIENT_ID;
+const CLIENT_ID = import.meta.env.VITE_APP_CLIENT_ID;
 
 export const GLOBAL_TRACK_ID = '37i9dQZEVXbMDoHDwVN2tF';
 const PERMISSION_SCOPE =
