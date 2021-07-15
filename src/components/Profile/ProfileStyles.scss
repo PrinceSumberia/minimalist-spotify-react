@@ -1,0 +1,75 @@
+@import '../../mixins.scss';
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: 2rem;
+
+  @include bp(bp-large) {
+    margin-top: 1rem;
+    padding: 0 2rem;
+  }
+}
+
+.media {
+  width: 5.5rem;
+  height: 5.5rem;
+  margin-right: 1.5rem;
+
+  &__img {
+    border-radius: 1.5rem;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+}
+
+.user {
+  font-size: 1.4rem;
+
+  &__name {
+    font-weight: 700;
+
+    @include bp(bp-small) {
+      display: none;
+    }
+
+    & span {
+      text-transform: uppercase;
+    }
+
+    @include bp(bp-large) {
+      margin-right: 1rem;
+    }
+  }
+
+  &__email {
+    @include bp(bp-large) {
+      display: none;
+    }
+  }
+}
+
+.controls {
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  &__logout {
+    margin-right: 1rem;
+
+    @include bp(bp-large) {
+      display: none;
+    }
+
+    &:hover {
+      color: var(--color-green);
+    }
+  }
+}

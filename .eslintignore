@@ -1,0 +1,8 @@
+node_modules
+coverage
+.cache
+build
+public
+.netlify
+.eslintrc.js
+vite.config.ts

@@ -1,0 +1,65 @@
+@import '../../mixins.scss';
+
+.container {
+  display: flex;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  padding: 4rem;
+  min-height: 100vh;
+
+  @include bp(bp-large-largest) {
+    padding: 2rem;
+  }
+
+  @include bp(bp-large) {
+    flex-direction: column;
+    background-color: var(--color-white);
+  }
+
+  @include bp(bp-medium) {
+    padding: 0rem;
+  }
+}
+
+.sidebar {
+  flex: 0 0 25%;
+  border-radius: 2rem;
+  margin-right: 3rem;
+  position: relative;
+
+
+  @include bp(bp-large-largest) {
+    margin-right: 2rem;
+  }
+
+  @include bp(bp-largest) {
+    flex: 0 0 20%;
+    margin-right: 1rem;
+  }
+
+  @include bp(bp-large) {
+    margin-top: 1rem;
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-radius: 0;
+  }
+}
+
+.mainContent {
+  flex: 1;
+  border-radius: 2rem;
+  background-color: var(--color-white);
+  overflow: hidden;
+}
+
+.Toastify__toast-container {
+  width: max-content;
+}
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

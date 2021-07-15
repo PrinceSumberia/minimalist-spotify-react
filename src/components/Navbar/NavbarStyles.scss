@@ -1,0 +1,75 @@
+@import '../../mixins.scss';
+
+.navbar {
+  align-self: center;
+  margin-top: 3rem;
+
+  @include bp(bp-large) {
+    margin-top: 1rem;
+  }
+
+  &__toggle {
+    display: none;
+
+    @include bp(bp-large) {
+      display: block;
+      text-align: right;
+    }
+  }
+
+  &__logout {
+    display: none;
+
+    @include bp(bp-large) {
+      display: block;
+    }
+  }
+
+  &__items {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    transition: all .4s;
+
+    @include bp(bp-large) {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    &__expand {
+      opacity: 1;
+      max-height: max-content;
+    }
+  }
+
+  &__item {
+    transition: all .3s;
+
+    @include bp(bp-large) {
+      margin-right: 2.5rem;
+    }
+
+    @include bp(bp-small) {
+      margin-right: 1.5rem;
+    }
+
+    &:hover {
+      backface-visibility: hidden;
+      transform: rotate(2deg) scale(1.1);
+      box-shadow: 0 1rem 2rem rgba(0, 0, 0, .05);
+    }
+  }
+
+  &__link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    &:hover {
+      color: var(--color-green);
+    }
+  }
+}

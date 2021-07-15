@@ -1,0 +1,45 @@
+@import '../../mixins.scss';
+
+.result {
+
+  &__header {
+    font-size: 3rem;
+    margin: 1rem 0 1rem 1rem;
+
+    @include bp(bp-large) {
+      font-size: 2rem;
+    }
+  }
+
+  &__albums {
+    padding: 1rem;
+
+    &__container {
+      display: flex;
+      align-items: center;
+    }
+
+    &__list {
+      overflow-y: hidden;
+      display: flex;
+      overflow-x: scroll;
+      scrollbar-width: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  &__songlist {
+    padding: 1rem;
+
+    &__list {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      height: 50vh;
+    }
+  }
+}

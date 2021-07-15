@@ -1,0 +1,31 @@
+@import '../../mixins.scss';
+
+.featured {
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+
+    @include bp(bp-largest) {
+      gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include bp(bp-medium) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include bp(bp-small) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__item {
+    transition: all .4s;
+
+    &:hover {
+      transform: scale(1.07);
+    }
+  }
+}

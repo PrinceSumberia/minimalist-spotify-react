@@ -1,0 +1,47 @@
+@import '../../mixins.scss';
+
+.category {
+  margin-top: 3rem;
+  padding: 2rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    @include bp(bp-large) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary-light-2);
+
+    &:hover {
+      color: var(--color-green);
+    }
+  }
+
+  &__title {
+    margin-left: 2rem;
+    font-size: 3rem;
+
+    @include bp(bp-large) {
+      margin-left: 1.5rem;
+      font-size: 2rem;
+    }
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @include bp(bp-small) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

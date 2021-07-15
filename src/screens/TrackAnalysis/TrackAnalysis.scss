@@ -1,0 +1,133 @@
+@import '../../mixins.scss';
+
+.trackAnalysis {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+  text-transform: capitalize;
+
+  @include bp(bp-medium) {
+    margin-top: 2rem;
+    padding: 3.5rem;
+  }
+
+  @include bp(bp-small) {
+    padding: 2rem 1.5rem;
+  }
+
+  &__header {
+    align-self: stretch;
+    display: flex;
+    margin-bottom: 4rem;
+
+    &__media {
+      flex: 0 0 30%;
+      margin-right: 2rem;
+
+      &__img {
+        display: block;
+        width: 100%;
+        background-size: cover;
+        overflow: hidden;
+        border-radius: 2rem;
+      }
+    }
+
+    &__title {
+      font-size: 4rem;
+      font-weight: 900;
+
+      @include bp(bp-small) {
+        font-size: 2.5rem;
+      }
+    }
+
+    &__subtitle {
+      font-size: 2.5rem;
+
+      @include bp(bp-small) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  &__analysis {
+    align-self: stretch;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    margin: 7rem 0;
+    border-top: 1px solid var(--color-green);
+    border-right: 1px solid var(--color-green);
+
+    @include bp(bp-small) {
+      margin: 3rem 0;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    &__feature {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+
+      &>div {
+        transition: all .2s;
+
+        &:hover {
+          color: var(--color-green);
+          backface-visibility: hidden;
+          transform: rotate(2deg) scale(1.1);
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, .05);
+        }
+      }
+    }
+
+    &__value {
+      font-size: 2.7rem;
+      font-weight: 600;
+    }
+
+    &>div {
+      width: 100%;
+      border-left: 1px solid var(--color-green);
+      border-bottom: 1px solid var(--color-green);
+    }
+  }
+
+  &__btn {
+
+    &,
+    &:active {
+      border: none;
+      outline: none;
+      margin-top: 2rem;
+      font-size: inherit;
+      font-family: inherit;
+      padding: 1rem 3rem;
+      background-color: var(--color-green);
+      color: var(--color-primary-light-1);
+      border-radius: 1rem;
+      transition: all .2s;
+    }
+
+    &:hover {
+      background-color: var(--color-primary);
+    }
+  }
+
+  &__chart {
+    margin-top: 2rem;
+    width: 100%;
+    height: 60rem;
+
+    @include bp(bp-small) {
+      height: 40rem;
+    }
+  }
+}

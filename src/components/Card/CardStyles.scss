@@ -1,0 +1,53 @@
+@import '../../mixins';
+
+.card {
+  flex: 0 0 auto;
+  margin: 0 2rem;
+
+  @include bp(bp-medium) {
+    margin: 0 1.5rem;
+  }
+
+  &__imgContainer {
+    width: 22rem;
+    height: 22rem;
+
+    @include bp(bp-large) {
+      width: 16rem;
+      height: 16rem;
+    }
+
+    @include bp(bp-medium) {
+      width: 16rem;
+      height: 16rem;
+    }
+
+    @include bp(bp-medium-3) {
+      width: 13rem;
+      height: 13rem;
+    }
+
+    &__img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background-size: cover;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+    }
+  }
+
+  &__content {
+    margin: 1rem 0;
+
+    &__title {
+      font-weight: 600;
+    }
+
+    &__subtitle {
+      font-size: 1.4rem;
+      font-weight: 300;
+    }
+  }
+}
