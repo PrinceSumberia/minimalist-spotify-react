@@ -109,6 +109,8 @@ const Layout = ({ children }: PropTypes) => {
     }
   }, [scriptStatus]);
 
+  React.useEffect(() => () => playerRef.current?.disconnect(), []);
+
   return (
     <div className="container">
       <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => logout()}>
